@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="340" viewBox="0 0 640 340" fill="none">
+<defs><pattern id="g" width="32" height="32" patternUnits="userSpaceOnUse"><path d="M32 0H0V32" stroke="#8cabc1" stroke-opacity=".12"/></pattern><radialGradient id="r"><stop stop-color="#376681" stop-opacity=".5"/><stop offset="1" stop-color="#102b3c" stop-opacity="0"/></radialGradient></defs>
+<rect width="640" height="340" fill="url(#g)"/><ellipse cx="355" cy="174" rx="246" ry="169" fill="url(#r)"/>
+<g stroke="#7294a9" stroke-opacity=".28"><circle cx="350" cy="173" r="70"/><circle cx="350" cy="173" r="122"/><circle cx="350" cy="173" r="172"/><path d="M178 173h344M350 1v340M215 63l270 220M216 282 484 64" stroke-dasharray="3 8"/></g>
+<g fill="#809caa" fill-opacity=".18" stroke="#9eb8c5" stroke-opacity=".3" stroke-linejoin="round"><path d="m87 88 41-13 37 9 9 19 27 10-11 19-27-2-12 28-15 7-11-23-25-9-13-25Z"/><path d="m167 168 31 13 7 29-11 19-13 44-13-22-6-43-10-20Z"/><path d="m281 110 27-17 15 10 31-9 13 17 52-15 37 19 15-7 44 30-12 20-37-4-8 19-30-10-19 26-17-16-22 18-23-29-23-8-13-25-33 12-14-11Z"/><path d="m309 145 37 10 20 32-13 22-9 29-19-13-10-34-17-26Z"/><path d="m463 217 27-7 26 20-11 21-45-4-8-16Z"/></g>
+<path d="M151 116Q291-11 448 156M448 156Q418 244 329 174M448 156Q525 156 496 235" stroke="#ffb069" stroke-width="1.7" stroke-dasharray="5 5"/>
+<path d="M151 116Q320 242 448 156" stroke="#ff9753" stroke-width="2.3"/>
+<g fill="#ffb069"><circle cx="151" cy="116" r="4"/><circle cx="329" cy="174" r="4"/><circle cx="496" cy="235" r="4"/></g><circle cx="448" cy="156" r="15" fill="#ff9653" fill-opacity=".14"/><circle cx="448" cy="156" r="7" fill="#ffb069"/><circle cx="448" cy="156" r="23" stroke="#ffb069" stroke-opacity=".35"/>
+<g fill="#d8e7ee" font-family="Microsoft YaHei,sans-serif" font-size="12"><text x="120" y="101">美洲</text><text x="301" y="160">欧洲</text><text x="464" y="148">亚洲</text><text x="508" y="258">大洋洲</text></g>
+<g transform="translate(323 171) rotate(14)"><path d="m18-13-8 36-9-13-17-6 34-17Z" fill="#fff2dd"/><path d="M1 10 18-13" stroke="#bc7540"/></g>
+<path d="M51 38h17M51 38v17M590 285h-17M590 285v-17" stroke="#91aebd" stroke-opacity=".6"/>
+<g fill="#9ab3c2" font-family="Microsoft YaHei,sans-serif" font-size="10" letter-spacing="2"><text x="78" y="42">全球互联 · 航线示意</text><text x="423" y="303">保持好奇 / 自由探索</text></g>
+</svg>
