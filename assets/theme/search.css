@@ -1,0 +1,62 @@
+/* 搜索与现有主题共用色板，使用 Pagefind 官方变量适配明暗模式。 */
+.search-toggle {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  margin-right: -16px;
+  color: var(--muted);
+  border-radius: 50%;
+}
+.search-toggle:hover,
+.search-toggle[aria-current] {
+  color: var(--accent);
+  background: var(--soft);
+}
+.site-search {
+  --pf-text: var(--text);
+  --pf-text-secondary: var(--muted);
+  --pf-text-muted: var(--muted);
+  --pf-background: var(--surface);
+  --pf-border: var(--line);
+  --pf-border-focus: var(--accent);
+  --pf-hover: var(--soft);
+  --pf-mark: var(--accent);
+  --pf-skeleton: var(--soft);
+  --pf-skeleton-shine: var(--surface);
+  --pf-outline-focus: var(--accent);
+  --pf-font: inherit;
+  --pf-input-height: 44px;
+  --pf-summary-font-size: 13px;
+  --pf-result-title-font-size: 18px;
+  --pf-result-excerpt-font-size: 14px;
+  --pf-results-gap: 16px;
+  --pf-border-radius: 8px;
+  --pf-error-bg: var(--surface);
+  --pf-error-border: var(--line);
+  --pf-error-text: var(--text);
+  --pf-error-text-secondary: var(--muted);
+  min-width: 0;
+}
+.search-status {
+  margin: 8px 0 20px;
+  color: var(--muted);
+}
+.site-search [hidden] {
+  display: none !important;
+}
+.site-search pagefind-summary {
+  margin: 14px 0;
+}
+.site-search .reader-dialog-body {
+  min-height: 150px;
+}
+.site-search .empty {
+  padding: 24px 12px;
+}
+@media (max-width: 760px) {
+  .search-toggle {
+    margin-right: -8px;
+  }
+}
