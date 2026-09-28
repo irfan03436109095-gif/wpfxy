@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="default">
+
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Android v2rayNG 入门：订阅、VPN 接管与切网验收 · 王牌飞行员机场推荐</title>
+<meta name="description" content="从官方来源安装到订阅更新与 VPN 接管，分别验证前台、锁屏和切换网络后的 v2rayNG 使用状态。">
+<meta name="keywords" content="v2rayNG教程,安卓代理,Android VPN">
+<meta name="robots" content="index,follow,max-image-preview:large"><link rel="canonical" href="https://wpfxy.cc/posts/android-v2rayng-start/">
+<meta property="og:title" content="Android v2rayNG 入门：订阅、VPN 接管与切网验收">
+<meta property="og:description" content="从官方来源安装到订阅更新与 VPN 接管，分别验证前台、锁屏和切换网络后的 v2rayNG 使用状态。">
+<meta property="og:url" content="https://wpfxy.cc/posts/android-v2rayng-start/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="王牌飞行员机场推荐">
+<meta property="og:locale" content="zh_CN">
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android v2rayNG 入门：订阅、VPN 接管与切网验收">
+<meta name="twitter:description" content="从官方来源安装到订阅更新与 VPN 接管，分别验证前台、锁屏和切换网络后的 v2rayNG 使用状态。">
+
+<meta name="author" content="王牌飞行员机场推荐"><meta property="article:published_time" content="2026-09-28T17:29:43&#43;08:00"><meta property="article:modified_time" content="2026-09-28T17:59:35&#43;08:00"><meta property="article:tag" content="Android"><meta property="article:tag" content="客户端配置"><meta property="article:tag" content="订阅安全">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@id":"https://wpfxy.cc/posts/android-v2rayng-start/#article","@type":"BlogPosting","author":{"@type":"Person","name":"王牌飞行员机场推荐"},"dateModified":"2026-09-28T17:59:35+08:00","datePublished":"2026-09-28T17:29:43+08:00","description":"从官方来源安装到订阅更新与 VPN 接管，分别验证前台、锁屏和切换网络后的 v2rayNG 使用状态。","headline":"Android v2rayNG 入门：订阅、VPN 接管与切网验收","inLanguage":"zh-CN","mainEntityOfPage":{"@id":"https://wpfxy.cc/posts/android-v2rayng-start/","@type":"WebPage"},"url":"https://wpfxy.cc/posts/android-v2rayng-start/"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://wpfxy.cc/","name":"王牌飞行员机场推荐","position":1},{"@type":"ListItem","item":"https://wpfxy.cc/posts/android-v2rayng-start/","name":"Android v2rayNG 入门：订阅、VPN 接管与切网验收","position":2}]}]}</script>
+
+<script>(()=>{let mode='system';try{const saved=localStorage.getItem('reader-theme');if(['system','light','dark'].includes(saved))mode=saved}catch{}const root=document.documentElement;root.dataset.colorMode=mode;root.classList.toggle('dark',mode==='dark'||(mode==='system'&&matchMedia('(prefers-color-scheme: dark)').matches))})();</script>
+<link rel="stylesheet" href="https://wpfxy.cc/assets/theme/style.css">
+<link rel="stylesheet" href="https://wpfxy.cc/assets/theme/advertisements.css">
+
+
+<link rel="stylesheet" href="https://wpfxy.cc/assets/theme/viewer.css">
+<link rel="stylesheet" href="https://wpfxy.cc/assets/theme/reader.css">
+<link rel="icon" href="https://wpfxy.cc/assets/theme/favicon.svg" type="image/svg+xml">
+
+<script defer src="https://wpfxy.cc/assets/theme/theme.js"></script>
+<script defer src="https://wpfxy.cc/assets/theme/reader.js"></script>
+<script defer src="https://wpfxy.cc/assets/theme/viewer.js"></script>
+<script defer src="https://wpfxy.cc/assets/theme/image-viewer.js"></script>
+
+<script defer src="https://wpfxy.cc/assets/theme/interactions.js"></script>
+
+
+
+</head>
+
+<body class="article-page">
+
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="site-header">
+<div class="header-inner">
+<a class="brand" href="https://wpfxy.cc/"><span>王牌飞行员机场推荐</span></a>
+<nav id="site-navigation" aria-label="站点导航"><a href="https://wpfxy.cc/">首页</a><a href="https://wpfxy.cc/categories/airport-selection/">机场推荐</a><a href="https://wpfxy.cc/categories/network-basics/">网络技术</a><a href="https://wpfxy.cc/categories/client-tutorials/">客户端教程</a><a href="https://wpfxy.cc/categories/troubleshooting/">故障排查</a><a href="https://wpfxy.cc/categories/privacy-review/">隐私与评测</a></nav>
+
+<button id="theme-mode" class="theme-toggle theme-cycle" type="button" aria-label="明暗模式：跟随系统，点击切换为明亮" title="跟随系统 · 点击切换为明亮">
+<svg class="theme-icon-system" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8m-4-4v4"/></svg>
+<svg class="theme-icon-moon" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.2 15.5A8.5 8.5 0 0 1 8.5 3.8 8.5 8.5 0 1 0 20.2 15.5Z"/></svg>
+<svg class="theme-icon-sun" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+</button>
+<span id="theme-mode-status" class="visually-hidden" role="status" aria-live="polite"></span>
+<button id="menu-toggle" class="menu-toggle" type="button" aria-controls="site-navigation" aria-expanded="false" aria-label="打开菜单" title="打开菜单">
+<svg class="menu-icon-open" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+<svg class="menu-icon-close" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="m6 6 12 12M6 18 18 6"/></svg>
+</button>
+</div>
+</header>
+
+<div class="article-viewport"><div class="article-scroll">
+<main id="main" tabindex="-1" class="shell article-shell" data-has-toc="true">
+
+<nav class="breadcrumbs" aria-label="面包屑导航"><ol><li><a href="https://wpfxy.cc/">王牌飞行员机场推荐</a></li><li><span aria-current="page">Android v2rayNG 入门：订阅、VPN 接管与切网验收</span></li></ol></nav>
+
+
+
+<article data-pagefind-body>
+<header class="article-header">
+<div class="eyebrow" data-pagefind-ignore>文章</div>
+<h1 data-pagefind-meta="title">Android v2rayNG 入门：订阅、VPN 接管与切网验收</h1>
+<div class="metadata" data-pagefind-ignore><span>王牌飞行员机场推荐</span><time datetime="2026-09-28T17:29:43&#43;08:00">2026-09-28</time></div>
+<div class="chips" data-pagefind-ignore><a href="https://wpfxy.cc/categories/client-tutorials/">客户端教程</a></div>
+</header>
+<div class="prose"><p>Android 手机上使用 v2rayNG，需要同时确认订阅可识别、节点可连接、VPN 服务已启动，以及目标应用处于接管范围。通知栏出现 VPN 标志，是系统状态提示，不能单独证明所有目标访问都成功。</p>
+<p>客户端来源以 <a href="https://github.com/2dust/v2rayNG">2dust/v2rayNG 官方项目</a>为准。本文说明通用导入和验收流程，不绑定某一个版本的按钮位置。</p>
+<h2 id="heading">安装前先看系统和已有连接</h2>
+<p>选择与设备匹配的官方发行文件，避免下载广告页提供的同名安装包。已有配置时先备份，记录版本，不要通过清除数据来尝试解决尚未定位的问题。</p>
+<p>查看设备上是否已有 VPN 应用、工作资料 VPN 或需要保留的连接。Android 的 <a href="https://developer.android.com/develop/connectivity/vpn?hl=zh-CN">VPN 开发文档</a>说明，同一用户或资料中只有一个活动 VPN 服务。多个工具可能竞争这个位置，具体还要区分个人与工作资料。</p>
+<h2 id="heading-1">添加订阅并更新节点</h2>
+<p>在订阅分组设置中添加便于辨认的名称和服务提供的兼容地址，保存后执行订阅更新。观察节点是否出现、是否有错误提示，以及是否更新到了正确分组。</p>
+<p>如果只拿到单个节点分享链接，应使用客户端对应的节点导入入口；它与能持续更新的订阅不是同一概念。不要把一次性导入的节点列表误认为已经建立自动更新关系。</p>
+<h2 id="heading-2">选择节点并启动服务</h2>
+<p>先选择一个节点，再启动连接。首次出现 Android 的 VPN 连接授权提示时，确认请求来自刚安装的正确应用，并理解授权用途后操作。提示名称或来源异常时，停止并核对安装来源。</p>
+<p>启动后同时查看应用状态和日志。只有通知栏有图标、但日志持续报认证或解析错误时，应继续排查对应阶段。</p>
+<h2 id="heading-3">先做前台测试，再做切换测试</h2>
+<p>第一轮保持客户端与目标应用在前台，完成一项简单任务，例如打开资料页面。第二轮锁屏一小段时间后恢复，再执行同一任务。第三轮在有条件时从 Wi-Fi 切到移动网络，观察连接是否需要重新建立。</p>
+<p>这三轮分别观察基础配置、后台持续运行和网络变化。若只在后两轮失败，应保留具体时间和网络状态，不要直接删掉订阅重新安装。</p>
+<h2 id="heading-4">只有部分应用不工作怎么办</h2>
+<p>检查客户端的分应用设置、目标应用自己的代理或网络选项，以及个人资料和工作资料的区别。不同版本对包含或绕过应用的列表表达可能不同，应仔细确认当前列表的含义。</p>
+<p>先选一个出问题的应用作对照，不要一次修改全部应用规则。切换网络后仍失败，再查该应用连接记录和服务端可用性。</p>
+<h2 id="heading-5">常见结果与下一步</h2>
+<table>
+<thead>
+<tr>
+<th>现象</th>
+<th>优先检查</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>更新订阅就失败</td>
+<td>地址、授权、套餐状态、订阅格式</td>
+</tr>
+<tr>
+<td>节点出现但连接报错</td>
+<td>节点参数、内核支持、当前网络</td>
+</tr>
+<tr>
+<td>前台正常，锁屏后异常</td>
+<td>系统对后台运行的限制及应用状态</td>
+</tr>
+<tr>
+<td>启动后另一 VPN 断开</td>
+<td>是否在同一用户或资料中竞争服务</td>
+</tr>
+<tr>
+<td>只有一个应用失败</td>
+<td>分应用范围、路由和应用自身设置</td>
+</tr>
+</tbody>
+</table>
+<p>排查电量管理时只针对相关应用检查，不必一概关闭全机节电设置。求助前按<a href="/posts/subscription-secret-sharing/">订阅凭据保护</a>遮盖地址和二维码；如果错误发生在更新阶段，继续看<a href="/posts/subscription-http-error-triage/">订阅错误排查</a>。</p>
+</div>
+
+<div class="article-tags" data-pagefind-ignore><a href="https://wpfxy.cc/tags/android/"># Android</a><a href="https://wpfxy.cc/tags/client-config/"># 客户端配置</a><a href="https://wpfxy.cc/tags/subscription-security/"># 订阅安全</a></div>
+<nav class="pagination" aria-label="相邻文章" data-pagefind-ignore><a href="https://wpfxy.cc/posts/macos-system-proxy-audit/">← 上一篇</a><a href="https://wpfxy.cc/posts/clash-verge-rev-first-run/">下一篇 →</a></nav>
+
+</article>
+
+<div class="article-rail">
+<aside class="toc"><div>本篇目录</div><nav aria-label="文章目录"><a class="level-2" href="#heading">安装前先看系统和已有连接</a><a class="level-2" href="#heading-1">添加订阅并更新节点</a><a class="level-2" href="#heading-2">选择节点并启动服务</a><a class="level-2" href="#heading-3">先做前台测试，再做切换测试</a><a class="level-2" href="#heading-4">只有部分应用不工作怎么办</a><a class="level-2" href="#heading-5">常见结果与下一步</a></nav></aside>
+</div>
+
+</main>
+</div>
+
+<button id="back-to-top" class="back-to-top" type="button" aria-label="返回顶部" title="返回顶部" hidden>
+<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h14M12 20V8m-5 5 5-5 5 5"/></svg>
+</button>
+</div>
+
+<footer class="site-footer">
+
+
+</footer>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="default">
+
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>macOS 代理设置怎么检查？网络服务、端口与退出恢复 · 王牌飞行员机场推荐</title>
+<meta name="description" content="检查 Mac 当前网络服务的系统代理，区分本地监听、远端节点与 PAC 脚本，按可恢复步骤核查端口和配置。">
+<meta name="keywords" content="macOS代理,Mac代理设置,SOCKS代理">
+<meta name="robots" content="index,follow,max-image-preview:large"><link rel="canonical" href="https://wpfxy.cc/posts/macos-system-proxy-audit/">
+<meta property="og:title" content="macOS 代理设置怎么检查？网络服务、端口与退出恢复">
+<meta property="og:description" content="检查 Mac 当前网络服务的系统代理，区分本地监听、远端节点与 PAC 脚本，按可恢复步骤核查端口和配置。">
+<meta property="og:url" content="https://wpfxy.cc/posts/macos-system-proxy-audit/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="王牌飞行员机场推荐">
+<meta property="og:locale" content="zh_CN">
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="macOS 代理设置怎么检查？网络服务、端口与退出恢复">
+<meta name="twitter:description" content="检查 Mac 当前网络服务的系统代理，区分本地监听、远端节点与 PAC 脚本，按可恢复步骤核查端口和配置。">
+
+<meta name="author" content="王牌飞行员机场推荐"><meta property="article:published_time" content="2026-09-28T17:29:43&#43;08:00"><meta property="article:modified_time" content="2026-09-28T17:59:37&#43;08:00"><meta property="article:tag" content="macOS"><meta property="article:tag" content="客户端配置"><meta property="article:tag" content="故障排查">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@id":"https://wpfxy.cc/posts/macos-system-proxy-audit/#article","@type":"BlogPosting","author":{"@type":"Person","name":"王牌飞行员机场推荐"},"dateModified":"2026-09-28T17:59:37+08:00","datePublished":"2026-09-28T17:29:43+08:00","description":"检查 Mac 当前网络服务的系统代理，区分本地监听、远端节点与 PAC 脚本，按可恢复步骤核查端口和配置。","headline":"macOS 代理设置怎么检查？网络服务、端口与退出恢复","inLanguage":"zh-CN","mainEntityOfPage":{"@id":"https://wpfxy.cc/posts/macos-system-proxy-audit/","@type":"WebPage"},"url":"https://wpfxy.cc/posts/macos-system-proxy-audit/"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://wpfxy.cc/","name":"王牌飞行员机场推荐","position":1},{"@type":"ListItem","item":"https://wpfxy.cc/posts/macos-system-proxy-audit/","name":"macOS 代理设置怎么检查？网络服务、端口与退出恢复","position":2}]}]}</script>
+
+<script>(()=>{let mode='system';try{const saved=localStorage.getItem('reader-theme');if(['system','light','dark'].includes(saved))mode=saved}catch{}const root=document.documentElement;root.dataset.colorMode=mode;root.classList.toggle('dark',mode==='dark'||(mode==='system'&&matchMedia('(prefers-color-scheme: dark)').matches))})();</script>
+<link rel="stylesheet" href="https://wpfxy.cc/assets/theme/style.css">
+<link rel="stylesheet" href="https://wpfxy.cc/assets/theme/advertisements.css">
+
+
+<link rel="stylesheet" href="https://wpfxy.cc/assets/theme/viewer.css">
+<link rel="stylesheet" href="https://wpfxy.cc/assets/theme/reader.css">
+<link rel="icon" href="https://wpfxy.cc/assets/theme/favicon.svg" type="image/svg+xml">
+
+<script defer src="https://wpfxy.cc/assets/theme/theme.js"></script>
+<script defer src="https://wpfxy.cc/assets/theme/reader.js"></script>
+<script defer src="https://wpfxy.cc/assets/theme/viewer.js"></script>
+<script defer src="https://wpfxy.cc/assets/theme/image-viewer.js"></script>
+
+<script defer src="https://wpfxy.cc/assets/theme/interactions.js"></script>
+
+
+
+</head>
+
+<body class="article-page">
+
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="site-header">
+<div class="header-inner">
+<a class="brand" href="https://wpfxy.cc/"><span>王牌飞行员机场推荐</span></a>
+<nav id="site-navigation" aria-label="站点导航"><a href="https://wpfxy.cc/">首页</a><a href="https://wpfxy.cc/categories/airport-selection/">机场推荐</a><a href="https://wpfxy.cc/categories/network-basics/">网络技术</a><a href="https://wpfxy.cc/categories/client-tutorials/">客户端教程</a><a href="https://wpfxy.cc/categories/troubleshooting/">故障排查</a><a href="https://wpfxy.cc/categories/privacy-review/">隐私与评测</a></nav>
+
+<button id="theme-mode" class="theme-toggle theme-cycle" type="button" aria-label="明暗模式：跟随系统，点击切换为明亮" title="跟随系统 · 点击切换为明亮">
+<svg class="theme-icon-system" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8m-4-4v4"/></svg>
+<svg class="theme-icon-moon" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.2 15.5A8.5 8.5 0 0 1 8.5 3.8 8.5 8.5 0 1 0 20.2 15.5Z"/></svg>
+<svg class="theme-icon-sun" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+</button>
+<span id="theme-mode-status" class="visually-hidden" role="status" aria-live="polite"></span>
+<button id="menu-toggle" class="menu-toggle" type="button" aria-controls="site-navigation" aria-expanded="false" aria-label="打开菜单" title="打开菜单">
+<svg class="menu-icon-open" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+<svg class="menu-icon-close" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="m6 6 12 12M6 18 18 6"/></svg>
+</button>
+</div>
+</header>
+
+<div class="article-viewport"><div class="article-scroll">
+<main id="main" tabindex="-1" class="shell article-shell" data-has-toc="true">
+
+<nav class="breadcrumbs" aria-label="面包屑导航"><ol><li><a href="https://wpfxy.cc/">王牌飞行员机场推荐</a></li><li><span aria-current="page">macOS 代理设置怎么检查？网络服务、端口与退出恢复</span></li></ol></nav>
+
+
+
+<article data-pagefind-body>
+<header class="article-header">
+<div class="eyebrow" data-pagefind-ignore>文章</div>
+<h1 data-pagefind-meta="title">macOS 代理设置怎么检查？网络服务、端口与退出恢复</h1>
+<div class="metadata" data-pagefind-ignore><span>王牌飞行员机场推荐</span><time datetime="2026-09-28T17:29:43&#43;08:00">2026-09-28</time></div>
+<div class="chips" data-pagefind-ignore><a href="https://wpfxy.cc/categories/client-tutorials/">客户端教程</a></div>
+</header>
+<div class="prose"><p>Mac 上客户端显示已连接，浏览器却没有按预期访问时，可以先核查系统代理。代理设置属于具体网络服务；当前使用 Wi-Fi 还是有线连接，会影响你应该查看哪一项。</p>
+<p>Apple 官方<a href="https://support.apple.com/zh-cn/guide/mac-help/mchlp2591/mac">代理设置说明</a>给出的入口是系统设置中的“网络”，选择网络服务后进入“详细信息”与“代理”。界面名称可能随系统版本变化，以当前系统为准。</p>
+<h2 id="heading">检查前记录原始状态</h2>
+<p>先确认当前正在使用的网络服务，记录原有自动代理、HTTP、HTTPS 与 SOCKS 设置。单位或学校网络可能有专门要求，不能为了个人客户端覆盖不明来源的管理配置。</p>
+<p>如果只是排查，先截图留作个人备份；对外求助时再遮盖服务器地址中可能含有的内部信息。</p>
+<h2 id="heading-1">系统代理地址与机场节点地址不同</h2>
+<p>机场客户端通常在本机开放一个代理监听端口，系统代理指向它，再由客户端连接远端节点。本地监听地址和远端机场服务器不是同一个字段。</p>
+<p>因此不要直接把订阅里的远端地址抄进系统 HTTP 代理栏，也不要从网上照抄某个常见端口。应该读取自己客户端的实际监听协议、地址和端口，并确认它正在运行。</p>
+<h2 id="heading-2">三种设置不要混填</h2>
+<table>
+<thead>
+<tr>
+<th>设置类型</th>
+<th>需要核对的内容</th>
+<th>常见混淆</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>自动代理配置</td>
+<td>是否使用指定 PAC 脚本及其地址</td>
+<td>把订阅链接当成 PAC</td>
+</tr>
+<tr>
+<td>HTTP/HTTPS 代理</td>
+<td>对应代理服务的地址和端口</td>
+<td>把协议字段与节点 TLS 混在一起</td>
+</tr>
+<tr>
+<td>SOCKS 代理</td>
+<td>本地 SOCKS 监听是否存在</td>
+<td>把 HTTP 专用端口当成 SOCKS</td>
+</tr>
+</tbody>
+</table>
+<p>客户端提供混合端口时，也应依据该版本文档核对，不要默认所有端口都支持所有协议。</p>
+<h2 id="heading-3">用开关前后的同一任务比较</h2>
+<p>保持同一个浏览器、同一个目标和同一个网络，先观察原状态，再开启客户端的系统代理接管，比较页面访问及连接日志。若状态改变后日志没有对应请求，应检查浏览器是否使用自己的代理或扩展配置。</p>
+<p>系统设置只说明系统层面的配置，不保证每个程序都遵循它。某个命令行工具或独立应用未进入代理，并不能仅凭这一点判定机场节点失效。</p>
+<h2 id="-wi-fi-">更换 Wi-Fi 与有线时再核对</h2>
+<p>不要假设给 Wi-Fi 写入的代理一定会覆盖有线网络服务。切换连接方式后，先看当前激活的是哪一个服务，再核对该服务的设置及客户端状态。</p>
+<p>如果仅在某一个网络服务出现问题，保留这个差异，继续检查其 DNS、代理脚本或组织策略。只重装浏览器通常不会解释这种差异。</p>
+<h2 id="heading-4">退出客户端后的恢复</h2>
+<p>先在客户端停用本次代理接管，再退出，检查原本能够直连的站点。如果系统仍指向一个已经关闭的本地端口，遵循系统代理的应用可能无法连接。</p>
+<p>恢复时还原自己测试前记录的状态，不是把所有项目一律清空。若属于组织管理的配置，应通过相应支持渠道核对。</p>
+<p>关于退出后网络异常的完整判断顺序，见<a href="/posts/proxy-offline-restore-network/">关闭代理后的网络恢复</a>；遇到只有域名解析异常的情况，阅读<a href="/posts/dns-resolution-route-map/">DNS 路径说明</a>。</p>
+</div>
+
+<div class="article-tags" data-pagefind-ignore><a href="https://wpfxy.cc/tags/macos/"># macOS</a><a href="https://wpfxy.cc/tags/client-config/"># 客户端配置</a><a href="https://wpfxy.cc/tags/troubleshooting/"># 故障排查</a></div>
+<nav class="pagination" aria-label="相邻文章" data-pagefind-ignore><a href="https://wpfxy.cc/posts/sing-box-client-version-migration/">← 上一篇</a><a href="https://wpfxy.cc/posts/android-v2rayng-start/">下一篇 →</a></nav>
+
+</article>
+
+<div class="article-rail">
+<aside class="toc"><div>本篇目录</div><nav aria-label="文章目录"><a class="level-2" href="#heading">检查前记录原始状态</a><a class="level-2" href="#heading-1">系统代理地址与机场节点地址不同</a><a class="level-2" href="#heading-2">三种设置不要混填</a><a class="level-2" href="#heading-3">用开关前后的同一任务比较</a><a class="level-2" href="#-wi-fi-">更换 Wi-Fi 与有线时再核对</a><a class="level-2" href="#heading-4">退出客户端后的恢复</a></nav></aside>
+</div>
+
+</main>
+</div>
+
+<button id="back-to-top" class="back-to-top" type="button" aria-label="返回顶部" title="返回顶部" hidden>
+<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h14M12 20V8m-5 5 5-5 5 5"/></svg>
+</button>
+</div>
+
+<footer class="site-footer">
+
+
+</footer>
+
+
+
+
+</body>
+</html>

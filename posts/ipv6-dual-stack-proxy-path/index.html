@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="default">
+
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>IPv6 会走代理吗？双栈网络的四格检查方法 · 王牌飞行员机场推荐</title>
+<meta name="description" content="拆分本地网络、节点入口和远端出口的地址族，使用四格对照检查 IPv4 与 IPv6 的接管和可达性。">
+<meta name="keywords" content="IPv6代理,双栈网络,IPv4">
+<meta name="robots" content="index,follow,max-image-preview:large"><link rel="canonical" href="https://wpfxy.cc/posts/ipv6-dual-stack-proxy-path/">
+<meta property="og:title" content="IPv6 会走代理吗？双栈网络的四格检查方法">
+<meta property="og:description" content="拆分本地网络、节点入口和远端出口的地址族，使用四格对照检查 IPv4 与 IPv6 的接管和可达性。">
+<meta property="og:url" content="https://wpfxy.cc/posts/ipv6-dual-stack-proxy-path/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="王牌飞行员机场推荐">
+<meta property="og:locale" content="zh_CN">
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="IPv6 会走代理吗？双栈网络的四格检查方法">
+<meta name="twitter:description" content="拆分本地网络、节点入口和远端出口的地址族，使用四格对照检查 IPv4 与 IPv6 的接管和可达性。">
+
+<meta name="author" content="王牌飞行员机场推荐"><meta property="article:published_time" content="2026-09-28T17:29:43&#43;08:00"><meta property="article:modified_time" content="2026-09-28T17:59:30&#43;08:00"><meta property="article:tag" content="DNS"><meta property="article:tag" content="IPv6"><meta property="article:tag" content="客户端配置">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@id":"https://wpfxy.cc/posts/ipv6-dual-stack-proxy-path/#article","@type":"BlogPosting","author":{"@type":"Person","name":"王牌飞行员机场推荐"},"dateModified":"2026-09-28T17:59:30+08:00","datePublished":"2026-09-28T17:29:43+08:00","description":"拆分本地网络、节点入口和远端出口的地址族，使用四格对照检查 IPv4 与 IPv6 的接管和可达性。","headline":"IPv6 会走代理吗？双栈网络的四格检查方法","inLanguage":"zh-CN","mainEntityOfPage":{"@id":"https://wpfxy.cc/posts/ipv6-dual-stack-proxy-path/","@type":"WebPage"},"url":"https://wpfxy.cc/posts/ipv6-dual-stack-proxy-path/"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://wpfxy.cc/","name":"王牌飞行员机场推荐","position":1},{"@type":"ListItem","item":"https://wpfxy.cc/posts/ipv6-dual-stack-proxy-path/","name":"IPv6 会走代理吗？双栈网络的四格检查方法","position":2}]}]}</script>
+
+<script>(()=>{let mode='system';try{const saved=localStorage.getItem('reader-theme');if(['system','light','dark'].includes(saved))mode=saved}catch{}const root=document.documentElement;root.dataset.colorMode=mode;root.classList.toggle('dark',mode==='dark'||(mode==='system'&&matchMedia('(prefers-color-scheme: dark)').matches))})();</script>
+<link rel="stylesheet" href="https://wpfxy.cc/assets/theme/style.css">
+<link rel="stylesheet" href="https://wpfxy.cc/assets/theme/advertisements.css">
+
+
+<link rel="stylesheet" href="https://wpfxy.cc/assets/theme/viewer.css">
+<link rel="stylesheet" href="https://wpfxy.cc/assets/theme/reader.css">
+<link rel="icon" href="https://wpfxy.cc/assets/theme/favicon.svg" type="image/svg+xml">
+
+<script defer src="https://wpfxy.cc/assets/theme/theme.js"></script>
+<script defer src="https://wpfxy.cc/assets/theme/reader.js"></script>
+<script defer src="https://wpfxy.cc/assets/theme/viewer.js"></script>
+<script defer src="https://wpfxy.cc/assets/theme/image-viewer.js"></script>
+
+<script defer src="https://wpfxy.cc/assets/theme/interactions.js"></script>
+
+
+
+</head>
+
+<body class="article-page">
+
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="site-header">
+<div class="header-inner">
+<a class="brand" href="https://wpfxy.cc/"><span>王牌飞行员机场推荐</span></a>
+<nav id="site-navigation" aria-label="站点导航"><a href="https://wpfxy.cc/">首页</a><a href="https://wpfxy.cc/categories/airport-selection/">机场推荐</a><a href="https://wpfxy.cc/categories/network-basics/">网络技术</a><a href="https://wpfxy.cc/categories/client-tutorials/">客户端教程</a><a href="https://wpfxy.cc/categories/troubleshooting/">故障排查</a><a href="https://wpfxy.cc/categories/privacy-review/">隐私与评测</a></nav>
+
+<button id="theme-mode" class="theme-toggle theme-cycle" type="button" aria-label="明暗模式：跟随系统，点击切换为明亮" title="跟随系统 · 点击切换为明亮">
+<svg class="theme-icon-system" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8m-4-4v4"/></svg>
+<svg class="theme-icon-moon" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.2 15.5A8.5 8.5 0 0 1 8.5 3.8 8.5 8.5 0 1 0 20.2 15.5Z"/></svg>
+<svg class="theme-icon-sun" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+</button>
+<span id="theme-mode-status" class="visually-hidden" role="status" aria-live="polite"></span>
+<button id="menu-toggle" class="menu-toggle" type="button" aria-controls="site-navigation" aria-expanded="false" aria-label="打开菜单" title="打开菜单">
+<svg class="menu-icon-open" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+<svg class="menu-icon-close" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="m6 6 12 12M6 18 18 6"/></svg>
+</button>
+</div>
+</header>
+
+<div class="article-viewport"><div class="article-scroll">
+<main id="main" tabindex="-1" class="shell article-shell" data-has-toc="true">
+
+<nav class="breadcrumbs" aria-label="面包屑导航"><ol><li><a href="https://wpfxy.cc/">王牌飞行员机场推荐</a></li><li><span aria-current="page">IPv6 会走代理吗？双栈网络的四格检查方法</span></li></ol></nav>
+
+
+
+<article data-pagefind-body>
+<header class="article-header">
+<div class="eyebrow" data-pagefind-ignore>文章</div>
+<h1 data-pagefind-meta="title">IPv6 会走代理吗？双栈网络的四格检查方法</h1>
+<div class="metadata" data-pagefind-ignore><span>王牌飞行员机场推荐</span><time datetime="2026-09-28T17:29:43&#43;08:00">2026-09-28</time></div>
+<div class="chips" data-pagefind-ignore><a href="https://wpfxy.cc/categories/network-basics/">网络技术</a></div>
+</header>
+<div class="prose"><p>开启代理之后，IPv4 与 IPv6 不一定沿着完全相同的路径。一次 IPv4 出口查询成功，并不能证明 IPv6、DNS 或所有应用也经过了预期节点。检查双栈网络时，应先明确是哪一段连接在使用哪个地址族。</p>
+<h2 id="heading">区分三个位置</h2>
+<p>第一处是设备所在网络：它可能同时具备 IPv4 和 IPv6。第二处是客户端连接机场入口：入口域名可能解析出 A 或 AAAA 记录。第三处是代理出口访问目标：远端也可能选择不同地址族。</p>
+<p>这三处不能混为一谈。设备有 IPv6，不代表代理出口必然用 IPv6；目标有 AAAA 记录，也不代表当前应用一定优先使用它。</p>
+<h2 id="heading-1">应用可能尝试多条连接路径</h2>
+<p><a href="https://www.rfc-editor.org/rfc/rfc8305.html">RFC 8305</a>描述了 Happy Eyeballs 的连接建立方法，目的是改善多地址环境下的连接体验。不同应用的实现与配置可能不同，因此一次访问成功，有时掩盖了另一条路径的故障。</p>
+<p>同样，手动限定 IPv4 的测试与浏览器自动选择地址的访问不是同一个实验。比较时应在记录中说明是否限定了地址族。</p>
+<h2 id="heading-2">一个四格检查表</h2>
+<table>
+<thead>
+<tr>
+<th>测试条件</th>
+<th>IPv4 观察</th>
+<th>IPv6 观察</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>代理关闭、原始网络</td>
+<td>是否具备连接能力</td>
+<td>是否具备连接能力</td>
+</tr>
+<tr>
+<td>代理开启、预期接管范围内</td>
+<td>出口与任务是否符合预期</td>
+<td>出口与任务是否符合预期</td>
+</tr>
+</tbody>
+</table>
+<p>没有 IPv6 可用时，记录“不具备测试条件”，不要写成“IPv6 隐私已保护”。测试服务只显示某一地址族时，也不能据此填满另一格。</p>
+<h2 id="heading-3">怎样定位不一致</h2>
+<p>先选一个明确被客户端接管的应用，查看连接记录和命中的规则，再测试实际目标。随后用相同应用、相同目标与不同接入网络比较。每次只改变一项，避免把网络变化和配置变化混在一起。</p>
+<p>若只有 IPv6 对照失败，检查客户端是否接管相关流量、是否存在直连规则、目标路径是否具备可达性。节点入口与目标出口都可能涉及地址选择，不应只盯着一个“启用 IPv6”开关。</p>
+<h2 id="-ipv6-">不建议把关闭 IPv6 当作统一答案</h2>
+<p>临时限制地址族可以帮助诊断，但要先保存原设置，并明确该变化在测什么。若问题缓解，说明某条路径值得进一步调查，不能自动证明 IPv6 技术本身有问题。</p>
+<p>某些网络和应用会依赖 IPv6 能力。长期改变系统设置之前，应确认影响范围，尤其是受组织管理的设备；不要把一次排障中的临时状态当成通用优化方案。</p>
+<h2 id="heading-4">出口检查的结论边界</h2>
+<p>查询站点返回的地址只描述该次请求。浏览器扩展、应用自己的代理配置、DNS 方式与路由例外，都可能让其他请求走不同路径。</p>
+<p>有效记录应包括测试应用、接管模式、地址族、时间和结果，并对公开截图中的个人地址作适当遮盖。用这些信息复查配置，比一句“开启了代理所以全部安全”更准确。</p>
+<p>有关解析路径，参见<a href="/posts/dns-resolution-route-map/">DNS 分层说明</a>；如果已经表现为访问失败，继续阅读<a href="/posts/website-timeout-decision-tree/">超时排查流程</a>。</p>
+</div>
+
+<div class="article-tags" data-pagefind-ignore><a href="https://wpfxy.cc/tags/dns/"># DNS</a><a href="https://wpfxy.cc/tags/ipv6/"># IPv6</a><a href="https://wpfxy.cc/tags/client-config/"># 客户端配置</a></div>
+<nav class="pagination" aria-label="相邻文章" data-pagefind-ignore><a href="https://wpfxy.cc/posts/v2rayn-windows-subscription-setup/">← 上一篇</a><a href="https://wpfxy.cc/posts/latency-jitter-loss-primer/">下一篇 →</a></nav>
+
+</article>
+
+<div class="article-rail">
+<aside class="toc"><div>本篇目录</div><nav aria-label="文章目录"><a class="level-2" href="#heading">区分三个位置</a><a class="level-2" href="#heading-1">应用可能尝试多条连接路径</a><a class="level-2" href="#heading-2">一个四格检查表</a><a class="level-2" href="#heading-3">怎样定位不一致</a><a class="level-2" href="#-ipv6-">不建议把关闭 IPv6 当作统一答案</a><a class="level-2" href="#heading-4">出口检查的结论边界</a></nav></aside>
+</div>
+
+</main>
+</div>
+
+<button id="back-to-top" class="back-to-top" type="button" aria-label="返回顶部" title="返回顶部" hidden>
+<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h14M12 20V8m-5 5 5-5 5 5"/></svg>
+</button>
+</div>
+
+<footer class="site-footer">
+
+
+</footer>
+
+
+
+
+</body>
+</html>

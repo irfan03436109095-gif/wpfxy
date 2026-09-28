@@ -1,0 +1,237 @@
+/* 跨主题交互层在主题配色之后加载，自定义 CSS 仍保留最高优先级。 */
+.brand::before,
+.brand::after {
+  content: none;
+  display: none;
+}
+.tag-list,
+.article-tags {
+  gap: 4px 12px;
+}
+.tag-list a,
+.article-tags a {
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  line-height: 1.8;
+}
+.tag-list a:hover,
+.article-tags a:hover {
+  background: transparent;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.theme-cycle {
+  position: relative;
+  padding: 0;
+}
+.theme-cycle:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+/* 图标表达当前选择；跟随系统时保持显示系统图标。 */
+:root .theme-cycle svg {
+  display: none;
+}
+:root[data-color-mode="system"] .theme-cycle .theme-icon-system,
+:root[data-color-mode="light"] .theme-cycle .theme-icon-sun,
+:root[data-color-mode="dark"] .theme-cycle .theme-icon-moon {
+  display: block;
+}
+.reader-zoomable {
+  cursor: zoom-in;
+}
+.banner-link-label {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  padding: 3px 10px;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  background: var(--surface);
+  color: var(--text);
+  font-size: 12px;
+  line-height: 1.8;
+}
+.banner-link-label:hover {
+  color: var(--accent);
+}
+/* 图片横幅保留明确的链接入口，图片本身可放大；文字横幅仍可整块跳转。 */
+.banner-with-image .banner-link {
+  cursor: zoom-in;
+}
+.banner-with-image .banner-link-label {
+  cursor: pointer;
+}
+.reader-modal-open {
+  overflow: hidden;
+}
+.reader-modal-open .article-scroll,
+.viewer-open .article-scroll {
+  overflow: hidden;
+}
+.reader-dialog {
+  position: fixed;
+  inset: 0;
+  margin: auto;
+  width: min(760px, calc(100% - 32px));
+  max-width: calc(100% - 32px);
+  max-height: 90vh;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: var(--radius, 12px);
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: 0 18px 70px rgb(0 0 0 / 24%);
+  overflow: hidden;
+}
+.reader-dialog:not([open]) {
+  display: none;
+}
+.reader-dialog[open] {
+  display: flex;
+  flex-direction: column;
+  animation: reader-dialog-in 160ms ease-out;
+}
+.reader-dialog::backdrop {
+  background: rgb(0 0 0 / 48%);
+}
+.reader-dialog [hidden] {
+  display: none !important;
+}
+.reader-dialog-header,
+.reader-dialog-footer {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 18px;
+}
+.reader-dialog-header {
+  border-bottom: 1px solid var(--line);
+  cursor: move;
+  touch-action: none;
+  user-select: none;
+}
+.reader-dialog-header h2 {
+  margin: 0;
+  font-size: 17px;
+  line-height: 1.5;
+  font-weight: 600;
+}
+.dialog-close {
+  flex: none;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 0;
+  border-radius: 6px;
+  color: var(--muted);
+  background: transparent;
+  font-size: 26px;
+  line-height: 1;
+}
+.dialog-close:hover {
+  color: var(--text);
+  background: var(--soft);
+}
+.reader-dialog-body {
+  flex: 1 1 auto;
+  min-height: 0;
+  padding: 18px;
+  overflow: auto;
+  overscroll-behavior: contain;
+}
+.reader-dialog-footer {
+  border-top: 1px solid var(--line);
+  font-size: 13px;
+  color: var(--muted);
+}
+.reader-dialog-footer .button {
+  margin: 0;
+  padding: 4px 10px;
+  font-size: 13px;
+  line-height: 1.8;
+  white-space: nowrap;
+}
+.reader-dialog-footer .button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+/* 保留 Viewer.js 官方布局和手势，只对齐主题配色、焦点提示与补充链接。 */
+.theme-image-viewer.viewer-backdrop {
+  background: var(--bg);
+}
+.theme-image-viewer .viewer-footer {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+.theme-image-viewer .viewer-title,
+.theme-image-viewer .image-viewer-status,
+.theme-image-viewer .image-source-link {
+  color: var(--text);
+  text-shadow: none;
+  font-size: 13px;
+  line-height: 1.6;
+  opacity: 1;
+}
+.theme-image-viewer .image-viewer-status {
+  margin: 6px 12px;
+}
+.theme-image-viewer .image-source-link {
+  display: table;
+  margin: 4px auto 8px;
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.theme-image-viewer [hidden] {
+  display: none !important;
+}
+/* 官方图标伪元素自带英文替代文字，统一使用已汉化的无障碍名称。 */
+.theme-image-viewer [role="button"][data-viewer-action]:not([data-viewer-action="view"])::before {
+  content: attr(aria-label);
+}
+.theme-image-viewer [role="button"]:focus-visible,
+.theme-image-viewer a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+.reader-nickname-only .atk-header input[hidden] {
+  display: none !important;
+}
+.reader-nickname-only .atk-header input[name="name"] {
+  flex: 1;
+  width: 100%;
+}
+@keyframes reader-dialog-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@media (max-width: 760px) {
+  .reader-dialog {
+    width: calc(100% - 20px);
+    max-width: calc(100% - 20px);
+    border-radius: var(--radius, 10px);
+  }
+  .reader-dialog-header,
+  .reader-dialog-footer {
+    padding: 10px 14px;
+  }
+  .reader-dialog-body {
+    padding: 14px;
+  }
+  .reader-dialog-footer {
+    flex-wrap: wrap;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .reader-dialog[open] {
+    animation: none;
+  }
+}
