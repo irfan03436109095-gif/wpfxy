@@ -105,3 +105,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",s
 .invite-image-only .invite-action{align-self:stretch}
 .article-rail .invite-copy h2,.article-rail .invite-copy h3,.article-rail .invite-copy h4{font-size:21px}
 @media(max-width:760px){.invite-copy h2,.invite-copy h3,.invite-copy h4{font-size:22px}.invite-copy p{font-size:10px}.invite-copy p:last-child:not(:first-child){font-size:9px}.invite-copy p strong{font-size:10px}}
+/* v1.0.2：后台品牌 Logo 与醒目的免费试用入口。 */
+.invite-symbol.invite-image{width:56px;height:56px;flex-basis:56px;padding:6px;border-radius:12px;background:#fff!important}
+.invite-action{font-size:16px;font-weight:750;line-height:1.5;padding-left:18px;gap:8px}
+.article-rail .invite-symbol.invite-image{width:48px;height:48px;flex-basis:48px;padding:5px}
+.article-rail .invite-action{font-size:16px;padding-left:0}
+.invite-image-only .invite-symbol.invite-image{flex:1;width:auto;height:100px}
+@media(max-width:760px){.invite-symbol.invite-image{width:48px;height:48px;flex-basis:48px;padding:5px;border-radius:10px}.invite-action,.article-rail .invite-action{font-size:15px;padding-left:12px}.invite-image-only .invite-symbol.invite-image{flex:1;width:auto;height:100px}}
+@media(max-width:350px){.invite-symbol.invite-image{width:44px;height:44px;flex-basis:44px}.invite-action,.article-rail .invite-action{font-size:14px;padding-left:10px}}
