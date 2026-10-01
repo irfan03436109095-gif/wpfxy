@@ -20,7 +20,7 @@
 <meta name="twitter:description" content="区分节点域名、目标域名和应用解析路径，定位 DNS 故障。">
 <meta name="twitter:image" content="https://wpfxy.cc/assets/media/4bf82c49-08d9-433f-91f4-206c92d3c8fa.png">
 
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@id":"https://wpfxy.cc/tags/dns/#collection","@type":"CollectionPage","description":"区分节点域名、目标域名和应用解析路径，定位 DNS 故障。","inLanguage":"zh-CN","mainEntity":{"@type":"ItemList","itemListElement":[{"@type":"ListItem","name":"机场测速要不要固定 IP？用 curl --resolve 做一组 DNS 对照","position":1,"url":"https://wpfxy.cc/posts/curl-resolve-fixed-ip-test/"},{"@type":"ListItem","name":"代理已连接但网页超时？按六个阶段缩小故障范围","position":2,"url":"https://wpfxy.cc/posts/website-timeout-decision-tree/"},{"@type":"ListItem","name":"sing-box 更新后配置报错？按版本迁移而不是盲删字段","position":3,"url":"https://wpfxy.cc/posts/sing-box-client-version-migration/"},{"@type":"ListItem","name":"IPv6 会走代理吗？双栈网络的四格检查方法","position":4,"url":"https://wpfxy.cc/posts/ipv6-dual-stack-proxy-path/"},{"@type":"ListItem","name":"代理 DNS 到底在哪里解析？节点、目标与浏览器三层说明","position":5,"url":"https://wpfxy.cc/posts/dns-resolution-route-map/"}]},"name":"DNS","url":"https://wpfxy.cc/tags/dns/"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://wpfxy.cc/","name":"王牌飞行员机场推荐","position":1},{"@type":"ListItem","item":"https://wpfxy.cc/tags/dns/","name":"DNS","position":2}]}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@id":"https://wpfxy.cc/tags/dns/#collection","@type":"CollectionPage","description":"区分节点域名、目标域名和应用解析路径，定位 DNS 故障。","inLanguage":"zh-CN","mainEntity":{"@type":"ItemList","itemListElement":[{"@type":"ListItem","name":"DNS TTL 到期为何仍是旧地址？分清权威记录与本地缓存","position":1,"url":"https://wpfxy.cc/posts/dns-ttl-cache-layers/"},{"@type":"ListItem","name":"机场测速要不要固定 IP？用 curl --resolve 做一组 DNS 对照","position":2,"url":"https://wpfxy.cc/posts/curl-resolve-fixed-ip-test/"},{"@type":"ListItem","name":"代理已连接但网页超时？按六个阶段缩小故障范围","position":3,"url":"https://wpfxy.cc/posts/website-timeout-decision-tree/"},{"@type":"ListItem","name":"sing-box 更新后配置报错？按版本迁移而不是盲删字段","position":4,"url":"https://wpfxy.cc/posts/sing-box-client-version-migration/"},{"@type":"ListItem","name":"IPv6 会走代理吗？双栈网络的四格检查方法","position":5,"url":"https://wpfxy.cc/posts/ipv6-dual-stack-proxy-path/"},{"@type":"ListItem","name":"代理 DNS 到底在哪里解析？节点、目标与浏览器三层说明","position":6,"url":"https://wpfxy.cc/posts/dns-resolution-route-map/"}]},"name":"DNS","url":"https://wpfxy.cc/tags/dns/"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://wpfxy.cc/","name":"王牌飞行员机场推荐","position":1},{"@type":"ListItem","item":"https://wpfxy.cc/tags/dns/","name":"DNS","position":2}]}]}</script>
 
 <script>(()=>{let mode='system';try{const saved=localStorage.getItem('reader-theme');if(['system','light','dark'].includes(saved))mode=saved}catch{}const root=document.documentElement;root.dataset.colorMode=mode;root.classList.toggle('dark',mode==='dark'||(mode==='system'&&matchMedia('(prefers-color-scheme: dark)').matches))})();</script>
 <link rel="stylesheet" href="https://wpfxy.cc/assets/theme/style.css">
@@ -73,9 +73,13 @@
 
 <div class="flight-columns archive-columns">
 <div class="content-column">
-<div class="section-heading"><h2>文章列表</h2><span>本页 5 篇</span></div>
+<div class="section-heading"><h2>文章列表</h2><span>本页 6 篇</span></div>
 
 <section class="article-list flight-entries" aria-label="文章列表">
+
+<article class="article-card flight-card"><div class="card-topic"><a href="https://wpfxy.cc/categories/network-basics/">网络技术</a></div>
+<h2><a href="https://wpfxy.cc/posts/dns-ttl-cache-layers/">DNS TTL 到期为何仍是旧地址？分清权威记录与本地缓存</a></h2><p class="card-summary">从权威服务器、递归解析器、系统、浏览器与代理客户端逐层查询，判断TTL到期后旧地址来自哪层缓存。</p>
+<div class="card-footer"><span><span>王牌飞行员</span><time datetime="2026-10-01T10:59:11&#43;08:00">2026-10-01</time></span><a class="read-more" href="https://wpfxy.cc/posts/dns-ttl-cache-layers/" aria-label="阅读DNS TTL 到期为何仍是旧地址？分清权威记录与本地缓存">继续阅读 <span aria-hidden="true">↗</span></a></div></article>
 
 <article class="article-card flight-card"><div class="card-topic"><a href="https://wpfxy.cc/categories/network-basics/">网络技术</a></div>
 <h2><a href="https://wpfxy.cc/posts/curl-resolve-fixed-ip-test/">机场测速要不要固定 IP？用 curl --resolve 做一组 DNS 对照</a></h2><p class="card-summary">用正常解析与curl --resolve固定IP两组请求，区分机场节点波动和目标入口变化，保留HTTPS证书校验。</p>
