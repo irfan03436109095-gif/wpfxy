@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://wpfxy.cc/sitemap.xml
+Sitemap: https://www.wpfxy.cc/sitemap.xml
