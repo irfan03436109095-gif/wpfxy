@@ -39,9 +39,40 @@
     }
   });
   setupMobileNavigation();
+  const homeRail = document.querySelector(".home-rail");
+  const footer = document.querySelector(".site-footer");
+  if (homeRail && footer) {
+    // 友链、版权换行会改变页脚高度；侧栏据此预留空间，悬停本身仍由 CSS 处理。
+    const updateFooterHeight = () => {
+      homeRail.style.setProperty("--home-footer-height", `${footer.clientHeight}px`);
+    };
+    updateFooterHeight();
+    if (typeof ResizeObserver === "function") {
+      const observer = new ResizeObserver(updateFooterHeight);
+      observer.observe(footer);
+    } else {
+      window.addEventListener("resize", updateFooterHeight);
+    }
+    window.addEventListener("pageshow", updateFooterHeight);
+  }
   // 文章使用独立滚动容器，不能滚动 window；按钮仅在正文下滑后出现。
   const articleScroll = document.querySelector(".article-scroll");
   const backToTop = document.getElementById("back-to-top");
+  if (articleScroll) {
+    // 页头、页脚会随菜单和友链换行而改变高度，侧栏使用真实正文视口而非估算值。
+    // 只观察尺寸变化；滚动悬停由 CSS 完成，不在每次滚动时重新计算布局。
+    const updateReadingHeight = () => {
+      articleScroll.style.setProperty("--article-scroll-height", `${articleScroll.clientHeight}px`);
+    };
+    updateReadingHeight();
+    if (typeof ResizeObserver === "function") {
+      const observer = new ResizeObserver(updateReadingHeight);
+      observer.observe(articleScroll);
+    } else {
+      window.addEventListener("resize", updateReadingHeight);
+    }
+    window.addEventListener("pageshow", updateReadingHeight);
+  }
   if (articleScroll && backToTop) {
     const updateBackToTop = () => {
       backToTop.hidden = articleScroll.scrollTop < 320;

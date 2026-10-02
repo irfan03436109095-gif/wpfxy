@@ -4,6 +4,68 @@
   content: none;
   display: none;
 }
+/* 首页侧栏作为一个整体悬停，分类标签和推荐内容分别内部滚动。
+   预留页脚及主题底部留白，滚动到首页末尾时也不把侧栏挤出视口。 */
+@media (min-width: 761px) {
+  .home-rail {
+    position: sticky;
+    top: 24px;
+    align-self: start;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    max-height: calc(100vh - var(--home-footer-height, 80px) - 128px);
+  }
+  .home-rail > .home-sidebar,
+  .home-rail > .ad-slot {
+    flex: 0 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+    overscroll-behavior-y: contain;
+  }
+}
+/* 九套内置主题共用文章侧栏：悬停整个侧栏，避免目录与后面的内容相互覆盖。
+   高度按实际正文视口限制，预留各主题底部留白，避免文章末尾挤走目录。
+   目录和侧边内容分别在内部滚动，避开固定页头、页脚。
+   窄窗口沿用各主题的单栏布局及目录隐藏规则，不占用手机正文空间。 */
+@media (min-width: 981px) {
+  .article-page .article-rail {
+    position: sticky;
+    top: 24px;
+    align-self: start;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    min-height: 0;
+    max-height: calc(var(--article-scroll-height, 70vh) - 128px);
+  }
+  .article-page .article-rail > .toc {
+    position: static;
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 auto;
+    width: 100%;
+    min-height: 0;
+    max-height: calc((var(--article-scroll-height, 70vh) - 128px) / 2);
+    overflow: hidden;
+  }
+  .article-page .article-rail > .toc > div {
+    flex-shrink: 0;
+  }
+  .article-page .article-rail > .toc > nav,
+  .article-page .article-rail > .ad-slot {
+    min-height: 0;
+    overflow-y: auto;
+    overscroll-behavior-y: contain;
+  }
+  /* 控制台原本用 overflow:hidden 裁圆角，会截断 sticky 的滚动祖先。 */
+  .article-page .console-terminal {
+    overflow: visible;
+  }
+  .article-page .console-terminal > .terminal-titlebar {
+    border-radius: 7px 7px 0 0;
+  }
+}
 .tag-list,
 .article-tags {
   gap: 4px 12px;
