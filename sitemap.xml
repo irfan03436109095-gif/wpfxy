@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://www.wpfxy.cc/</loc>
-    <lastmod>2026-10-02T05:05:12Z</lastmod>
+    <lastmod>2026-10-03T06:21:36Z</lastmod>
   </url>
   <url>
     <loc>https://www.wpfxy.cc/categories/airport-selection/</loc>
@@ -34,15 +34,15 @@
   </url>
   <url>
     <loc>https://www.wpfxy.cc/categories/troubleshooting/</loc>
-    <lastmod>2026-10-01T15:14:41Z</lastmod>
+    <lastmod>2026-10-03T06:21:36Z</lastmod>
   </url>
   <url>
     <loc>https://www.wpfxy.cc/page/2/</loc>
-    <lastmod>2026-10-02T05:05:12Z</lastmod>
+    <lastmod>2026-10-03T06:21:36Z</lastmod>
   </url>
   <url>
     <loc>https://www.wpfxy.cc/page/3/</loc>
-    <lastmod>2026-10-02T05:05:12Z</lastmod>
+    <lastmod>2026-10-03T06:21:36Z</lastmod>
   </url>
   <url>
     <loc>https://www.wpfxy.cc/posts/2026-airport-risk-roundup-support-records/</loc>
@@ -54,7 +54,7 @@
   </url>
   <url>
     <loc>https://www.wpfxy.cc/posts/airport-recommendation-method/</loc>
-    <lastmod>2026-10-02T05:05:12Z</lastmod>
+    <lastmod>2026-10-03T06:21:36Z</lastmod>
   </url>
   <url>
     <loc>https://www.wpfxy.cc/posts/airport-review-editorial-standard/</loc>
@@ -78,7 +78,7 @@
   </url>
   <url>
     <loc>https://www.wpfxy.cc/posts/curl-connect-to-vs-resolve/</loc>
-    <lastmod>2026-10-02T01:08:54Z</lastmod>
+    <lastmod>2026-10-03T06:21:36Z</lastmod>
   </url>
   <url>
     <loc>https://www.wpfxy.cc/posts/curl-resolve-fixed-ip-test/</loc>
@@ -87,6 +87,10 @@
   <url>
     <loc>https://www.wpfxy.cc/posts/dedicated-relay-route-evidence/</loc>
     <lastmod>2026-09-28T09:59:21Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.wpfxy.cc/posts/dns-nxdomain-servfail-check/</loc>
+    <lastmod>2026-10-03T01:22:30Z</lastmod>
   </url>
   <url>
     <loc>https://www.wpfxy.cc/posts/dns-resolution-route-map/</loc>
@@ -178,7 +182,7 @@
   </url>
   <url>
     <loc>https://www.wpfxy.cc/tags/dns/</loc>
-    <lastmod>2026-10-02T05:05:12Z</lastmod>
+    <lastmod>2026-10-03T06:21:36Z</lastmod>
   </url>
   <url>
     <loc>https://www.wpfxy.cc/tags/ipv6/</loc>
@@ -210,7 +214,7 @@
   </url>
   <url>
     <loc>https://www.wpfxy.cc/tags/troubleshooting/</loc>
-    <lastmod>2026-10-01T15:14:41Z</lastmod>
+    <lastmod>2026-10-03T06:21:36Z</lastmod>
   </url>
   <url>
     <loc>https://www.wpfxy.cc/tags/windows/</loc>

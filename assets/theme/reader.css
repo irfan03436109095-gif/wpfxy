@@ -5,7 +5,7 @@
   display: none;
 }
 /* 首页侧栏作为一个整体悬停，分类标签和推荐内容分别内部滚动。
-   预留页脚及主题底部留白，滚动到首页末尾时也不把侧栏挤出视口。 */
+   使用页头、页脚之间的实际视口，避免导航或友链换行后溢出正文区。 */
 @media (min-width: 761px) {
   .home-rail {
     position: sticky;
@@ -14,7 +14,7 @@
     display: flex;
     flex-direction: column;
     min-height: 0;
-    max-height: calc(100vh - var(--home-footer-height, 80px) - 128px);
+    max-height: calc(var(--page-scroll-height, 70vh) - 128px);
   }
   .home-rail > .home-sidebar,
   .home-rail > .ad-slot {
@@ -129,7 +129,9 @@
 .reader-modal-open {
   overflow: hidden;
 }
+.reader-modal-open .page-scroll,
 .reader-modal-open .article-scroll,
+.viewer-open .page-scroll,
 .viewer-open .article-scroll {
   overflow: hidden;
 }

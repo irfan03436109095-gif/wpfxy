@@ -623,8 +623,9 @@ img {
   text-decoration: underline;
 }
 
-/* 文章页使用三段式视口布局：只滚动正文，不按固定像素估算页头和页脚高度。
+/* 所有内置页面使用三段式视口布局：只滚动正文，不按固定像素估算页头和页脚高度。
    手机导航换行、版权文字换行时，浏览区自动缩放，不会被上下区域遮住。 */
+.reader-page,
 .article-page {
   height: 100vh;
   height: 100dvh;
@@ -632,12 +633,14 @@ img {
   overflow: hidden;
 }
 /* 按钮定位在正文视口内，自动避开高度可变的固定页头、页脚。 */
+.page-viewport,
 .article-viewport {
   position: relative;
   display: flex;
   flex: 1;
   min-height: 0;
 }
+.page-scroll,
 .article-scroll {
   flex: 1;
   min-height: 0;
@@ -647,6 +650,11 @@ img {
   scroll-behavior: smooth;
   scrollbar-color: var(--scrollbar) transparent;
   scrollbar-width: thin;
+}
+/* 短页面同样填满中间区域；页脚不参与正文滚动，也不会覆盖末尾内容。 */
+.page-scroll {
+  display: flex;
+  flex-direction: column;
 }
 .back-to-top {
   position: absolute;
@@ -674,6 +682,8 @@ img {
   border-color: var(--accent);
   background: var(--soft);
 }
+.reader-page > .site-header,
+.reader-page > .site-footer,
 .article-page > .site-header,
 .article-page > .site-footer {
   background: var(--bg);
@@ -682,7 +692,9 @@ img {
   max-height: 30dvh;
   overflow: auto;
 }
+.reader-page > .site-footer,
 .article-page > .site-footer {
+  margin: 0 auto;
   padding: 14px 0;
 }
 
@@ -1019,6 +1031,7 @@ img {
   }
   /* 浮层不挤压正文；文章页的固定页头也允许导航在其下方展开。 */
   .site-header,
+  .reader-page > .site-header,
   .article-page > .site-header {
     z-index: 4;
     overflow: visible;
@@ -1100,6 +1113,7 @@ img {
 }
 @media (prefers-reduced-motion: reduce) {
   :root,
+  .page-scroll,
   .article-scroll {
     scroll-behavior: auto;
   }
