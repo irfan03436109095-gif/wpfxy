@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://www.wpfxy.cc/</loc>
-    <lastmod>2026-10-03T06:21:36Z</lastmod>
+    <lastmod>2026-10-04T01:47:59Z</lastmod>
   </url>
   <url>
     <loc>https://www.wpfxy.cc/categories/airport-selection/</loc>
@@ -14,7 +14,7 @@
   </url>
   <url>
     <loc>https://www.wpfxy.cc/categories/network-basics/</loc>
-    <lastmod>2026-10-02T05:05:12Z</lastmod>
+    <lastmod>2026-10-04T01:47:59Z</lastmod>
   </url>
   <url>
     <loc>https://www.wpfxy.cc/categories/privacy-review/</loc>
@@ -38,11 +38,15 @@
   </url>
   <url>
     <loc>https://www.wpfxy.cc/page/2/</loc>
-    <lastmod>2026-10-03T06:21:36Z</lastmod>
+    <lastmod>2026-10-04T01:47:59Z</lastmod>
   </url>
   <url>
     <loc>https://www.wpfxy.cc/page/3/</loc>
-    <lastmod>2026-10-03T06:21:36Z</lastmod>
+    <lastmod>2026-10-04T01:47:59Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.wpfxy.cc/page/4/</loc>
+    <lastmod>2026-10-04T01:47:52Z</lastmod>
   </url>
   <url>
     <loc>https://www.wpfxy.cc/posts/2026-airport-risk-roundup-support-records/</loc>
@@ -54,7 +58,7 @@
   </url>
   <url>
     <loc>https://www.wpfxy.cc/posts/airport-recommendation-method/</loc>
-    <lastmod>2026-10-03T06:21:36Z</lastmod>
+    <lastmod>2026-10-04T01:47:59Z</lastmod>
   </url>
   <url>
     <loc>https://www.wpfxy.cc/posts/airport-review-editorial-standard/</loc>
@@ -89,8 +93,12 @@
     <lastmod>2026-09-28T09:59:21Z</lastmod>
   </url>
   <url>
+    <loc>https://www.wpfxy.cc/posts/dns-cname-address-check/</loc>
+    <lastmod>2026-10-04T01:47:52Z</lastmod>
+  </url>
+  <url>
     <loc>https://www.wpfxy.cc/posts/dns-nxdomain-servfail-check/</loc>
-    <lastmod>2026-10-03T01:22:30Z</lastmod>
+    <lastmod>2026-10-04T01:47:59Z</lastmod>
   </url>
   <url>
     <loc>https://www.wpfxy.cc/posts/dns-resolution-route-map/</loc>
@@ -182,7 +190,7 @@
   </url>
   <url>
     <loc>https://www.wpfxy.cc/tags/dns/</loc>
-    <lastmod>2026-10-03T06:21:36Z</lastmod>
+    <lastmod>2026-10-04T01:47:59Z</lastmod>
   </url>
   <url>
     <loc>https://www.wpfxy.cc/tags/ipv6/</loc>
@@ -214,10 +222,10 @@
   </url>
   <url>
     <loc>https://www.wpfxy.cc/tags/troubleshooting/</loc>
-    <lastmod>2026-10-03T06:21:36Z</lastmod>
+    <lastmod>2026-10-04T01:47:59Z</lastmod>
   </url>
   <url>
     <loc>https://www.wpfxy.cc/tags/windows/</loc>
-    <lastmod>2026-10-01T15:14:41Z</lastmod>
+    <lastmod>2026-10-04T01:47:59Z</lastmod>
   </url>
 </urlset>
