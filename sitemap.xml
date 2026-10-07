@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://www.wpfxy.cc/</loc>
-    <lastmod>2026-10-07T01:35:29Z</lastmod>
+    <lastmod>2026-10-07T13:26:33Z</lastmod>
   </url>
   <url>
     <loc>https://www.wpfxy.cc/categories/airport-selection/</loc>
@@ -10,7 +10,7 @@
   </url>
   <url>
     <loc>https://www.wpfxy.cc/categories/client-tutorials/</loc>
-    <lastmod>2026-10-04T06:37:53Z</lastmod>
+    <lastmod>2026-10-07T13:26:33Z</lastmod>
   </url>
   <url>
     <loc>https://www.wpfxy.cc/categories/network-basics/</loc>
@@ -42,15 +42,15 @@
   </url>
   <url>
     <loc>https://www.wpfxy.cc/page/2/</loc>
-    <lastmod>2026-10-07T01:35:29Z</lastmod>
+    <lastmod>2026-10-07T13:26:33Z</lastmod>
   </url>
   <url>
     <loc>https://www.wpfxy.cc/page/3/</loc>
-    <lastmod>2026-10-07T01:35:29Z</lastmod>
+    <lastmod>2026-10-07T13:26:33Z</lastmod>
   </url>
   <url>
     <loc>https://www.wpfxy.cc/page/4/</loc>
-    <lastmod>2026-10-07T01:35:29Z</lastmod>
+    <lastmod>2026-10-07T13:26:33Z</lastmod>
   </url>
   <url>
     <loc>https://www.wpfxy.cc/posts/2026-airport-risk-roundup-support-records/</loc>
@@ -62,7 +62,7 @@
   </url>
   <url>
     <loc>https://www.wpfxy.cc/posts/airport-recommendation-method/</loc>
-    <lastmod>2026-10-07T01:35:29Z</lastmod>
+    <lastmod>2026-10-07T13:26:33Z</lastmod>
   </url>
   <url>
     <loc>https://www.wpfxy.cc/posts/airport-review-editorial-standard/</loc>
@@ -118,7 +118,7 @@
   </url>
   <url>
     <loc>https://www.wpfxy.cc/posts/dns-tcp-only-comparison/</loc>
-    <lastmod>2026-10-07T01:35:22Z</lastmod>
+    <lastmod>2026-10-07T13:26:33Z</lastmod>
   </url>
   <url>
     <loc>https://www.wpfxy.cc/posts/dns-ttl-cache-layers/</loc>
@@ -185,6 +185,10 @@
     <lastmod>2026-09-28T09:59:46Z</lastmod>
   </url>
   <url>
+    <loc>https://www.wpfxy.cc/posts/switch-airport-subscription-migration/</loc>
+    <lastmod>2026-10-07T13:23:00Z</lastmod>
+  </url>
+  <url>
     <loc>https://www.wpfxy.cc/posts/v2rayn-windows-subscription-setup/</loc>
     <lastmod>2026-09-28T09:59:32Z</lastmod>
   </url>
@@ -202,11 +206,11 @@
   </url>
   <url>
     <loc>https://www.wpfxy.cc/tags/client-config/</loc>
-    <lastmod>2026-10-04T06:37:53Z</lastmod>
+    <lastmod>2026-10-07T13:26:33Z</lastmod>
   </url>
   <url>
     <loc>https://www.wpfxy.cc/tags/client-config/page/2/</loc>
-    <lastmod>2026-10-04T06:37:53Z</lastmod>
+    <lastmod>2026-10-07T13:26:33Z</lastmod>
   </url>
   <url>
     <loc>https://www.wpfxy.cc/tags/dns/</loc>
@@ -242,7 +246,7 @@
   </url>
   <url>
     <loc>https://www.wpfxy.cc/tags/subscription-security/</loc>
-    <lastmod>2026-10-01T15:14:41Z</lastmod>
+    <lastmod>2026-10-07T13:26:33Z</lastmod>
   </url>
   <url>
     <loc>https://www.wpfxy.cc/tags/troubleshooting/</loc>
