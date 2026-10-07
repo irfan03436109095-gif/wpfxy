@@ -4,23 +4,23 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>加了 -DnssecOk 就代表 DNS 验证成功吗？请求与验证分开看 · 王牌飞行员机场推荐</title>
-<meta name="description" content="Windows Resolve-DnsName -DnssecOk 怎样理解？依据 Microsoft 与 RFC 4033 区分请求 DNSSEC 数据、签名记录和可信验证，避免误读查询输出。">
-<meta name="keywords" content="机场推荐,DnssecOk,DNSSEC验证,Windows DNS查询">
-<meta name="robots" content="index,follow,max-image-preview:large"><link rel="canonical" href="https://www.wpfxy.cc/posts/dnssec-ok-request-validation/">
-<meta property="og:title" content="加了 -DnssecOk 就代表 DNS 验证成功吗？请求与验证分开看">
-<meta property="og:description" content="Windows Resolve-DnsName -DnssecOk 怎样理解？依据 Microsoft 与 RFC 4033 区分请求 DNSSEC 数据、签名记录和可信验证，避免误读查询输出。">
-<meta property="og:url" content="https://www.wpfxy.cc/posts/dnssec-ok-request-validation/">
+<title>DNS 默认查询超时，强制 TCP 却成功？正确使用 -TcpOnly · 王牌飞行员机场推荐</title>
+<meta name="description" content="Resolve-DnsName -TcpOnly 能说明什么？对同一 DNS 服务器做默认与 TCP 对照，核对缓存、记录类型和实际路径，避免把 DNS 成功当成机场整体可用。">
+<meta name="keywords" content="机场推荐,DNS超时排查,Resolve-DnsName,TcpOnly">
+<meta name="robots" content="index,follow,max-image-preview:large"><link rel="canonical" href="https://www.wpfxy.cc/posts/dns-tcp-only-comparison/">
+<meta property="og:title" content="DNS 默认查询超时，强制 TCP 却成功？正确使用 -TcpOnly">
+<meta property="og:description" content="Resolve-DnsName -TcpOnly 能说明什么？对同一 DNS 服务器做默认与 TCP 对照，核对缓存、记录类型和实际路径，避免把 DNS 成功当成机场整体可用。">
+<meta property="og:url" content="https://www.wpfxy.cc/posts/dns-tcp-only-comparison/">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="王牌飞行员机场推荐">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://www.wpfxy.cc/assets/media/4bf82c49-08d9-433f-91f4-206c92d3c8fa.png"><meta property="og:image:alt" content="王牌飞行员机场推荐">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="加了 -DnssecOk 就代表 DNS 验证成功吗？请求与验证分开看">
-<meta name="twitter:description" content="Windows Resolve-DnsName -DnssecOk 怎样理解？依据 Microsoft 与 RFC 4033 区分请求 DNSSEC 数据、签名记录和可信验证，避免误读查询输出。">
+<meta name="twitter:title" content="DNS 默认查询超时，强制 TCP 却成功？正确使用 -TcpOnly">
+<meta name="twitter:description" content="Resolve-DnsName -TcpOnly 能说明什么？对同一 DNS 服务器做默认与 TCP 对照，核对缓存、记录类型和实际路径，避免把 DNS 成功当成机场整体可用。">
 <meta name="twitter:image" content="https://www.wpfxy.cc/assets/media/4bf82c49-08d9-433f-91f4-206c92d3c8fa.png">
-<meta name="author" content="老王"><meta property="article:published_time" content="2026-10-06T09:35:14&#43;08:00"><meta property="article:modified_time" content="2026-10-06T09:35:26&#43;08:00"><meta property="article:tag" content="DNS"><meta property="article:tag" content="Windows"><meta property="article:tag" content="故障排查">
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@id":"https://www.wpfxy.cc/posts/dnssec-ok-request-validation/#article","@type":"BlogPosting","author":{"@type":"Person","name":"老王"},"dateModified":"2026-10-06T09:35:26+08:00","datePublished":"2026-10-06T09:35:14+08:00","description":"Windows Resolve-DnsName -DnssecOk 怎样理解？依据 Microsoft 与 RFC 4033 区分请求 DNSSEC 数据、签名记录和可信验证，避免误读查询输出。","headline":"加了 -DnssecOk 就代表 DNS 验证成功吗？请求与验证分开看","inLanguage":"zh-CN","mainEntityOfPage":{"@id":"https://www.wpfxy.cc/posts/dnssec-ok-request-validation/","@type":"WebPage"},"url":"https://www.wpfxy.cc/posts/dnssec-ok-request-validation/"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://www.wpfxy.cc/","name":"王牌飞行员机场推荐","position":1},{"@type":"ListItem","item":"https://www.wpfxy.cc/posts/dnssec-ok-request-validation/","name":"加了 -DnssecOk 就代表 DNS 验证成功吗？请求与验证分开看","position":2}]}]}</script>
+<meta name="author" content="老王"><meta property="article:published_time" content="2026-10-07T09:35:17&#43;08:00"><meta property="article:modified_time" content="2026-10-07T09:35:22&#43;08:00"><meta property="article:tag" content="DNS"><meta property="article:tag" content="Windows"><meta property="article:tag" content="故障排查">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@id":"https://www.wpfxy.cc/posts/dns-tcp-only-comparison/#article","@type":"BlogPosting","author":{"@type":"Person","name":"老王"},"dateModified":"2026-10-07T09:35:22+08:00","datePublished":"2026-10-07T09:35:17+08:00","description":"Resolve-DnsName -TcpOnly 能说明什么？对同一 DNS 服务器做默认与 TCP 对照，核对缓存、记录类型和实际路径，避免把 DNS 成功当成机场整体可用。","headline":"DNS 默认查询超时，强制 TCP 却成功？正确使用 -TcpOnly","inLanguage":"zh-CN","mainEntityOfPage":{"@id":"https://www.wpfxy.cc/posts/dns-tcp-only-comparison/","@type":"WebPage"},"url":"https://www.wpfxy.cc/posts/dns-tcp-only-comparison/"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://www.wpfxy.cc/","name":"王牌飞行员机场推荐","position":1},{"@type":"ListItem","item":"https://www.wpfxy.cc/posts/dns-tcp-only-comparison/","name":"DNS 默认查询超时，强制 TCP 却成功？正确使用 -TcpOnly","position":2}]}]}</script>
 
 <script>(()=>{let mode='system';try{const saved=localStorage.getItem('reader-theme');if(['system','light','dark'].includes(saved))mode=saved}catch{}const root=document.documentElement;root.dataset.colorMode=mode;root.classList.toggle('dark',mode==='dark'||(mode==='system'&&matchMedia('(prefers-color-scheme: dark)').matches))})();</script>
 <link rel="stylesheet" href="https://www.wpfxy.cc/assets/theme/style.css">
@@ -65,68 +65,74 @@
 <div class="article-viewport"><div class="article-scroll">
 <main id="main" tabindex="-1" class="flight-workspace flight-reading">
 
-<nav class="breadcrumbs" aria-label="面包屑导航"><ol><li><a href="https://www.wpfxy.cc/">王牌飞行员机场推荐</a></li><li><span aria-current="page">加了 -DnssecOk 就代表 DNS 验证成功吗？请求与验证分开看</span></li></ol></nav>
+<nav class="breadcrumbs" aria-label="面包屑导航"><ol><li><a href="https://www.wpfxy.cc/">王牌飞行员机场推荐</a></li><li><span aria-current="page">DNS 默认查询超时，强制 TCP 却成功？正确使用 -TcpOnly</span></li></ol></nav>
 
 
 <div class="flight-columns reading-columns"><div class="reading-content">
 <article data-pagefind-body>
 <header class="article-header">
 <div class="eyebrow" data-pagefind-ignore>飞行手册</div>
-<h1 data-pagefind-meta="title">加了 -DnssecOk 就代表 DNS 验证成功吗？请求与验证分开看</h1>
-<div class="metadata" data-pagefind-ignore><span>老王</span><time datetime="2026-10-06T09:35:14&#43;08:00">2026-10-06</time><span><span id="page-views">—</span> 次阅读</span></div>
-<div class="chips" data-pagefind-ignore><a href="https://www.wpfxy.cc/categories/network-basics/">网络技术</a></div>
+<h1 data-pagefind-meta="title">DNS 默认查询超时，强制 TCP 却成功？正确使用 -TcpOnly</h1>
+<div class="metadata" data-pagefind-ignore><span>老王</span><time datetime="2026-10-07T09:35:17&#43;08:00">2026-10-07</time><span><span id="page-views">—</span> 次阅读</span></div>
+<div class="chips" data-pagefind-ignore><a href="https://www.wpfxy.cc/categories/network-basics/">网络技术</a><a href="https://www.wpfxy.cc/categories/troubleshooting/">故障排查</a></div>
 </header>
-<div class="prose"><p>Windows 查询命令加上 -DnssecOk 后，输出中出现签名相关记录，是否就表示网站可信、机场配置安全？答案需要拆成两步：你请求了什么，以及谁完成了验证。</p>
-<p>本文用于读懂 DNS 查询证据，不修改系统 DNS、证书或代理配置，也不要求开启陌生的解析服务。</p>
-<p><img src="https://www.wpfxy.cc/assets/media/974e7f2a-b06a-42bf-a42e-9929456bfc47.png" alt="DNSSEC 查询请求、返回签名数据与可信验证分为三个阶段"></p>
-<p><em>示意图：请求数据、获得签名和确认验证属于不同阶段。</em></p>
-<h2 id="-dnssecok-">-DnssecOk 实际做了什么</h2>
-<p><a href="https://learn.microsoft.com/en-us/powershell/module/dnsclient/resolve-dnsname?view=windowsserver2025-ps#-dnssecok">Microsoft 的参数文档</a>说明，这个参数设置查询中的 DNSSEC OK 位。它表达对相关 DNSSEC 数据的请求，不能单凭这个命令参数就宣称“本机已完成整条信任链验证”。</p>
-<p>在支持该命令的 Windows PowerShell 中，可以只做公开域名查询：</p>
-<pre><code class="language-powershell">Resolve-DnsName example.com -Type A -DnsOnly -DnssecOk
+<div class="prose"><p>同一个域名，普通查询报超时，加入 <code>-TcpOnly</code> 后得到结果，这提供了一个可追查的差异。但默认查询并不保证“只用了 UDP”，所以不能只看两条命令就宣布 UDP 被封。</p>
+<p>本文用于 Windows PowerShell 的 DNS 对照，查询你有权限使用的 DNS 服务，不扫描陌生服务器，也不改写系统 DNS 设置。</p>
+<p><img src="https://www.wpfxy.cc/assets/media/d9b761b1-c7f4-45a0-b202-a55aa5a21c61.png" alt="同一域名和 DNS 服务器分别接受默认查询与 TCP 查询的对照"></p>
+<p><em>示意图：默认查询与强制 TCP 查询是两种条件，默认模式不等于已证明只用 UDP。</em></p>
+<h2 id="tcp--dns-">TCP 是 DNS 的正规传输方式</h2>
+<p><a href="https://www.rfc-editor.org/rfc/rfc7766.html">RFC 7766</a>要求通用 DNS 实现支持 UDP 与 TCP，并把 TCP 作为有效的传输选择，而不是仅供特殊故障使用。部分响应大小、网络路径和设备行为会影响传输结果，实际原因仍需要证据。</p>
+<p><a href="https://learn.microsoft.com/en-us/powershell/module/dnsclient/resolve-dnsname">微软命令文档</a>说明，<code>-TcpOnly</code> 让本次查询只使用 TCP；<code>-DnsOnly</code> 限定 DNS 协议；<code>-Server</code> 指定要查询的服务器。它们并不会启用 DoH、DoT 或加密 DNS。</p>
+<h2 id="heading">固定三个条件再比较</h2>
+<p>先选择同一域名、同一记录类型、同一个 DNS 服务器。当前默认接口服务器和公网解析服务不是同一个对照条件；不要一边增加 TCP 参数，一边更换服务器。</p>
+<p>下面用公开域名演示结构，由你输入当前使用且允许查询的 DNS 服务器地址：</p>
+<pre><code class="language-powershell">$dnsServer = Read-Host '输入本次要核对的 DNS 服务器地址'
+Resolve-DnsName -Name example.com -Type A -Server $dnsServer -DnsOnly -NoHostsFile
+Resolve-DnsName -Name example.com -Type A -Server $dnsServer -DnsOnly -NoHostsFile -TcpOnly
 </code></pre>
-<p>example.com 是查询示例，不预设它一定返回某类签名记录。保存实际输出、查询时间和所用解析器，不把示例当已测结果。</p>
-<h2 id="heading">记录出现与验证成功不是同一件事</h2>
-<p>看到 RRSIG 等签名数据，意味着获得了相关记录。要据此判断验证结果，还需知道验证器是否按可信配置核对了签名、信任链与记录有效期，而不是只看输出里有没有一段很长的字符。</p>
-<p><a href="https://www.rfc-editor.org/rfc/rfc4033.html">RFC 4033</a>解释了 DNSSEC 提供 DNS 数据来源认证与完整性保护，并不提供保密性。它也讨论了信任递归解析器和通信通道的条件。因此，验证结果应带着“由哪个验证器、通过什么可信路径获得”的上下文记录。</p>
+<p><code>example.com</code> 只是示例。排查实际问题时，用不含秘密的目标域名替换，两轮保持一致。查询成功返回哪些地址，由实际响应决定，本文不编造预期 IP。</p>
+<h2 id="heading-1">输出差异怎样记录</h2>
 <table>
 <thead>
 <tr>
-<th>证据</th>
-<th>可以怎样描述</th>
-<th>不宜怎样扩展</th>
+<th>默认查询</th>
+<th>TCP 查询</th>
+<th>先记录的结论</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>命令含 -DnssecOk</td>
-<td>请求带 DNSSEC OK 标志</td>
-<td>本机已验证成功</td>
+<td>成功</td>
+<td>成功</td>
+<td>两种命令条件下均得到结果</td>
 </tr>
 <tr>
-<td>输出含签名记录</td>
-<td>获得签名相关数据</td>
-<td>商家已经可信</td>
+<td>超时</td>
+<td>成功</td>
+<td>存在传输或查询条件差异，原因未确认</td>
 </tr>
 <tr>
-<td>可信验证器确认有效</td>
-<td>该次 DNS 数据验证通过</td>
-<td>所有网页连接或所有应用都安全</td>
+<td>成功</td>
+<td>超时</td>
+<td>TCP 查询路径或服务器条件需进一步检查</td>
+</tr>
+<tr>
+<td>都失败</td>
+<td>都失败</td>
+<td>不能仅归因于 UDP；检查服务器、域名和网络</td>
 </tr>
 </tbody>
 </table>
-<h2 id="heading-1">一份可复查的查询记录</h2>
-<p>先填写域名、记录类型、时间和解析器来源。再注明你只有原始查询输出，还是另外取得了验证器的明确结果。没有验证器证据时保留“未确认验证”，不从一张截图补出结论。</p>
-<p>没有看到预期签名，也不能直接认定线路被篡改。域名部署、返回类型、缓存和解析器行为需要继续查证；超时与明确验证失败也应分别记录，不能混成一个“DNS 不安全”。</p>
-<h2 id="heading-2">查询之后还要核对什么</h2>
-<p>正常访问 HTTPS 网页时仍检查域名和证书；选购机场时仍查套餐与试用证据。DNSSEC 不加密 DNS 查询，也不替商家经营做认证。</p>
-<p>验收完成的标准是：你能说明命令请求、返回数据和验证结论各自来自哪里，并知道哪些结论还未取得。这样的记录比单凭一个 DNSSEC 标签更适合用于机场推荐和 DNS 排障。</p>
+<p>缓存可能减少实际网络请求；默认模式也可能重试或选择不同传输。若你没有受控日志或经过授权的抓包证据，就把第一轮写成“默认查询”，不要写成“纯 UDP 实测”。DNS 返回 NXDOMAIN 等错误响应，也应与“完全收不到响应”分别记录。</p>
+<h2 id="heading-2">不要把解析结果扩大成连通性保证</h2>
+<p>普通 HTTP/SOCKS 代理不会自动接管这两条系统 DNS 命令；TUN 或其他系统接管是否影响它们，取决于实际配置。记录所处网络与客户端状态，避免把直连 DNS 的结果写成节点的实测结果。</p>
+<p>得到地址后，还应验证原目标的 HTTPS 请求或应用任务。DNS 成功不代表目标端口可达、TLS 验证通过或账号有权限。做机场推荐与网络排障记录时，先保留传输差异，再用真实任务确认问题是否恢复。</p>
 <h2 id="heading-3">来源与核验日期</h2>
 <ul>
-<li><a href="https://learn.microsoft.com/en-us/powershell/module/dnsclient/resolve-dnsname?view=windowsserver2025-ps#-dnssecok">Microsoft Learn：Resolve-DnsName 参数</a></li>
-<li><a href="https://www.rfc-editor.org/rfc/rfc4033.html">RFC 4033：DNSSEC 服务及信任条件</a></li>
+<li><a href="https://learn.microsoft.com/en-us/powershell/module/dnsclient/resolve-dnsname">微软：Resolve-DnsName 参数</a></li>
+<li><a href="https://www.rfc-editor.org/rfc/rfc7766.html">RFC 7766：DNS 的 TCP 传输要求与选择</a></li>
 </ul>
-<p>官方资料核验日期：2026-10-06。文中的表格和流程用于自行检查，不代表本站对某家机场的实测结论。</p>
+<p>官方资料核验日期：2026-10-07。本文提供自行操作与记录的方法，不代表本站对某家机场的实测结论。</p>
 </div>
 <div class="article-likes" data-pagefind-ignore>
 <button id="page-like" class="like-button" type="button" aria-pressed="false" aria-describedby="page-like-message" disabled>
@@ -135,12 +141,12 @@
 </button><p id="page-like-message" role="status"></p>
 </div>
 <div class="article-tags" data-pagefind-ignore><a href="https://www.wpfxy.cc/tags/dns/"># DNS</a><a href="https://www.wpfxy.cc/tags/windows/"># Windows</a><a href="https://www.wpfxy.cc/tags/troubleshooting/"># 故障排查</a></div>
-<nav class="pagination" aria-label="相邻文章" data-pagefind-ignore><a href="https://www.wpfxy.cc/posts/dns-tcp-only-comparison/">← 上一篇</a><a href="https://www.wpfxy.cc/posts/dns-hosts-file-query-check/">下一篇 →</a></nav>
+<nav class="pagination" aria-label="相邻文章" data-pagefind-ignore><a href="https://www.wpfxy.cc/posts/airport-recommendation-method/">← 上一篇</a><a href="https://www.wpfxy.cc/posts/dnssec-ok-request-validation/">下一篇 →</a></nav>
 <section class="comments-section" data-pagefind-ignore><h2>评论</h2><div id="comments"></div></section>
 </article>
 </div>
 <div class="flight-rail article-rail">
-<aside class="toc"><div>本篇目录</div><nav aria-label="文章目录"><a class="level-2" href="#-dnssecok-">-DnssecOk 实际做了什么</a><a class="level-2" href="#heading">记录出现与验证成功不是同一件事</a><a class="level-2" href="#heading-1">一份可复查的查询记录</a><a class="level-2" href="#heading-2">查询之后还要核对什么</a><a class="level-2" href="#heading-3">来源与核验日期</a></nav></aside>
+<aside class="toc"><div>本篇目录</div><nav aria-label="文章目录"><a class="level-2" href="#tcp--dns-">TCP 是 DNS 的正规传输方式</a><a class="level-2" href="#heading">固定三个条件再比较</a><a class="level-2" href="#heading-1">输出差异怎样记录</a><a class="level-2" href="#heading-2">不要把解析结果扩大成连通性保证</a><a class="level-2" href="#heading-3">来源与核验日期</a></nav></aside>
 
 <section class="invite-module ad-slot" data-ad-position="article_sidebar" data-pagefind-ignore aria-label="文章推荐入口">
 
@@ -187,6 +193,6 @@
 </div>
 </dialog>
 
-<script id="blog-comments-config" type="application/json">{"comments":true,"likes":true,"locale":"zh-CN","pageKey":"/p/5ac9d268-5700-49b4-a7f9-6cc3dc9231b8/","pageTitle":"加了 -DnssecOk 就代表 DNS 验证成功吗？请求与验证分开看","server":"https://upfqpobmiewm.sealosgzg.site","site":"xblog-8d67829c-3602-4d9b-9bb7-c2d68118fecb","views":true,"viewsBase":0}</script>
+<script id="blog-comments-config" type="application/json">{"comments":true,"likes":true,"locale":"zh-CN","pageKey":"/p/5959123f-d31a-48e5-8752-2973134ae105/","pageTitle":"DNS 默认查询超时，强制 TCP 却成功？正确使用 -TcpOnly","server":"https://upfqpobmiewm.sealosgzg.site","site":"xblog-8d67829c-3602-4d9b-9bb7-c2d68118fecb","views":true,"viewsBase":0}</script>
 
 </body></html>
