@@ -1,35 +1,42 @@
 <!doctype html>
-<html lang="zh-CN" data-theme="wangpai-air">
+<html lang="zh-CN" data-theme="wangpai-air" data-theme-version="1.0.3">
 
 <head>
+
+
+
+
+
+
+
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>DNS 查询结果一定来自服务器吗？用 -NoHostsFile 核对 hosts 映射 · 王牌飞行员机场推荐</title>
 <meta name="description" content="Resolve-DnsName 的 -DnsOnly 与 -NoHostsFile 有什么区别？用只读查询比较 hosts 映射，并说明缓存、浏览器解析与真实连接的验收范围。">
 <meta name="keywords" content="机场推荐,Resolve-DnsName,NoHostsFile,hosts映射">
 <meta name="robots" content="index,follow,max-image-preview:large"><link rel="canonical" href="https://www.wpfxy.cc/posts/dns-hosts-file-query-check/">
-<meta property="og:title" content="DNS 查询结果一定来自服务器吗？用 -NoHostsFile 核对 hosts 映射">
+<meta property="og:title" content="DNS 查询结果一定来自服务器吗？用 -NoHostsFile 核对 hosts 映射 · 王牌飞行员机场推荐">
 <meta property="og:description" content="Resolve-DnsName 的 -DnsOnly 与 -NoHostsFile 有什么区别？用只读查询比较 hosts 映射，并说明缓存、浏览器解析与真实连接的验收范围。">
 <meta property="og:url" content="https://www.wpfxy.cc/posts/dns-hosts-file-query-check/">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="王牌飞行员机场推荐">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://www.wpfxy.cc/assets/media/4bf82c49-08d9-433f-91f4-206c92d3c8fa.png"><meta property="og:image:alt" content="王牌飞行员机场推荐">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="DNS 查询结果一定来自服务器吗？用 -NoHostsFile 核对 hosts 映射">
+<meta property="og:image" content="https://www.wpfxy.cc/assets/media/04cc35df-32c1-442f-8923-90ca6446b478.webp"><meta property="og:image:alt" content="DNS 查询结果一定来自服务器吗？用 -NoHostsFile 核对 hosts 映射">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="DNS 查询结果一定来自服务器吗？用 -NoHostsFile 核对 hosts 映射 · 王牌飞行员机场推荐">
 <meta name="twitter:description" content="Resolve-DnsName 的 -DnsOnly 与 -NoHostsFile 有什么区别？用只读查询比较 hosts 映射，并说明缓存、浏览器解析与真实连接的验收范围。">
-<meta name="twitter:image" content="https://www.wpfxy.cc/assets/media/4bf82c49-08d9-433f-91f4-206c92d3c8fa.png">
-<meta name="author" content="老王"><meta property="article:published_time" content="2026-10-05T09:48:35&#43;08:00"><meta property="article:modified_time" content="2026-10-05T09:48:38&#43;08:00"><meta property="article:tag" content="DNS"><meta property="article:tag" content="Windows"><meta property="article:tag" content="故障排查">
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@id":"https://www.wpfxy.cc/posts/dns-hosts-file-query-check/#article","@type":"BlogPosting","author":{"@type":"Person","name":"老王"},"dateModified":"2026-10-05T09:48:38+08:00","datePublished":"2026-10-05T09:48:35+08:00","description":"Resolve-DnsName 的 -DnsOnly 与 -NoHostsFile 有什么区别？用只读查询比较 hosts 映射，并说明缓存、浏览器解析与真实连接的验收范围。","headline":"DNS 查询结果一定来自服务器吗？用 -NoHostsFile 核对 hosts 映射","inLanguage":"zh-CN","mainEntityOfPage":{"@id":"https://www.wpfxy.cc/posts/dns-hosts-file-query-check/","@type":"WebPage"},"url":"https://www.wpfxy.cc/posts/dns-hosts-file-query-check/"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://www.wpfxy.cc/","name":"王牌飞行员机场推荐","position":1},{"@type":"ListItem","item":"https://www.wpfxy.cc/posts/dns-hosts-file-query-check/","name":"DNS 查询结果一定来自服务器吗？用 -NoHostsFile 核对 hosts 映射","position":2}]}]}</script>
+<meta name="twitter:image" content="https://www.wpfxy.cc/assets/media/04cc35df-32c1-442f-8923-90ca6446b478.webp"><meta name="twitter:image:alt" content="DNS 查询结果一定来自服务器吗？用 -NoHostsFile 核对 hosts 映射">
+<meta name="author" content="老王"><meta property="article:published_time" content="2026-10-05T09:48:35&#43;08:00"><meta property="article:modified_time" content="2026-10-11T23:13:52&#43;08:00"><meta property="article:tag" content="DNS 查询结果一定来自服务器吗？用 -NoHostsFile 核对 hosts 映射 · 王牌飞行员机场推荐"><meta property="article:tag" content="DNS 查询结果一定来自服务器吗？用 -NoHostsFile 核对 hosts 映射 · 王牌飞行员机场推荐"><meta property="article:tag" content="DNS 查询结果一定来自服务器吗？用 -NoHostsFile 核对 hosts 映射 · 王牌飞行员机场推荐">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BlogPosting","@id":"https:\/\/www.wpfxy.cc\/posts\/dns-hosts-file-query-check\/#article","headline":"DNS 查询结果一定来自服务器吗？用 -NoHostsFile 核对 hosts 映射","description":"Resolve-DnsName 的 -DnsOnly 与 -NoHostsFile 有什么区别？用只读查询比较 hosts 映射，并说明缓存、浏览器解析与真实连接的验收范围。","inLanguage":"zh-CN","url":"https://www.wpfxy.cc/posts/dns-hosts-file-query-check/","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.wpfxy.cc/posts/dns-hosts-file-query-check/"},"datePublished":"2026-10-05T09:48:35+08:00","dateModified":"2026-10-11T23:13:52+08:00","author":{"@type":"Person","name":"老王"},"publisher":{"@type":"Organization","name":"王牌飞行员机场推荐","url":"https://www.wpfxy.cc/","logo":{"@type":"ImageObject","url":"https://www.wpfxy.cc/assets/media/94b543bb-008e-44f9-ac91-096c1afad063.png"}},"image":["https://www.wpfxy.cc/assets/media/04cc35df-32c1-442f-8923-90ca6446b478.webp"]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position": 1 ,"name":"王牌飞行员机场推荐","item":"https://www.wpfxy.cc/"},{"@type":"ListItem","position": 2 ,"name":"DNS 查询结果一定来自服务器吗？用 -NoHostsFile 核对 hosts 映射","item":"https://www.wpfxy.cc/posts/dns-hosts-file-query-check/"}]}]}</script>
 
 <script>(()=>{let mode='system';try{const saved=localStorage.getItem('reader-theme');if(['system','light','dark'].includes(saved))mode=saved}catch{}const root=document.documentElement;root.dataset.colorMode=mode;root.classList.toggle('dark',mode==='dark'||(mode==='system'&&matchMedia('(prefers-color-scheme: dark)').matches))})();</script>
 <link rel="stylesheet" href="https://www.wpfxy.cc/assets/theme/style.css">
 <link rel="stylesheet" href="https://www.wpfxy.cc/assets/theme/advertisements.css">
 <link rel="stylesheet" href="https://www.wpfxy.cc/assets/theme/search.css"><script defer src="https://www.wpfxy.cc/assets/theme/search.js"></script>
-<link rel="stylesheet" href="https://www.wpfxy.cc/assets/theme/skin.css">
+<link rel="stylesheet" href="https://www.wpfxy.cc/assets/theme/skin-1.0.3.css"><link rel="stylesheet" href="https://www.wpfxy.cc/assets/theme/seo-1.0.3.css">
 <link rel="stylesheet" href="https://www.wpfxy.cc/assets/theme/viewer.css">
 <link rel="stylesheet" href="https://www.wpfxy.cc/assets/theme/reader.css">
-<link rel="icon" href="https://www.wpfxy.cc/assets/media/4bf82c49-08d9-433f-91f4-206c92d3c8fa.png">
+<link rel="icon" href="https://www.wpfxy.cc/assets/media/94b543bb-008e-44f9-ac91-096c1afad063.png">
 <link rel="stylesheet" href="https://www.wpfxy.cc/assets/theme/artalk.css"><script defer src="https://www.wpfxy.cc/assets/theme/artalk.js"></script>
 <script defer src="https://www.wpfxy.cc/assets/theme/theme.js"></script>
 <script defer src="https://www.wpfxy.cc/assets/theme/reader.js"></script>
@@ -37,7 +44,7 @@
 <script defer src="https://www.wpfxy.cc/assets/theme/image-viewer.js"></script>
 
 <script defer src="https://www.wpfxy.cc/assets/theme/interactions.js"></script>
-<script defer src="https://www.wpfxy.cc/assets/theme/markdown-it.min.js"></script><script defer src="https://www.wpfxy.cc/assets/theme/purify.min.js"></script><script defer src="https://www.wpfxy.cc/assets/theme/featured.js"></script>
+<script defer src="https://www.wpfxy.cc/assets/theme/markdown-it.min.js"></script><script defer src="https://www.wpfxy.cc/assets/theme/purify.min.js"></script><script defer src="https://www.wpfxy.cc/assets/theme/featured-1.0.3.js"></script><script defer src="https://www.wpfxy.cc/assets/theme/seo-1.0.3.js"></script>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZH5EMJLD09"></script>
 <script>
@@ -54,7 +61,7 @@
 <a class="skip" href="#main">跳到正文</a>
 <header class="site-header">
 <div class="header-inner">
-<a class="brand" href="https://www.wpfxy.cc/"><img src="https://www.wpfxy.cc/assets/media/4bf82c49-08d9-433f-91f4-206c92d3c8fa.png" alt="" width="38" height="38"><span>王牌飞行员机场推荐</span></a>
+<a class="brand" href="https://www.wpfxy.cc/"><img src="https://www.wpfxy.cc/assets/media/94b543bb-008e-44f9-ac91-096c1afad063.png" alt="" width="38" height="38"><span>王牌飞行员机场推荐</span></a>
 <nav id="site-navigation" aria-label="站点导航"><a href="https://www.wpfxy.cc/">首页</a><a href="https://www.wpfxy.cc/categories/airport-selection/">机场推荐</a><a href="https://www.wpfxy.cc/categories/network-basics/">网络技术</a><a href="https://www.wpfxy.cc/categories/client-tutorials/">客户端教程</a><a href="https://www.wpfxy.cc/categories/troubleshooting/">故障排查</a><a href="https://www.wpfxy.cc/categories/privacy-review/">隐私与评测</a></nav>
 <a class="search-toggle" href="https://www.wpfxy.cc/search/" data-open-dialog="search-dialog" aria-haspopup="dialog" aria-controls="search-dialog" aria-label="搜索" title="搜索"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4.5 4.5"/></svg></a>
 <button id="theme-mode" class="theme-toggle theme-cycle" type="button" aria-label="明暗模式：跟随系统，点击切换为明亮" title="跟随系统 · 点击切换为明亮">
@@ -84,18 +91,20 @@
 <div class="metadata" data-pagefind-ignore><span>老王</span><time datetime="2026-10-05T09:48:35&#43;08:00">2026-10-05</time><span><span id="page-views">—</span> 次阅读</span></div>
 <div class="chips" data-pagefind-ignore><a href="https://www.wpfxy.cc/categories/network-basics/">网络技术</a></div>
 </header>
-<div class="prose"><p>终端查出一个地址，并不总能直接证明“DNS 服务器就是这么回答的”。Windows 的名称解析还需要考虑本机映射与查询选项。排障时先说明查询排除了什么，再谈结论。</p>
+<div class="prose">
+
+<p>终端查出一个地址，并不总能直接证明“DNS 服务器就是这么回答的”。Windows 的名称解析还需要考虑本机映射与查询选项。排障时先说明查询排除了什么，再谈结论。</p>
 <p>本文用于 Windows 上的只读对照，不需要修改 hosts、清空全机缓存或更换 DNS 服务商。</p>
-<p><img src="https://www.wpfxy.cc/assets/media/2a19a852-b15d-40e7-ad5e-c719b4f81b7e.png" alt="名称查询中的本地 hosts 映射与 DNS 查询路径"></p>
+<p><img src="https://www.wpfxy.cc/assets/media/04cc35df-32c1-442f-8923-90ca6446b478.webp" alt="名称查询中的本地 hosts 映射与 DNS 查询路径" width="1536" height="1024" loading="eager" decoding="async"></p>
 <p><em>示意图：跳过 hosts 是特定查询选项，不代表清除缓存或统一所有应用解析路径。</em></p>
 <h2 id="heading">两个参数排除的是不同东西</h2>
 <p><a href="https://learn.microsoft.com/en-us/powershell/module/dnsclient/resolve-dnsname">Microsoft 的 Resolve-DnsName 文档</a>将 <code>-DnsOnly</code> 定义为仅使用 DNS 协议查询，排除 LLMNR 与 NetBIOS 查询；<code>-NoHostsFile</code> 则明确跳过 hosts 文件。</p>
 <p>因此，只写 <code>-DnsOnly</code> 不能代替“跳过 hosts”的声明。<code>-NoHostsFile</code> 也不是“清空所有缓存”或“强制向权威服务器查询”的承诺。</p>
 <h2 id="heading-1">比较两次同名查询</h2>
 <p>在 PowerShell 运行，替换成自己确实要检查的公开域名：</p>
-<pre><code class="language-powershell">$targetName = 'example.com'
-Resolve-DnsName -Name $targetName -Type A
-Resolve-DnsName -Name $targetName -Type A -DnsOnly -NoHostsFile
+<pre><code class="language-powershell">$targetName = 'example.com'
+Resolve-DnsName -Name $targetName -Type A
+Resolve-DnsName -Name $targetName -Type A -DnsOnly -NoHostsFile
 </code></pre>
 <p>保持域名、记录类型与观察时间相近。记录返回的名称、类型、地址和错误，不把结果只抄成一串 IP。<code>example.com</code> 是命令示例，本文没有提供该域名在你的网络中的预期地址。</p>
 <h2 id="heading-2">有差异和无差异分别怎么处理</h2>
@@ -130,6 +139,7 @@ Resolve-DnsName -Name $targetName -Type A -DnsOnly -NoHostsFile
 <li><a href="https://learn.microsoft.com/en-us/powershell/module/dnsclient/resolve-dnsname">Microsoft：Resolve-DnsName 参数说明</a></li>
 </ul>
 <p>官方资料核验日期：2026-10-05。文中的表格和流程用于自行检查，不代表本站对某家机场的实测结论。</p>
+
 </div>
 <div class="article-likes" data-pagefind-ignore>
 <button id="page-like" class="like-button" type="button" aria-pressed="false" aria-describedby="page-like-message" disabled>
