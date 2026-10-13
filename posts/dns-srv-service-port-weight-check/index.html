@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="wangpai-air" data-theme-version="1.0.3">
+
+<head>
+
+
+
+
+
+
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DNS 的 SRV 记录能证明节点更快吗？先分清服务端口与选择权重 · 王牌飞行员机场推荐</title>
+<meta name="description" content="SRV 的优先级和权重是不是机场速度排名？用只读 DNS 查询核对服务目标与端口，明确客户端是否支持及实际连接的判断边界。">
+<meta name="keywords" content="机场推荐,DNS SRV记录,服务端口核对,节点权重判断">
+<meta name="robots" content="index,follow,max-image-preview:large"><link rel="canonical" href="https://www.wpfxy.cc/posts/dns-srv-service-port-weight-check/">
+<meta property="og:title" content="DNS 的 SRV 记录能证明节点更快吗？先分清服务端口与选择权重 · 王牌飞行员机场推荐">
+<meta property="og:description" content="SRV 的优先级和权重是不是机场速度排名？用只读 DNS 查询核对服务目标与端口，明确客户端是否支持及实际连接的判断边界。">
+<meta property="og:url" content="https://www.wpfxy.cc/posts/dns-srv-service-port-weight-check/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="王牌飞行员机场推荐">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.wpfxy.cc/assets/media/b8677516-6044-424d-a7db-c450001b6f51.png"><meta property="og:image:alt" content="DNS 的 SRV 记录能证明节点更快吗？先分清服务端口与选择权重">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="DNS 的 SRV 记录能证明节点更快吗？先分清服务端口与选择权重 · 王牌飞行员机场推荐">
+<meta name="twitter:description" content="SRV 的优先级和权重是不是机场速度排名？用只读 DNS 查询核对服务目标与端口，明确客户端是否支持及实际连接的判断边界。">
+<meta name="twitter:image" content="https://www.wpfxy.cc/assets/media/b8677516-6044-424d-a7db-c450001b6f51.png"><meta name="twitter:image:alt" content="DNS 的 SRV 记录能证明节点更快吗？先分清服务端口与选择权重">
+<meta name="author" content="老王"><meta property="article:published_time" content="2026-10-13T14:39:08&#43;08:00"><meta property="article:modified_time" content="2026-10-13T14:39:11&#43;08:00"><meta property="article:tag" content="DNS 的 SRV 记录能证明节点更快吗？先分清服务端口与选择权重 · 王牌飞行员机场推荐"><meta property="article:tag" content="DNS 的 SRV 记录能证明节点更快吗？先分清服务端口与选择权重 · 王牌飞行员机场推荐"><meta property="article:tag" content="DNS 的 SRV 记录能证明节点更快吗？先分清服务端口与选择权重 · 王牌飞行员机场推荐">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BlogPosting","@id":"https:\/\/www.wpfxy.cc\/posts\/dns-srv-service-port-weight-check\/#article","headline":"DNS 的 SRV 记录能证明节点更快吗？先分清服务端口与选择权重","description":"SRV 的优先级和权重是不是机场速度排名？用只读 DNS 查询核对服务目标与端口，明确客户端是否支持及实际连接的判断边界。","inLanguage":"zh-CN","url":"https://www.wpfxy.cc/posts/dns-srv-service-port-weight-check/","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.wpfxy.cc/posts/dns-srv-service-port-weight-check/"},"datePublished":"2026-10-13T14:39:08+08:00","dateModified":"2026-10-13T14:39:11+08:00","author":{"@type":"Person","name":"老王"},"publisher":{"@type":"Organization","name":"王牌飞行员机场推荐","url":"https://www.wpfxy.cc/","logo":{"@type":"ImageObject","url":"https://www.wpfxy.cc/assets/media/94b543bb-008e-44f9-ac91-096c1afad063.png"}},"image":["https://www.wpfxy.cc/assets/media/b8677516-6044-424d-a7db-c450001b6f51.png"]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position": 1 ,"name":"王牌飞行员机场推荐","item":"https://www.wpfxy.cc/"},{"@type":"ListItem","position": 2 ,"name":"DNS 的 SRV 记录能证明节点更快吗？先分清服务端口与选择权重","item":"https://www.wpfxy.cc/posts/dns-srv-service-port-weight-check/"}]}]}</script>
+
+<script>(()=>{let mode='system';try{const saved=localStorage.getItem('reader-theme');if(['system','light','dark'].includes(saved))mode=saved}catch{}const root=document.documentElement;root.dataset.colorMode=mode;root.classList.toggle('dark',mode==='dark'||(mode==='system'&&matchMedia('(prefers-color-scheme: dark)').matches))})();</script>
+<link rel="stylesheet" href="https://www.wpfxy.cc/assets/theme/style.css">
+<link rel="stylesheet" href="https://www.wpfxy.cc/assets/theme/advertisements.css">
+<link rel="stylesheet" href="https://www.wpfxy.cc/assets/theme/search.css"><script defer src="https://www.wpfxy.cc/assets/theme/search.js"></script>
+<link rel="stylesheet" href="https://www.wpfxy.cc/assets/theme/skin-1.0.3.css"><link rel="stylesheet" href="https://www.wpfxy.cc/assets/theme/seo-1.0.3.css">
+<link rel="stylesheet" href="https://www.wpfxy.cc/assets/theme/viewer.css">
+<link rel="stylesheet" href="https://www.wpfxy.cc/assets/theme/reader.css">
+<link rel="icon" href="https://www.wpfxy.cc/assets/media/94b543bb-008e-44f9-ac91-096c1afad063.png">
+<link rel="stylesheet" href="https://www.wpfxy.cc/assets/theme/artalk.css"><script defer src="https://www.wpfxy.cc/assets/theme/artalk.js"></script>
+<script defer src="https://www.wpfxy.cc/assets/theme/theme.js"></script>
+<script defer src="https://www.wpfxy.cc/assets/theme/reader.js"></script>
+<script defer src="https://www.wpfxy.cc/assets/theme/viewer.js"></script>
+<script defer src="https://www.wpfxy.cc/assets/theme/image-viewer.js"></script>
+
+<script defer src="https://www.wpfxy.cc/assets/theme/interactions.js"></script>
+<script defer src="https://www.wpfxy.cc/assets/theme/markdown-it.min.js"></script><script defer src="https://www.wpfxy.cc/assets/theme/purify.min.js"></script><script defer src="https://www.wpfxy.cc/assets/theme/featured-1.0.3.js"></script><script defer src="https://www.wpfxy.cc/assets/theme/seo-1.0.3.js"></script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZH5EMJLD09"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-ZH5EMJLD09');
+</script>
+
+<script defer src="https://www.wpfxy.cc/assets/xblog/google-analytics.js" data-xblog-google-analytics="G-ZH5EMJLD09" data-site-hosts="www.wpfxy.cc"></script></head>
+
+<body class="flight-site article-page">
+<a class="skip" href="#main">跳到正文</a>
+<header class="site-header">
+<div class="header-inner">
+<a class="brand" href="https://www.wpfxy.cc/"><img src="https://www.wpfxy.cc/assets/media/94b543bb-008e-44f9-ac91-096c1afad063.png" alt="" width="38" height="38"><span>王牌飞行员机场推荐</span></a>
+<nav id="site-navigation" aria-label="站点导航"><a href="https://www.wpfxy.cc/">首页</a><a href="https://www.wpfxy.cc/categories/airport-selection/">机场推荐</a><a href="https://www.wpfxy.cc/categories/network-basics/">网络技术</a><a href="https://www.wpfxy.cc/categories/client-tutorials/">客户端教程</a><a href="https://www.wpfxy.cc/categories/troubleshooting/">故障排查</a><a href="https://www.wpfxy.cc/categories/privacy-review/">隐私与评测</a></nav>
+<a class="search-toggle" href="https://www.wpfxy.cc/search/" data-open-dialog="search-dialog" aria-haspopup="dialog" aria-controls="search-dialog" aria-label="搜索" title="搜索"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4.5 4.5"/></svg></a>
+<button id="theme-mode" class="theme-toggle theme-cycle" type="button" aria-label="明暗模式：跟随系统，点击切换为明亮" title="跟随系统 · 点击切换为明亮">
+<svg class="theme-icon-system" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8m-4-4v4"/></svg>
+<svg class="theme-icon-moon" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.2 15.5A8.5 8.5 0 0 1 8.5 3.8 8.5 8.5 0 1 0 20.2 15.5Z"/></svg>
+<svg class="theme-icon-sun" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+</button>
+<span id="theme-mode-status" class="visually-hidden" role="status" aria-live="polite"></span>
+<button id="menu-toggle" class="menu-toggle" type="button" aria-controls="site-navigation" aria-expanded="false" aria-label="打开菜单" title="打开菜单">
+<svg class="menu-icon-open" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+<svg class="menu-icon-close" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="m6 6 12 12M6 18 18 6"/></svg>
+</button>
+</div>
+</header>
+
+<div class="article-viewport"><div class="article-scroll">
+<main id="main" tabindex="-1" class="flight-workspace flight-reading">
+
+<nav class="breadcrumbs" aria-label="面包屑导航"><ol><li><a href="https://www.wpfxy.cc/">王牌飞行员机场推荐</a></li><li><span aria-current="page">DNS 的 SRV 记录能证明节点更快吗？先分清服务端口与选择权重</span></li></ol></nav>
+
+
+<div class="flight-columns reading-columns"><div class="reading-content">
+<article data-pagefind-body>
+<header class="article-header">
+<div class="eyebrow" data-pagefind-ignore>飞行手册</div>
+<h1 data-pagefind-meta="title">DNS 的 SRV 记录能证明节点更快吗？先分清服务端口与选择权重</h1>
+<div class="metadata" data-pagefind-ignore><span>老王</span><time datetime="2026-10-13T14:39:08&#43;08:00">2026-10-13</time><span><span id="page-views">—</span> 次阅读</span></div>
+<div class="chips" data-pagefind-ignore><a href="https://www.wpfxy.cc/categories/network-basics/">网络技术</a></div>
+</header>
+<div class="prose">
+<p>查到 SRV 记录，里面既有主机名，又有端口、优先级与权重，很容易把它当成“节点性能表”。实际上，这些字段首先描述服务发现与目标选择，不提供某条线路的测速成绩。</p>
+<p>本文适用于正式服务文档明确使用 SRV、或自己管理的 DNS。普通机场订阅已经给出服务器和端口时，先沿用其正式配置，不擅自猜一条 SRV 查询来替换连接参数。</p>
+<p><img src="https://www.wpfxy.cc/assets/media/b8677516-6044-424d-a7db-c450001b6f51.png" alt="SRV服务发现中的目标与端口、选择规则和应用连接分开核对的示意"></p>
+<p><em>示意图：SRV 字段描述服务发现，优先级与权重不是节点测速数据。</em></p>
+<h2 id="srv-">SRV 要查的是服务名称</h2>
+<p><a href="https://www.rfc-editor.org/rfc/rfc2782.html">RFC 2782</a>定义的查询名称包括服务、协议与域名，例如 <code>_service._proto.name</code> 这样的结构。它不是对任意首页域名查询一次，就一定能得到所有应用端口。</p>
+<p>先向正式说明核对完整查询名、服务类型与客户端是否使用这种发现方式。没有说明就记录“SRV 用途未确认”，不扫描端口，也不假定所有代理协议都支持它。</p>
+<h2 id="heading">做一次只读查询</h2>
+<p><a href="https://learn.microsoft.com/en-us/powershell/module/dnsclient/resolve-dnsname">Microsoft 的 Resolve-DnsName</a>支持 SRV 查询类型。以下只演示写法，服务名和域名都是占位项，要替换为你获准查询且由正式文档给出的名称：</p>
+<pre><code class="language-powershell">Resolve-DnsName -Name '_service._tcp.example.com' -Type SRV -DnsOnly
+</code></pre>
+<p>保留时间、查询名和返回结果。示例并不保证存在对应记录；没有取得记录也不能据此认定机场已经停止服务，它可能根本不采用这套发现方式。</p>
+<h2 id="heading-1">四个字段怎样看</h2>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述的对象</th>
+<th>不是哪种数据</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Priority</td>
+<td>目标选择优先级，较小值优先</td>
+<td>Ping 延迟或商业排名</td>
+</tr>
+<tr>
+<td>Weight</td>
+<td>相同优先级目标之间的相对选择权重</td>
+<td>带宽、可用率或流量倍率</td>
+</tr>
+<tr>
+<td>Port</td>
+<td>目标主机上该服务的端口</td>
+<td>客户端本地监听端口</td>
+</tr>
+<tr>
+<td>Target</td>
+<td>该服务的目标主机名</td>
+<td>供应商信誉或节点地理位置证明</td>
+</tr>
+</tbody>
+</table>
+<p>RFC 对同优先级下的选择概率给出权重机制。因此，更大的 Weight 不能解释为“更快”，Priority 较小也不能解释为“硬件更好”。目标的地址解析与实际连接仍需各自完成。</p>
+<h2 id="heading-2">从记录回到实际客户端</h2>
+<p>先确认客户端是否按该服务说明读取 SRV。若它只使用订阅里的固定主机和端口，那么这次 DNS 观察不能自动改写客户端配置，也不能证明本次连接实际选中了哪一条记录。</p>
+<p>需要核对连接时，仅对自己的服务目标按正常客户端流程验收，检查预期功能是否完成；不要为了试出结果自行换端口、关闭证书验证或把某个主机名当成新的 TLS 名称。</p>
+<p>查询成功、目标地址存在、端口可达和应用操作成功是不同阶段。记录中保留每一阶段的实际结果，没有做到就写待查，不从前一阶段推导后一阶段成功。</p>
+<h2 id="heading-3">哪种记录适合比较</h2>
+<p>用于机场推荐的测试表，可以保存正式服务发现规则、客户端支持依据、当时选中的目标和真实任务结果。SRV 中的数字作为路由元数据保留，速度比较另做同条件测量。</p>
+<p>这样复查者能看清你观察的是 DNS 配置，还是已经完成了一项连接任务；也能避免把服务端口误填到本地代理端口里。</p>
+<h2 id="heading-4">来源与核验日期</h2>
+<ul>
+<li><a href="https://www.rfc-editor.org/rfc/rfc2782.html">官方参考 1</a></li>
+<li><a href="https://learn.microsoft.com/en-us/powershell/module/dnsclient/resolve-dnsname">官方参考 2</a></li>
+</ul>
+<p>官方资料核验日期：2026-10-13。本文提供操作与判断方法，不代表本站对某家机场的实测结论。</p>
+</div>
+<div class="article-likes" data-pagefind-ignore>
+<button id="page-like" class="like-button" type="button" aria-pressed="false" aria-describedby="page-like-message" disabled>
+<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"/></svg>
+<span id="page-like-label">点赞</span><span id="page-like-count">—</span>
+</button><p id="page-like-message" role="status"></p>
+</div>
+<div class="article-tags" data-pagefind-ignore><a href="https://www.wpfxy.cc/tags/dns/"># DNS</a><a href="https://www.wpfxy.cc/tags/windows/"># Windows</a><a href="https://www.wpfxy.cc/tags/troubleshooting/"># 故障排查</a></div>
+<nav class="pagination" aria-label="相邻文章" data-pagefind-ignore><a href="https://www.wpfxy.cc/posts/airport-recommendation-method/">← 上一篇</a><a href="https://www.wpfxy.cc/posts/airport-risk-sanfen-refund-terms-20261012/">下一篇 →</a></nav>
+<section class="comments-section" data-pagefind-ignore><h2>评论</h2><div id="comments"></div></section>
+</article>
+</div>
+<div class="flight-rail article-rail">
+<aside class="toc"><div>本篇目录</div><nav aria-label="文章目录"><a class="level-2" href="#srv-">SRV 要查的是服务名称</a><a class="level-2" href="#heading">做一次只读查询</a><a class="level-2" href="#heading-1">四个字段怎样看</a><a class="level-2" href="#heading-2">从记录回到实际客户端</a><a class="level-2" href="#heading-3">哪种记录适合比较</a><a class="level-2" href="#heading-4">来源与核验日期</a></nav></aside>
+
+<section class="invite-module ad-slot" data-ad-position="article_sidebar" data-pagefind-ignore aria-label="文章推荐入口">
+
+<div class="invite-heading"><h2>推荐登机口</h2></div>
+<div class="invite-grid">
+<a class="invite-card" data-ad-link href="https://goflybit.com/#/register?code=gPinVG8C" target="_blank" rel="sponsored noopener noreferrer" aria-label="FlyBit · 文章推荐，在新标签页打开">
+<span class="invite-symbol invite-image"><img src="https://www.wpfxy.cc/assets/media/575d0e89-8b10-482b-861e-93c86297e70d.png" alt="FlyBit · 文章推荐" loading="lazy" decoding="async"></span>
+<div class="invite-copy"><h3>FlyBit</h3>
+<p>由此开启，下一程连接</p>
+</div>
+<span class="invite-action">点击免费试用 <span aria-hidden="true">↗</span></span></a>
+
+<a class="invite-card" data-ad-link href="https://99ba.net/#/register?code=sExBbdk9" target="_blank" rel="sponsored noopener noreferrer" aria-label="99吧 · 文章推荐，在新标签页打开">
+<span class="invite-symbol invite-image"><img src="https://www.wpfxy.cc/assets/media/8a3f9c7f-880b-4f49-8845-ff8fb305fee2.jpg" alt="99吧 · 文章推荐" loading="lazy" decoding="async"></span>
+<div class="invite-copy"><h3>99吧</h3>
+<p>探索更多，连接更多可能</p>
+</div>
+<span class="invite-action">点击免费试用 <span aria-hidden="true">↗</span></span></a>
+</div></section></div></div>
+
+</main></div>
+<button id="back-to-top" class="back-to-top" type="button" aria-label="返回顶部" title="返回顶部" hidden>
+<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h14M12 20V8m-5 5 5-5 5 5"/></svg>
+</button>
+</div>
+
+<footer class="site-footer">
+<div class="flight-footer"><span>© 2026 王牌飞行员机场推荐</span><span>保持好奇，自在连接 <span aria-hidden="true">↗</span></span></div></footer>
+
+<dialog id="search-dialog" class="reader-dialog site-search" aria-labelledby="search-title" data-reader-dialog data-pagefind-ignore>
+<header class="reader-dialog-header"><h2 id="search-title">搜索文章</h2><button class="dialog-close" type="button" data-close-dialog aria-label="关闭搜索" title="关闭搜索">×</button></header>
+<div class="reader-dialog-body">
+
+<div id="site-search-ui" data-module="https://www.wpfxy.cc/pagefind/pagefind-component-ui.js" data-stylesheet="https://www.wpfxy.cc/pagefind/pagefind-component-ui.css" hidden>
+
+<pagefind-config bundle-path="https://www.wpfxy.cc/pagefind/" base-url="https://www.wpfxy.cc/" lang="zh-cn" no-worker></pagefind-config>
+<pagefind-input placeholder="搜索文章标题或正文"></pagefind-input>
+<pagefind-summary></pagefind-summary>
+<pagefind-results></pagefind-results>
+</div>
+<p id="search-status" class="search-status" role="status">正在加载搜索…</p>
+<button id="search-retry" class="button" type="button" hidden>重新加载</button>
+
+</div>
+</dialog>
+
+<script id="blog-comments-config" type="application/json">{"comments":true,"likes":true,"locale":"zh-CN","pageKey":"/p/20beb4c4-44ee-4e50-9267-63cf357a45ba/","pageTitle":"DNS 的 SRV 记录能证明节点更快吗？先分清服务端口与选择权重","server":"https://upfqpobmiewm.sealosgzg.site","site":"xblog-8d67829c-3602-4d9b-9bb7-c2d68118fecb","views":true,"viewsBase":0}</script>
+
+</body></html>
