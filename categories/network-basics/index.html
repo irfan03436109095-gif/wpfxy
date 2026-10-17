@@ -1,31 +1,24 @@
 <!doctype html>
-<html lang="zh-CN" data-theme="wangpai-air" data-theme-version="1.0.3">
+<html lang="zh-CN" data-theme="neon-link-guide">
 
 <head>
-
-
-
-
-
-
-
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>网络技术 · 分类 · 星航指南</title>
-<meta name="description" content="网络技术分类文章汇总：解释代理协议、QUIC、DNS、延迟与 IPv6，帮助读者理解网络路径和性能指标。">
+<title>网络技术 · 星航指南</title>
+<meta name="description" content="解释代理协议、QUIC、DNS、延迟与 IPv6，帮助读者理解网络路径和性能指标。">
 <meta name="keywords" content="代理协议,QUIC,DNS,IPv6">
 <meta name="robots" content="index,follow,max-image-preview:large"><link rel="canonical" href="https://www.wpfxy.cc/categories/network-basics/">
-<meta property="og:title" content="网络技术 · 分类 · 星航指南">
-<meta property="og:description" content="网络技术分类文章汇总：解释代理协议、QUIC、DNS、延迟与 IPv6，帮助读者理解网络路径和性能指标。">
+<meta property="og:title" content="网络技术">
+<meta property="og:description" content="解释代理协议、QUIC、DNS、延迟与 IPv6，帮助读者理解网络路径和性能指标。">
 <meta property="og:url" content="https://www.wpfxy.cc/categories/network-basics/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="星航指南">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://www.wpfxy.cc/assets/media/9952960d-a32f-46c0-b9ba-74f5c355bf27.png"><meta property="og:image:alt" content="星航指南">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="网络技术 · 分类 · 星航指南">
-<meta name="twitter:description" content="网络技术分类文章汇总：解释代理协议、QUIC、DNS、延迟与 IPv6，帮助读者理解网络路径和性能指标。">
-<meta name="twitter:image" content="https://www.wpfxy.cc/assets/media/9952960d-a32f-46c0-b9ba-74f5c355bf27.png"><meta name="twitter:image:alt" content="星航指南">
+<meta name="twitter:title" content="网络技术">
+<meta name="twitter:description" content="解释代理协议、QUIC、DNS、延迟与 IPv6，帮助读者理解网络路径和性能指标。">
+<meta name="twitter:image" content="https://www.wpfxy.cc/assets/media/9952960d-a32f-46c0-b9ba-74f5c355bf27.png">
 
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@id":"https://www.wpfxy.cc/categories/network-basics/#collection","@type":"CollectionPage","description":"解释代理协议、QUIC、DNS、延迟与 IPv6，帮助读者理解网络路径和性能指标。","inLanguage":"zh-CN","mainEntity":{"@type":"ItemList","itemListElement":[{"@type":"ListItem","name":"IPv6 会走代理吗？双栈网络的四格检查方法","position":1,"url":"https://www.wpfxy.cc/posts/ipv6-dual-stack-proxy-path/"},{"@type":"ListItem","name":"低延迟为什么还会卡？读懂抖动、丢包与吞吐量","position":2,"url":"https://www.wpfxy.cc/posts/latency-jitter-loss-primer/"},{"@type":"ListItem","name":"代理 DNS 到底在哪里解析？节点、目标与浏览器三层说明","position":3,"url":"https://www.wpfxy.cc/posts/dns-resolution-route-map/"},{"@type":"ListItem","name":"Shadowsocks、VLESS、Trojan 怎么选？兼容与安全边界","position":4,"url":"https://www.wpfxy.cc/posts/shadowsocks-vless-trojan-choice/"}]},"name":"网络技术","url":"https://www.wpfxy.cc/categories/network-basics/"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://www.wpfxy.cc/","name":"星航指南","position":1},{"@type":"ListItem","item":"https://www.wpfxy.cc/categories/network-basics/","name":"网络技术","position":2}]}]}</script>
 
@@ -33,7 +26,7 @@
 <link rel="stylesheet" href="https://www.wpfxy.cc/assets/theme/style.css">
 <link rel="stylesheet" href="https://www.wpfxy.cc/assets/theme/advertisements.css">
 <link rel="stylesheet" href="https://www.wpfxy.cc/assets/theme/search.css"><script defer src="https://www.wpfxy.cc/assets/theme/search.js"></script>
-<link rel="stylesheet" href="https://www.wpfxy.cc/assets/theme/skin-1.0.3.css"><link rel="stylesheet" href="https://www.wpfxy.cc/assets/theme/seo-1.0.3.css">
+<link rel="stylesheet" href="https://www.wpfxy.cc/assets/theme/skin.css">
 <link rel="stylesheet" href="https://www.wpfxy.cc/assets/theme/viewer.css">
 <link rel="stylesheet" href="https://www.wpfxy.cc/assets/theme/reader.css">
 <link rel="icon" href="https://www.wpfxy.cc/assets/media/9952960d-a32f-46c0-b9ba-74f5c355bf27.png">
@@ -44,7 +37,7 @@
 <script defer src="https://www.wpfxy.cc/assets/theme/image-viewer.js"></script>
 
 <script defer src="https://www.wpfxy.cc/assets/theme/interactions.js"></script>
-<script defer src="https://www.wpfxy.cc/assets/theme/markdown-it.min.js"></script><script defer src="https://www.wpfxy.cc/assets/theme/purify.min.js"></script><script defer src="https://www.wpfxy.cc/assets/theme/featured-1.0.3.js"></script><script defer src="https://www.wpfxy.cc/assets/theme/seo-1.0.3.js"></script>
+<script defer src="https://www.wpfxy.cc/assets/theme/shortcuts.js"></script>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZH5EMJLD09"></script>
 <script>
@@ -59,8 +52,9 @@
 
 <script defer src="https://www.wpfxy.cc/assets/xblog/google-analytics.js" data-xblog-google-analytics="G-ZH5EMJLD09" data-site-hosts="www.wpfxy.cc"></script></head>
 
-<body class="flight-site">
+<body class="reader-page neon-reader">
 <a class="skip" href="#main">跳到正文</a>
+
 <header class="site-header">
 <div class="header-inner">
 <a class="brand" href="https://www.wpfxy.cc/"><img src="https://www.wpfxy.cc/assets/media/9952960d-a32f-46c0-b9ba-74f5c355bf27.png" alt="" width="38" height="38"><span>星航指南</span></a>
@@ -79,46 +73,59 @@
 </div>
 </header>
 
+<div class="page-viewport"><div class="page-scroll">
 
-<main id="main" tabindex="-1" class="flight-workspace">
+<main id="main" tabindex="-1" class="shell">
 
 <nav class="breadcrumbs" aria-label="面包屑导航"><ol><li><a href="https://www.wpfxy.cc/">星航指南</a></li><li><span aria-current="page">网络技术</span></li></ol></nav>
 
 
-<header class="archive-header"><p class="section-kicker">飞行知识库</p><h1>网络技术</h1><p>解释代理协议、QUIC、DNS、延迟与 IPv6，帮助读者理解网络路径和性能指标。</p></header>
+<div class="content-column" id="neon-articles">
+<header class="archive-header"><p class="eyebrow">继续探索</p><h1>网络技术</h1><p>解释代理协议、QUIC、DNS、延迟与 IPv6，帮助读者理解网络路径和性能指标。</p></header>
 
 
-<div class="flight-columns archive-columns">
-<div class="content-column">
-<div class="section-heading"><h2>文章列表</h2><span>本页 4 篇</span></div>
 
-<section class="article-list flight-entries" aria-label="文章列表">
+<div class="neon-list-heading"><div><p class="eyebrow">认真了解，再做选择</p><h2>相关内容</h2></div><span>第 1 页</span></div><div class="neon-category-bar"><nav aria-label="文章分类"><a href="https://www.wpfxy.cc/categories/airport-selection/">机场推荐</a><a href="https://www.wpfxy.cc/categories/network-basics/">网络技术</a><a href="https://www.wpfxy.cc/categories/client-tutorials/">客户端教程</a><a href="https://www.wpfxy.cc/categories/troubleshooting/">故障排查</a><a href="https://www.wpfxy.cc/categories/privacy-review/">隐私与评测</a></nav><a class="neon-more-articles" href="https://www.wpfxy.cc/posts/article-directory/">更多 <span aria-hidden="true">›</span></a></div>
 
-<article class="article-card flight-card"><div class="card-topic"><a href="https://www.wpfxy.cc/categories/network-basics/">网络技术</a></div>
-<h2><a href="https://www.wpfxy.cc/posts/ipv6-dual-stack-proxy-path/">IPv6 会走代理吗？双栈网络的四格检查方法</a></h2><p class="card-summary">拆分本地网络、节点入口和远端出口的地址族，使用四格对照检查 IPv4 与 IPv6 的接管和可达性。</p>
-<div class="card-footer"><span><span>王牌飞行员机场推荐</span><time datetime="2026-09-28T17:29:43&#43;08:00">2026-09-28</time></span><a class="read-more" href="https://www.wpfxy.cc/posts/ipv6-dual-stack-proxy-path/" aria-label="阅读IPv6 会走代理吗？双栈网络的四格检查方法">继续阅读 <span aria-hidden="true">↗</span></a></div></article>
-
-<article class="article-card flight-card"><div class="card-topic"><a href="https://www.wpfxy.cc/categories/network-basics/">网络技术</a></div>
-<h2><a href="https://www.wpfxy.cc/posts/latency-jitter-loss-primer/">低延迟为什么还会卡？读懂抖动、丢包与吞吐量</a></h2><p class="card-summary">用假设样本解释平均延迟为何会掩盖波动，区分抖动、丢包、负载延迟和吞吐量，匹配真实使用任务。</p>
-<div class="card-footer"><span><span>王牌飞行员机场推荐</span><time datetime="2026-09-28T17:29:43&#43;08:00">2026-09-28</time></span><a class="read-more" href="https://www.wpfxy.cc/posts/latency-jitter-loss-primer/" aria-label="阅读低延迟为什么还会卡？读懂抖动、丢包与吞吐量">继续阅读 <span aria-hidden="true">↗</span></a></div></article>
-
-<article class="article-card flight-card"><div class="card-topic"><a href="https://www.wpfxy.cc/categories/network-basics/">网络技术</a></div>
-<h2><a href="https://www.wpfxy.cc/posts/dns-resolution-route-map/">代理 DNS 到底在哪里解析？节点、目标与浏览器三层说明</a></h2><p class="card-summary">区分节点解析、目标解析和解析服务引导，解释 DoH 的作用边界，并按症状定位 DNS 配置问题。</p>
-<div class="card-footer"><span><span>王牌飞行员机场推荐</span><time datetime="2026-09-28T17:29:43&#43;08:00">2026-09-28</time></span><a class="read-more" href="https://www.wpfxy.cc/posts/dns-resolution-route-map/" aria-label="阅读代理 DNS 到底在哪里解析？节点、目标与浏览器三层说明">继续阅读 <span aria-hidden="true">↗</span></a></div></article>
-
-<article class="article-card flight-card"><div class="card-topic"><a href="https://www.wpfxy.cc/categories/network-basics/">网络技术</a></div>
-<h2><a href="https://www.wpfxy.cc/posts/shadowsocks-vless-trojan-choice/">Shadowsocks、VLESS、Trojan 怎么选？兼容与安全边界</a></h2><p class="card-summary">比较三类常见代理协议的配置边界，核对加密方法、安全层与订阅兼容，避免用协议名代替服务质量判断。</p>
-<div class="card-footer"><span><span>王牌飞行员机场推荐</span><time datetime="2026-09-28T17:29:43&#43;08:00">2026-09-28</time></span><a class="read-more" href="https://www.wpfxy.cc/posts/shadowsocks-vless-trojan-choice/" aria-label="阅读Shadowsocks、VLESS、Trojan 怎么选？兼容与安全边界">继续阅读 <span aria-hidden="true">↗</span></a></div></article>
-
+<section class="article-list neon-article-list" aria-label="文章列表">
+<article class="article-card has-cover">
+<figure class="article-cover"><img src="https://www.wpfxy.cc/assets/media/8a71d08b-f7a4-4ea2-90a7-df5492302c1d.png" alt="IPv6 会走代理吗？双栈网络的四格检查方法" loading="lazy" decoding="async"></figure>
+<div class="neon-card-content"><h2><a href="https://www.wpfxy.cc/posts/ipv6-dual-stack-proxy-path/">IPv6 会走代理吗？双栈网络的四格检查方法</a></h2>
+<p class="card-summary">拆分本地网络、节点入口和远端出口的地址族，使用四格对照检查 IPv4 与 IPv6 的接管和可达性。</p>
+<div class="card-footer"><span><span>王牌飞行员机场推荐</span><time datetime="2026-09-28T17:29:43&#43;08:00">2026-09-28</time><a class="card-category" href="https://www.wpfxy.cc/categories/network-basics/">网络技术</a></span><a class="read-more" href="https://www.wpfxy.cc/posts/ipv6-dual-stack-proxy-path/" aria-label="阅读IPv6 会走代理吗？双栈网络的四格检查方法">阅读全文 <span aria-hidden="true">↗</span></a></div></div>
+</article><article class="article-card has-cover">
+<figure class="article-cover"><img src="https://www.wpfxy.cc/assets/media/abf16812-7d13-41be-9010-03873f2a3ac1.png" alt="低延迟为什么还会卡？读懂抖动、丢包与吞吐量" loading="lazy" decoding="async"></figure>
+<div class="neon-card-content"><h2><a href="https://www.wpfxy.cc/posts/latency-jitter-loss-primer/">低延迟为什么还会卡？读懂抖动、丢包与吞吐量</a></h2>
+<p class="card-summary">用假设样本解释平均延迟为何会掩盖波动，区分抖动、丢包、负载延迟和吞吐量，匹配真实使用任务。</p>
+<div class="card-footer"><span><span>王牌飞行员机场推荐</span><time datetime="2026-09-28T17:29:43&#43;08:00">2026-09-28</time><a class="card-category" href="https://www.wpfxy.cc/categories/network-basics/">网络技术</a></span><a class="read-more" href="https://www.wpfxy.cc/posts/latency-jitter-loss-primer/" aria-label="阅读低延迟为什么还会卡？读懂抖动、丢包与吞吐量">阅读全文 <span aria-hidden="true">↗</span></a></div></div>
+</article><article class="article-card has-cover">
+<figure class="article-cover"><img src="https://www.wpfxy.cc/assets/media/d1324065-31f5-4bd6-a50c-da46c8559833.png" alt="代理 DNS 到底在哪里解析？节点、目标与浏览器三层说明" loading="lazy" decoding="async"></figure>
+<div class="neon-card-content"><h2><a href="https://www.wpfxy.cc/posts/dns-resolution-route-map/">代理 DNS 到底在哪里解析？节点、目标与浏览器三层说明</a></h2>
+<p class="card-summary">区分节点解析、目标解析和解析服务引导，解释 DoH 的作用边界，并按症状定位 DNS 配置问题。</p>
+<div class="card-footer"><span><span>王牌飞行员机场推荐</span><time datetime="2026-09-28T17:29:43&#43;08:00">2026-09-28</time><a class="card-category" href="https://www.wpfxy.cc/categories/network-basics/">网络技术</a></span><a class="read-more" href="https://www.wpfxy.cc/posts/dns-resolution-route-map/" aria-label="阅读代理 DNS 到底在哪里解析？节点、目标与浏览器三层说明">阅读全文 <span aria-hidden="true">↗</span></a></div></div>
+</article><article class="article-card has-cover">
+<figure class="article-cover"><img src="https://www.wpfxy.cc/assets/media/0110c79c-bf89-4f02-a6cc-c37f549ba7a7.png" alt="Shadowsocks、VLESS、Trojan 怎么选？兼容与安全边界" loading="lazy" decoding="async"></figure>
+<div class="neon-card-content"><h2><a href="https://www.wpfxy.cc/posts/shadowsocks-vless-trojan-choice/">Shadowsocks、VLESS、Trojan 怎么选？兼容与安全边界</a></h2>
+<p class="card-summary">比较三类常见代理协议的配置边界，核对加密方法、安全层与订阅兼容，避免用协议名代替服务质量判断。</p>
+<div class="card-footer"><span><span>王牌飞行员机场推荐</span><time datetime="2026-09-28T17:29:43&#43;08:00">2026-09-28</time><a class="card-category" href="https://www.wpfxy.cc/categories/network-basics/">网络技术</a></span><a class="read-more" href="https://www.wpfxy.cc/posts/shadowsocks-vless-trojan-choice/" aria-label="阅读Shadowsocks、VLESS、Trojan 怎么选？兼容与安全边界">阅读全文 <span aria-hidden="true">↗</span></a></div></div>
+</article>
 </section>
 
-</div>
+
+
+
 
 </div>
+
+
 </main>
+</div>
+<button id="back-to-top" class="back-to-top" type="button" aria-label="返回顶部" title="返回顶部" hidden>
+<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h14M12 20V8m-5 5 5-5 5 5"/></svg>
+</button>
+</div>
+<footer class="site-footer"><nav class="footer-tools" aria-label="相关工具软件"><span class="footer-tools-label">常用工具</span><a href="https://github.com/2dust/v2rayN/releases" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" width="23" height="23" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 5h18v12H3zM8 21h8M12 17v4M8 9l4 5 4-5"/></svg><span>v2rayN</span></a><a href="https://github.com/clash-verge-rev/clash-verge-rev/releases" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" width="23" height="23" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 8 7 3l5 3 5-3 2 5v7c0 4-3 6-7 6s-7-2-7-6zM8 12h.01M16 12h.01M10 16l2 2 2-2"/></svg><span>Clash Verge Rev</span></a><a href="https://github.com/2dust/v2rayNG/releases" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" width="23" height="23" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 10h14v10H5zM7 10V8a5 5 0 0 1 10 0v2M8 3 6 1M16 3l2-2M2 12v6M22 12v6M9 20v3M15 20v3M9 7h.01M15 7h.01"/></svg><span>v2rayNG</span></a><a href="https://stash.ws/" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" width="23" height="23" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 9 5-9 5-9-5zM3 8v10l9 5 9-5V8M12 13v10"/></svg><span>Stash</span></a></nav><nav class="friend-links" aria-label="友情链接"><span class="friend-links-label">友情链接</span><a href="https://goflybit.com/#/register?code=gPinVG8C" target="_blank" rel="noopener noreferrer">FlyBit</a><a href="https://goflybit.com/#/register?code=gPinVG8C" target="_blank" rel="noopener noreferrer">FlyBit</a><a href="https://t.me/five_91" target="_blank" rel="noopener noreferrer">Telegram联系</a></nav><span>© 2026 星航指南</span></footer>
 
-<footer class="site-footer"><nav class="friend-links" aria-label="友情链接"><span class="friend-links-label">友情链接</span><a href="https://goflybit.com/#/register?code=gPinVG8C" target="_blank" rel="noopener noreferrer">FlyBit</a><a href="https://goflybit.com/#/register?code=gPinVG8C" target="_blank" rel="noopener noreferrer">FlyBit</a><a href="https://t.me/five_91" target="_blank" rel="noopener noreferrer">Telegram联系</a></nav>
-<div class="flight-footer"><span>© 2026 星航指南</span><span>保持好奇，自在连接 <span aria-hidden="true">↗</span></span></div></footer>
 
 <dialog id="search-dialog" class="reader-dialog site-search" aria-labelledby="search-title" data-reader-dialog data-pagefind-ignore>
 <header class="reader-dialog-header"><h2 id="search-title">搜索文章</h2><button class="dialog-close" type="button" data-close-dialog aria-label="关闭搜索" title="关闭搜索">×</button></header>
@@ -139,4 +146,5 @@
 
 
 
-</body></html>
+</body>
+</html>
