@@ -111,3 +111,10 @@
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto!important}.star-guide *{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 
 .star-guide>.site-header{max-height:none;overflow:visible}.star-guide .header-inner{position:relative;inset:auto;transform:none;padding-block:0;flex-wrap:nowrap}.star-guide.home-page>.site-header{position:absolute;top:0;left:0;width:100%}.star-guide:not(.article-page)>.site-footer{max-height:none;overflow:visible}.star-guide .header nav a{line-height:1.6}.star-guide .header nav a[aria-current]::after{display:none}.star-guide .service-content .card-index{display:inline-block}
+/* v2.0.2: Articles scroll with the document; the footer follows the complete content. */
+.star-guide.article-page{display:block;height:auto;min-height:100vh;overflow:visible}
+.star-guide.article-page>.page-viewport,.star-guide.article-page>.page-viewport>.page-scroll{display:block;flex:none;height:auto;min-height:0;max-height:none;overflow:visible;overscroll-behavior:auto}
+.star-guide>.site-footer.footer{position:static;inset:auto;flex:none;max-height:none;overflow:visible;background:transparent;background-image:none;border:0;border-radius:0;box-shadow:none;backdrop-filter:none;z-index:auto}
+.star-guide>.site-footer.footer .friend-links,.star-guide>.site-footer.footer .footer-bottom{border:0;background:transparent}
+.star-guide.article-page .back-to-top{position:fixed}
+.star-guide>.site-footer.footer .friend-links{justify-content:flex-start;text-align:left;padding-inline:0;margin-inline:0}
