@@ -28,7 +28,7 @@
   const isContentImage = (image) =>
     Boolean(
       (image.currentSrc || image.getAttribute("src")) &&
-      !image.closest("dialog, .viewer-container, [data-ad-link]"),
+      !image.closest("dialog, .viewer-container, [data-ad-link], [aria-hidden=true], a.brand, .hero-copy") && !image.matches(".provider-logo, .brand-logo"),
     );
 
   function localize() {
