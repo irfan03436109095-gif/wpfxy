@@ -11,23 +11,23 @@
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>IPv6 会走代理吗？双栈网络的四格检查方法 · 王牌飞行员机场推荐</title>
+<title>IPv6 会走代理吗？双栈网络的四格检查方法 · 星航指南</title>
 <meta name="description" content="拆分本地网络、节点入口和远端出口的地址族，使用四格对照检查 IPv4 与 IPv6 的接管和可达性。">
 <meta name="keywords" content="IPv6代理,双栈网络,IPv4">
 <meta name="robots" content="index,follow,max-image-preview:large"><link rel="canonical" href="https://www.wpfxy.cc/posts/ipv6-dual-stack-proxy-path/">
-<meta property="og:title" content="IPv6 会走代理吗？双栈网络的四格检查方法 · 王牌飞行员机场推荐">
+<meta property="og:title" content="IPv6 会走代理吗？双栈网络的四格检查方法 · 星航指南">
 <meta property="og:description" content="拆分本地网络、节点入口和远端出口的地址族，使用四格对照检查 IPv4 与 IPv6 的接管和可达性。">
 <meta property="og:url" content="https://www.wpfxy.cc/posts/ipv6-dual-stack-proxy-path/">
 <meta property="og:type" content="article">
-<meta property="og:site_name" content="王牌飞行员机场推荐">
+<meta property="og:site_name" content="星航指南">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://www.wpfxy.cc/assets/media/94b543bb-008e-44f9-ac91-096c1afad063.png"><meta property="og:image:alt" content="王牌飞行员机场推荐">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="IPv6 会走代理吗？双栈网络的四格检查方法 · 王牌飞行员机场推荐">
+<meta property="og:image" content="https://www.wpfxy.cc/assets/media/8a71d08b-f7a4-4ea2-90a7-df5492302c1d.png"><meta property="og:image:alt" content="IPv6 会走代理吗？双栈网络的四格检查方法">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="IPv6 会走代理吗？双栈网络的四格检查方法 · 星航指南">
 <meta name="twitter:description" content="拆分本地网络、节点入口和远端出口的地址族，使用四格对照检查 IPv4 与 IPv6 的接管和可达性。">
-<meta name="twitter:image" content="https://www.wpfxy.cc/assets/media/94b543bb-008e-44f9-ac91-096c1afad063.png"><meta name="twitter:image:alt" content="王牌飞行员机场推荐">
-<meta name="author" content="王牌飞行员机场推荐"><meta property="article:published_time" content="2026-09-28T17:29:43&#43;08:00"><meta property="article:modified_time" content="2026-09-28T17:59:30&#43;08:00"><meta property="article:tag" content="IPv6 会走代理吗？双栈网络的四格检查方法 · 王牌飞行员机场推荐"><meta property="article:tag" content="IPv6 会走代理吗？双栈网络的四格检查方法 · 王牌飞行员机场推荐"><meta property="article:tag" content="IPv6 会走代理吗？双栈网络的四格检查方法 · 王牌飞行员机场推荐">
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BlogPosting","@id":"https:\/\/www.wpfxy.cc\/posts\/ipv6-dual-stack-proxy-path\/#article","headline":"IPv6 会走代理吗？双栈网络的四格检查方法","description":"拆分本地网络、节点入口和远端出口的地址族，使用四格对照检查 IPv4 与 IPv6 的接管和可达性。","inLanguage":"zh-CN","url":"https://www.wpfxy.cc/posts/ipv6-dual-stack-proxy-path/","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.wpfxy.cc/posts/ipv6-dual-stack-proxy-path/"},"datePublished":"2026-09-28T17:29:43+08:00","dateModified":"2026-09-28T17:59:30+08:00","author":{"@type":"Organization","name":"王牌飞行员机场推荐"},"publisher":{"@type":"Organization","name":"王牌飞行员机场推荐","url":"https://www.wpfxy.cc/","logo":{"@type":"ImageObject","url":"https://www.wpfxy.cc/assets/media/94b543bb-008e-44f9-ac91-096c1afad063.png"}}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position": 1 ,"name":"王牌飞行员机场推荐","item":"https://www.wpfxy.cc/"},{"@type":"ListItem","position": 2 ,"name":"IPv6 会走代理吗？双栈网络的四格检查方法","item":"https://www.wpfxy.cc/posts/ipv6-dual-stack-proxy-path/"}]}]}</script>
+<meta name="twitter:image" content="https://www.wpfxy.cc/assets/media/8a71d08b-f7a4-4ea2-90a7-df5492302c1d.png"><meta name="twitter:image:alt" content="IPv6 会走代理吗？双栈网络的四格检查方法">
+<meta name="author" content="王牌飞行员机场推荐"><meta property="article:published_time" content="2026-09-28T17:29:43&#43;08:00"><meta property="article:modified_time" content="2026-10-17T23:19:27&#43;08:00"><meta property="article:tag" content="IPv6 会走代理吗？双栈网络的四格检查方法 · 星航指南"><meta property="article:tag" content="IPv6 会走代理吗？双栈网络的四格检查方法 · 星航指南"><meta property="article:tag" content="IPv6 会走代理吗？双栈网络的四格检查方法 · 星航指南">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BlogPosting","@id":"https:\/\/www.wpfxy.cc\/posts\/ipv6-dual-stack-proxy-path\/#article","headline":"IPv6 会走代理吗？双栈网络的四格检查方法","description":"拆分本地网络、节点入口和远端出口的地址族，使用四格对照检查 IPv4 与 IPv6 的接管和可达性。","inLanguage":"zh-CN","url":"https://www.wpfxy.cc/posts/ipv6-dual-stack-proxy-path/","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.wpfxy.cc/posts/ipv6-dual-stack-proxy-path/"},"datePublished":"2026-09-28T17:29:43+08:00","dateModified":"2026-10-17T23:19:27+08:00","author":{"@type":"Person","name":"王牌飞行员机场推荐"},"publisher":{"@type":"Organization","name":"星航指南","url":"https://www.wpfxy.cc/","logo":{"@type":"ImageObject","url":"https://www.wpfxy.cc/assets/media/9952960d-a32f-46c0-b9ba-74f5c355bf27.png"}},"image":["https://www.wpfxy.cc/assets/media/8a71d08b-f7a4-4ea2-90a7-df5492302c1d.png"]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position": 1 ,"name":"星航指南","item":"https://www.wpfxy.cc/"},{"@type":"ListItem","position": 2 ,"name":"IPv6 会走代理吗？双栈网络的四格检查方法","item":"https://www.wpfxy.cc/posts/ipv6-dual-stack-proxy-path/"}]}]}</script>
 
 <script>(()=>{let mode='system';try{const saved=localStorage.getItem('reader-theme');if(['system','light','dark'].includes(saved))mode=saved}catch{}const root=document.documentElement;root.dataset.colorMode=mode;root.classList.toggle('dark',mode==='dark'||(mode==='system'&&matchMedia('(prefers-color-scheme: dark)').matches))})();</script>
 <link rel="stylesheet" href="https://www.wpfxy.cc/assets/theme/style.css">
@@ -36,7 +36,7 @@
 <link rel="stylesheet" href="https://www.wpfxy.cc/assets/theme/skin-1.0.3.css"><link rel="stylesheet" href="https://www.wpfxy.cc/assets/theme/seo-1.0.3.css">
 <link rel="stylesheet" href="https://www.wpfxy.cc/assets/theme/viewer.css">
 <link rel="stylesheet" href="https://www.wpfxy.cc/assets/theme/reader.css">
-<link rel="icon" href="https://www.wpfxy.cc/assets/media/94b543bb-008e-44f9-ac91-096c1afad063.png">
+<link rel="icon" href="https://www.wpfxy.cc/assets/media/9952960d-a32f-46c0-b9ba-74f5c355bf27.png">
 <link rel="stylesheet" href="https://www.wpfxy.cc/assets/theme/artalk.css"><script defer src="https://www.wpfxy.cc/assets/theme/artalk.js"></script>
 <script defer src="https://www.wpfxy.cc/assets/theme/theme.js"></script>
 <script defer src="https://www.wpfxy.cc/assets/theme/reader.js"></script>
@@ -63,8 +63,8 @@
 <a class="skip" href="#main">跳到正文</a>
 <header class="site-header">
 <div class="header-inner">
-<a class="brand" href="https://www.wpfxy.cc/"><img src="https://www.wpfxy.cc/assets/media/94b543bb-008e-44f9-ac91-096c1afad063.png" alt="" width="38" height="38"><span>王牌飞行员机场推荐</span></a>
-<nav id="site-navigation" aria-label="站点导航"><a href="https://www.wpfxy.cc/">首页</a><a href="https://www.wpfxy.cc/categories/airport-selection/">机场推荐</a><a href="https://www.wpfxy.cc/categories/network-basics/">网络技术</a><a href="https://www.wpfxy.cc/categories/client-tutorials/">客户端教程</a><a href="https://www.wpfxy.cc/categories/troubleshooting/">故障排查</a><a href="https://www.wpfxy.cc/categories/privacy-review/">隐私与评测</a></nav>
+<a class="brand" href="https://www.wpfxy.cc/"><img src="https://www.wpfxy.cc/assets/media/9952960d-a32f-46c0-b9ba-74f5c355bf27.png" alt="" width="38" height="38"><span>星航指南</span></a>
+<nav id="site-navigation" aria-label="站点导航"><a href="https://www.wpfxy.cc/">首页</a><a href="https://www.wpfxy.cc/posts/flybit-99ba-airport-guide/">套餐对比</a><a href="https://www.wpfxy.cc/posts/article-directory/">全部文章</a><a href="https://www.wpfxy.cc/posts/client-tools-download/">工具下载</a><a href="https://www.wpfxy.cc/posts/getting-started-tutorials/">使用教程</a><a href="https://www.wpfxy.cc/posts/frequently-asked-questions/">常见问题</a><a href="https://www.wpfxy.cc/posts/airport-review-editorial-standard/">关于我们</a></nav>
 <a class="search-toggle" href="https://www.wpfxy.cc/search/" data-open-dialog="search-dialog" aria-haspopup="dialog" aria-controls="search-dialog" aria-label="搜索" title="搜索"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4.5 4.5"/></svg></a>
 <button id="theme-mode" class="theme-toggle theme-cycle" type="button" aria-label="明暗模式：跟随系统，点击切换为明亮" title="跟随系统 · 点击切换为明亮">
 <svg class="theme-icon-system" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8m-4-4v4"/></svg>
@@ -82,7 +82,7 @@
 <div class="article-viewport"><div class="article-scroll">
 <main id="main" tabindex="-1" class="flight-workspace flight-reading">
 
-<nav class="breadcrumbs" aria-label="面包屑导航"><ol><li><a href="https://www.wpfxy.cc/">王牌飞行员机场推荐</a></li><li><span aria-current="page">IPv6 会走代理吗？双栈网络的四格检查方法</span></li></ol></nav>
+<nav class="breadcrumbs" aria-label="面包屑导航"><ol><li><a href="https://www.wpfxy.cc/">星航指南</a></li><li><span aria-current="page">IPv6 会走代理吗？双栈网络的四格检查方法</span></li></ol></nav>
 
 
 <div class="flight-columns reading-columns"><div class="reading-content">
@@ -95,6 +95,8 @@
 </header>
 <div class="prose">
 <p>开启代理之后，IPv4 与 IPv6 不一定沿着完全相同的路径。一次 IPv4 出口查询成功，并不能证明 IPv6、DNS 或所有应用也经过了预期节点。检查双栈网络时，应先明确是哪一段连接在使用哪个地址族。</p>
+<p><img src="https://www.wpfxy.cc/assets/media/8a71d08b-f7a4-4ea2-90a7-df5492302c1d.png" alt="IPv4 与 IPv6，分别检查（原创图解）"></p>
+<p><em>图解：没有 IPv6 测试条件时，记录“未测试”，不填作通过。</em></p>
 <h2 id="heading">区分三个位置</h2>
 <p>第一处是设备所在网络：它可能同时具备 IPv4 和 IPv6。第二处是客户端连接机场入口：入口域名可能解析出 A 或 AAAA 记录。第三处是代理出口访问目标：远端也可能选择不同地址族。</p>
 <p>这三处不能混为一谈。设备有 IPv6，不代表代理出口必然用 IPv6；目标有 AAAA 记录，也不代表当前应用一定优先使用它。</p>
@@ -175,7 +177,7 @@
 </div>
 
 <footer class="site-footer"><nav class="friend-links" aria-label="友情链接"><span class="friend-links-label">友情链接</span><a href="https://goflybit.com/#/register?code=gPinVG8C" target="_blank" rel="noopener noreferrer">FlyBit</a><a href="https://goflybit.com/#/register?code=gPinVG8C" target="_blank" rel="noopener noreferrer">FlyBit</a><a href="https://t.me/five_91" target="_blank" rel="noopener noreferrer">Telegram联系</a></nav>
-<div class="flight-footer"><span>© 2026 王牌飞行员机场推荐</span><span>保持好奇，自在连接 <span aria-hidden="true">↗</span></span></div></footer>
+<div class="flight-footer"><span>© 2026 星航指南</span><span>保持好奇，自在连接 <span aria-hidden="true">↗</span></span></div></footer>
 
 <dialog id="search-dialog" class="reader-dialog site-search" aria-labelledby="search-title" data-reader-dialog data-pagefind-ignore>
 <header class="reader-dialog-header"><h2 id="search-title">搜索文章</h2><button class="dialog-close" type="button" data-close-dialog aria-label="关闭搜索" title="关闭搜索">×</button></header>
