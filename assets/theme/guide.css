@@ -115,3 +115,12 @@
 .star-guide>.site-footer.footer .friend-links,.star-guide>.site-footer.footer .footer-bottom{border:0;background:transparent}
 .star-guide.article-page .back-to-top{position:fixed}
 .star-guide>.site-footer.footer .friend-links{justify-content:flex-start;text-align:left;padding-inline:0;margin-inline:0}
+
+/* 2.0.8: explicit home topic and crawlable task routes, without changing the reader. */
+:root.home-root,.star-guide.home-page{overflow-x:clip}
+.star-guide .hero h1.hero-topic-title{font-size:clamp(42px,4.7vw,68px);line-height:1.22;letter-spacing:-2px;font-style:normal;max-width:1000px}
+.star-guide .service-tasks{display:flex;flex-wrap:wrap;gap:10px 14px;margin:-14px 0 44px}
+.star-guide .service-tasks a{display:inline-flex;align-items:center;justify-content:center;min-height:42px;padding:8px 17px;border:1px solid #1c4154;border-radius:24px;color:#9fe9f1;font-size:14px;line-height:1.5;background:#07141d}
+.star-guide .service-tasks a:hover{border-color:var(--cyan);color:var(--cyan)}
+.star-guide .service-tasks a:focus-visible{outline:2px solid var(--cyan);outline-offset:4px}
+@media(max-width:700px){.star-guide .hero h1.hero-topic-title{font-size:clamp(27px,7.8vw,42px);letter-spacing:-1px;max-width:100%;line-height:1.28}.star-guide .service-tasks{margin:0 0 28px;gap:8px}.star-guide .service-tasks a{font-size:12px;padding:8px 12px}}

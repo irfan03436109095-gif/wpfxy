@@ -2,71 +2,87 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>关闭代理后不能上网？Windows、Mac 与安卓恢复顺序 · 星航指南-机场测评</title>
-<meta name="description" content="检查退出客户端后的接管状态、系统代理与 VPN 策略，按平台恢复原设置，避免未经定位就重置全部网络。">
+<title>关闭代理后不能上网？Windows、Mac、安卓恢复方法 · 星航指南-机场测评</title>
+<meta name="description" content="关闭代理客户端后不能上网怎么办？按正常结束接管、检查系统代理与脚本、核对 TUN/VPN 状态、验证直连的顺序恢复，提供 Windows、Mac 和安卓排查步骤。">
 <meta name="keywords" content="关闭代理后断网,网络恢复,系统代理">
 <meta name="robots" content="index,follow,max-image-preview:large"><link rel="canonical" href="https://www.wpfxy.cc/posts/proxy-offline-restore-network/">
-<meta property="og:title" content="关闭代理后不能上网？Windows、Mac 与安卓恢复顺序">
-<meta property="og:description" content="检查退出客户端后的接管状态、系统代理与 VPN 策略，按平台恢复原设置，避免未经定位就重置全部网络。">
+<meta property="og:title" content="关闭代理后不能上网？Windows、Mac、安卓恢复方法">
+<meta property="og:description" content="关闭代理客户端后不能上网怎么办？按正常结束接管、检查系统代理与脚本、核对 TUN/VPN 状态、验证直连的顺序恢复，提供 Windows、Mac 和安卓排查步骤。">
 <meta property="og:url" content="https://www.wpfxy.cc/posts/proxy-offline-restore-network/">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="星航指南-机场测评">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://www.wpfxy.cc/assets/media/fb58fa30-e66e-48f2-936b-04d6fcb2fa8f.png"><meta property="og:image:alt" content="关闭代理后不能上网？Windows、Mac 与安卓恢复顺序">
+<meta property="og:image" content="https://www.wpfxy.cc/assets/media/fb58fa30-e66e-48f2-936b-04d6fcb2fa8f.png"><meta property="og:image:alt" content="关闭代理后不能上网？Windows、Mac、安卓恢复方法">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="关闭代理后不能上网？Windows、Mac 与安卓恢复顺序">
-<meta name="twitter:description" content="检查退出客户端后的接管状态、系统代理与 VPN 策略，按平台恢复原设置，避免未经定位就重置全部网络。">
+<meta name="twitter:title" content="关闭代理后不能上网？Windows、Mac、安卓恢复方法">
+<meta name="twitter:description" content="关闭代理客户端后不能上网怎么办？按正常结束接管、检查系统代理与脚本、核对 TUN/VPN 状态、验证直连的顺序恢复，提供 Windows、Mac 和安卓排查步骤。">
 <meta name="twitter:image" content="https://www.wpfxy.cc/assets/media/9952960d-a32f-46c0-b9ba-74f5c355bf27.png">
-<meta name="author" content="星航"><meta property="article:published_time" content="2026-09-28T17:29:43&#43;08:00"><meta property="article:modified_time" content="2026-10-18T04:51:39&#43;08:00"><meta property="article:tag" content="Windows"><meta property="article:tag" content="Android"><meta property="article:tag" content="macOS"><meta property="article:tag" content="故障排查">
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@id":"https://www.wpfxy.cc/posts/proxy-offline-restore-network/#article","@type":"BlogPosting","author":{"@type":"Person","name":"星航"},"dateModified":"2026-10-18T04:51:39+08:00","datePublished":"2026-09-28T17:29:43+08:00","description":"检查退出客户端后的接管状态、系统代理与 VPN 策略，按平台恢复原设置，避免未经定位就重置全部网络。","headline":"关闭代理后不能上网？Windows、Mac 与安卓恢复顺序","inLanguage":"zh-CN","mainEntityOfPage":{"@id":"https://www.wpfxy.cc/posts/proxy-offline-restore-network/","@type":"WebPage"},"url":"https://www.wpfxy.cc/posts/proxy-offline-restore-network/"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://www.wpfxy.cc/","name":"星航指南-机场测评","position":1},{"@type":"ListItem","item":"https://www.wpfxy.cc/posts/proxy-offline-restore-network/","name":"关闭代理后不能上网？Windows、Mac 与安卓恢复顺序","position":2}]}]}</script>
+<meta name="author" content="星航"><meta property="article:published_time" content="2026-09-28T17:29:43&#43;08:00"><meta property="article:modified_time" content="2026-10-31T16:35:44&#43;08:00"><meta property="article:tag" content="Windows"><meta property="article:tag" content="Android"><meta property="article:tag" content="macOS"><meta property="article:tag" content="故障排查">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@id":"https://www.wpfxy.cc/posts/proxy-offline-restore-network/#article","@type":"BlogPosting","author":{"@type":"Person","name":"星航"},"dateModified":"2026-10-31T16:35:44+08:00","datePublished":"2026-09-28T17:29:43+08:00","description":"关闭代理客户端后不能上网怎么办？按正常结束接管、检查系统代理与脚本、核对 TUN/VPN 状态、验证直连的顺序恢复，提供 Windows、Mac 和安卓排查步骤。","headline":"关闭代理后不能上网？Windows、Mac、安卓恢复方法","inLanguage":"zh-CN","mainEntityOfPage":{"@id":"https://www.wpfxy.cc/posts/proxy-offline-restore-network/","@type":"WebPage"},"url":"https://www.wpfxy.cc/posts/proxy-offline-restore-network/"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://www.wpfxy.cc/","name":"星航指南-机场测评","position":1},{"@type":"ListItem","item":"https://www.wpfxy.cc/posts/proxy-offline-restore-network/","name":"关闭代理后不能上网？Windows、Mac、安卓恢复方法","position":2}]}]}</script>
 
 <script>document.documentElement.dataset.colorMode="dark";document.documentElement.classList.add("dark");</script>
 <link rel="stylesheet" href="https://www.wpfxy.cc/assets/theme/style.css">
 <link rel="stylesheet" href="https://www.wpfxy.cc/assets/theme/advertisements.css">
 <link rel="stylesheet" href="https://www.wpfxy.cc/assets/theme/search.css"><script defer src="https://www.wpfxy.cc/assets/theme/search.js"></script>
-<link rel="stylesheet" href="https://www.wpfxy.cc/assets/theme/guide.css?v=2.0.6">
+<link rel="stylesheet" href="https://www.wpfxy.cc/assets/theme/guide.css?v=2.0.8">
 <link rel="stylesheet" href="https://www.wpfxy.cc/assets/theme/viewer.css">
 <link rel="stylesheet" href="https://www.wpfxy.cc/assets/theme/reader.css">
 <link rel="icon" href="https://www.wpfxy.cc/assets/media/9952960d-a32f-46c0-b9ba-74f5c355bf27.png">
 <link rel="stylesheet" href="https://www.wpfxy.cc/assets/theme/artalk.css"><script defer src="https://www.wpfxy.cc/assets/theme/artalk.js"></script>
-<script defer src="https://www.wpfxy.cc/assets/theme/theme.js?v=2.0.6"></script>
+<script defer src="https://www.wpfxy.cc/assets/theme/theme.js?v=2.0.8"></script>
 <script defer src="https://www.wpfxy.cc/assets/theme/reader.js"></script>
 <script defer src="https://www.wpfxy.cc/assets/theme/viewer.js"></script>
 <script defer src="https://www.wpfxy.cc/assets/theme/image-viewer.js"></script>
 
 <script defer src="https://www.wpfxy.cc/assets/theme/interactions.js"></script>
-<script defer src="https://www.wpfxy.cc/assets/theme/guide.js?v=2.0.6"></script>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZH5EMJLD09"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-ZH5EMJLD09');
-</script>
-
+<script defer src="https://www.wpfxy.cc/assets/theme/guide.js?v=2.0.8"></script>
 
 
 <script defer src="https://www.wpfxy.cc/assets/xblog/google-analytics.js" data-xblog-google-analytics="G-ZH5EMJLD09" data-site-hosts="www.wpfxy.cc"></script></head>
 
 <body class="reader-page star-guide article-page"><a class="skip" href="#main">跳到正文</a><header class="site-header"><div class="header wrap header-inner"><a class="brand" href="https://www.wpfxy.cc/" aria-label="星航指南首页"><img class="brand-logo" src="https://www.wpfxy.cc/assets/media/9952960d-a32f-46c0-b9ba-74f5c355bf27.png" alt="" width="38" height="38">星航指南-机场测评<span class="brand-caption">FLYBIT / 99BA<br>机场选择与使用指南</span></a><nav id="site-navigation" aria-label="主导航"><a href="https://www.wpfxy.cc/">首页</a><a href="https://www.wpfxy.cc/posts/flybit-99ba-airport-guide/">套餐对比</a><a href="https://www.wpfxy.cc/posts/getting-started-tutorials/">使用教程</a><a href="https://www.wpfxy.cc/posts/client-tools-download/">工具下载</a><a href="https://www.wpfxy.cc/posts/frequently-asked-questions/">常见问题</a><a href="https://www.wpfxy.cc/posts/airport-review-editorial-standard/">关于我们</a></nav><a class="nav-cta" href="https://www.wpfxy.cc/#services">选择服务</a><a class="search-toggle" href="https://www.wpfxy.cc/search/" data-open-dialog="search-dialog" aria-haspopup="dialog" aria-controls="search-dialog" aria-label="搜索" title="搜索"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4.5 4.5"/></svg></a><button class="mobile-nav-toggle" id="menu-toggle" aria-label="打开导航菜单" aria-expanded="false" aria-controls="site-navigation"><span aria-hidden="true">☰</span></button></div></header><div class="page-viewport article-viewport"><div class="page-scroll article-scroll">
 <main id="main" tabindex="-1" class="content-page wrap">
-<nav class="breadcrumbs" aria-label="面包屑导航"><ol><li><a href="https://www.wpfxy.cc/">星航指南-机场测评</a></li><li><span aria-current="page">关闭代理后不能上网？Windows、Mac 与安卓恢复顺序</span></li></ol></nav>
+<nav class="breadcrumbs" aria-label="面包屑导航"><ol><li><a href="https://www.wpfxy.cc/">星航指南-机场测评</a></li><li><span aria-current="page">关闭代理后不能上网？Windows、Mac、安卓恢复方法</span></li></ol></nav>
 <div class="reading-layout">
 <article data-pagefind-body>
 <header class="article-header">
 <div class="eyebrow" data-pagefind-ignore>文章</div>
-<h1 data-pagefind-meta="title">关闭代理后不能上网？Windows、Mac 与安卓恢复顺序</h1>
+<h1 data-pagefind-meta="title">关闭代理后不能上网？Windows、Mac、安卓恢复方法</h1>
 <div class="metadata" data-pagefind-ignore><span>星航</span><time datetime="2026-09-28T17:29:43&#43;08:00">2026-09-28</time><span><span id="page-views">—</span> 次阅读</span></div>
 <div class="chips" data-pagefind-ignore><a href="https://www.wpfxy.cc/categories/troubleshooting/">故障排查</a></div>
 </header>
-<div class="prose managed-prose"><p>关闭代理客户端后，浏览器突然无法打开原本能访问的网站，可能是系统仍指向已经停止的本地代理端口，也可能是 TUN、VPN 或其他网络状态尚未恢复。先检查本次改变过的设置，不要一开始就重置全部网络。</p>
+<div class="prose managed-prose"><p>关闭 v2rayN、Clash 等代理客户端后不能上网，先重新打开原客户端，正常停用本次接管并退出，再检查系统代理是否仍指向已停止的本地端口。如果启用过 TUN、VPN 或始终开启 VPN，还要核对相应状态。目标是恢复本次改变过的设置；若原有网络本身掉线，应先处理基础连接，不要直接清空全部网络配置。</p>
 <p><img src="https://www.wpfxy.cc/assets/media/fb58fa30-e66e-48f2-936b-04d6fcb2fa8f.png" alt="关闭代理后，按顺序恢复（原创图解）"></p>
 <p><em>图解：先处理接管与代理残留，再判断是否需要更大的恢复操作。</em></p>
 <h2 id="heading">先看影响范围</h2>
 <p>测试一个原本可以直接访问的可信页面，再比较另一个应用。只有浏览器失败、所有应用失败、仅某个目标失败，是不同线索。</p>
 <p>如果原始接入网络本身掉线，应先恢复 Wi-Fi、有线或公共网络登录。本文主要处理退出客户端后出现的变化，不保证所有断网都由代理设置引起。</p>
+<table>
+<thead>
+<tr>
+<th>测试现象</th>
+<th>优先检查</th>
+<th>下一步验证</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>只有浏览器打不开</td>
+<td>浏览器代理扩展、独立代理配置</td>
+<td>固定同一网页，在另一个应用中比较</td>
+</tr>
+<tr>
+<td>多个应用都打不开</td>
+<td>系统代理残留、TUN/VPN、原始连接</td>
+<td>依次恢复本次改动，每次只改一项</td>
+</tr>
+<tr>
+<td>只有一个目标打不开</td>
+<td>目标服务、DNS、当前规则</td>
+<td>使用文末访问超时流程继续定位</td>
+</tr>
+</tbody>
+</table>
 <h2 id="heading-1">尝试正常结束接管</h2>
 <p>如果客户端仍能打开，先重新进入它的界面，停用本次开启的系统代理、TUN 或 VPN，再通过正常退出功能结束。异常结束进程可能没有给客户端机会恢复原状态。</p>
 <p>这一操作的目的，是让同一个工具撤销它创建的设置。不要同时打开另一款代理工具覆盖现场，否则容易产生新的状态差异。</p>
@@ -122,5 +138,5 @@
 </div>
 </dialog>
 
-<script id="blog-comments-config" type="application/json">{"comments":true,"likes":true,"locale":"zh-CN","pageKey":"/p/94da31da-b690-438d-8ef2-d015924738bd/","pageTitle":"关闭代理后不能上网？Windows、Mac 与安卓恢复顺序","server":"https://upfqpobmiewm.sealosgzg.site","site":"xblog-8d67829c-3602-4d9b-9bb7-c2d68118fecb","views":true,"viewsBase":0}</script>
+<script id="blog-comments-config" type="application/json">{"comments":true,"likes":true,"locale":"zh-CN","pageKey":"/p/94da31da-b690-438d-8ef2-d015924738bd/","pageTitle":"关闭代理后不能上网？Windows、Mac、安卓恢复方法","server":"https://upfqpobmiewm.sealosgzg.site","site":"xblog-8d67829c-3602-4d9b-9bb7-c2d68118fecb","views":true,"viewsBase":0}</script>
 </body></html>

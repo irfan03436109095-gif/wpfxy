@@ -6,4 +6,10 @@ const planTabs=Array.from(document.querySelectorAll('.plan-tabs [role="tab"]'));
 // Category navigation uses server-rendered archive links and native pagination.
 {const topButton=document.getElementById('back-to-top');if(topButton){const update=()=>topButton.hidden=window.scrollY<320;window.addEventListener('scroll',update,{passive:true});window.addEventListener('resize',update);window.addEventListener('pageshow',update);topButton.addEventListener('click',()=>{window.scrollTo({top:0,behavior:matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth'});document.getElementById('main')?.focus({preventScroll:true})});update();}}
 
+// Match only the existing referral registration destinations, never document links.
+function affiliateAirport(link){let url;try{url=new URL(link.getAttribute('href'),document.baseURI)}catch{return null}if(!['https:','http:'].includes(url.protocol))return null;const airport={'goflybit.com':'flybit','99ba.net':'99ba'}[url.hostname.toLowerCase()];if(!airport)return null;const parts=url.hash.slice(1).split('?');if(parts[0]!='/register'||!new URLSearchParams(parts[1]||'').has('code'))return null;return airport}
+document.querySelectorAll('a[href]').forEach(link=>{if(affiliateAirport(link))link.relList.add('sponsored')});
+// A referral click is not a completed registration. Reuse the configured GA tag only.
+document.addEventListener('click',event=>{const link=event.target instanceof Element?event.target.closest('a[href]'):null;if(!link)return;const airport=affiliateAirport(link);if(!airport||typeof window.gtag!=='function')return;const placement=link.closest('.hero')?'hero':link.closest('.service-card')?'service':link.closest('.checklist')?'checklist':link.closest('footer')?'footer':link.closest('article')?'article':'other';window.gtag('event','airport_referral_click',{airport,placement,page_path:window.location.pathname})});
+
 })();
