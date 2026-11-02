@@ -198,7 +198,7 @@
     find('ip-organization').textContent = fallback ? '暂无数据' : clean(data.asnOrganization) || '暂无数据';
     const asn = clean(data.asn);
     find('ip-asn').textContent = fallback || !asn ? '暂无数据' : /^AS\d+$/i.test(asn) ? asn.toUpperCase() : /^\d+$/.test(asn) ? 'AS' + asn : asn;
-    find('ip-meta').textContent = '数据来源：' + source + ' · ' + new Date().toLocaleString('zh-CN', { hour12: false }) + (fallback ? ' · 备用仅返回 IP，归属信息暂不可用。' : ' · 结果仅反映本次查询经过的网络出口。');
+    find('ip-meta').textContent = '数据来源：' + source + ' · ' + new Date().toLocaleString('zh-CN', { hour12: false }) + (fallback ? ' · 备用仅返回 IP，归属信息暂不可用。' : ' · 归属信息为数据库估计，不代表精确位置。');
     find('ip-result').hidden = false;
   }
   async function lookupIP(manual) {
