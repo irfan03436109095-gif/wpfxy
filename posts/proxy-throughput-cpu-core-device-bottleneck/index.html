@@ -1,0 +1,250 @@
+<!doctype html><html lang="zh-CN" class="dark" data-color-mode="dark" data-theme="star-route-guide">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>机场跑不满千兆，是电脑性能不够吗？CPU、内核与网络瓶颈的对照方法 · 星航指南-机场测评</title>
+<meta name="description" content="机场下载速度上不去，不应只凭CPU占用就换电脑。固定任务、路径与版本，结合逻辑处理器、代理内核进程、磁盘和网络记录，识别设备处理瓶颈的证据与局限。">
+<meta name="keywords" content="机场速度慢,代理CPU占用,机场跑不满千兆,客户端内核,设备瓶颈">
+<meta name="robots" content="index,follow,max-image-preview:large"><link rel="canonical" href="https://www.wpfxy.cc/posts/proxy-throughput-cpu-core-device-bottleneck/">
+<meta property="og:title" content="机场跑不满千兆，是电脑性能不够吗？CPU、内核与网络瓶颈的对照方法">
+<meta property="og:description" content="机场下载速度上不去，不应只凭CPU占用就换电脑。固定任务、路径与版本，结合逻辑处理器、代理内核进程、磁盘和网络记录，识别设备处理瓶颈的证据与局限。">
+<meta property="og:url" content="https://www.wpfxy.cc/posts/proxy-throughput-cpu-core-device-bottleneck/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="星航指南-机场测评">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.wpfxy.cc/assets/media/8ca0b3fd-a744-4a62-bf35-3808dba4ec2e.png"><meta property="og:image:alt" content="机场跑不满千兆，是电脑性能不够吗？CPU、内核与网络瓶颈的对照方法">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="机场跑不满千兆，是电脑性能不够吗？CPU、内核与网络瓶颈的对照方法">
+<meta name="twitter:description" content="机场下载速度上不去，不应只凭CPU占用就换电脑。固定任务、路径与版本，结合逻辑处理器、代理内核进程、磁盘和网络记录，识别设备处理瓶颈的证据与局限。">
+<meta name="twitter:image" content="https://www.wpfxy.cc/assets/media/9952960d-a32f-46c0-b9ba-74f5c355bf27.png">
+<meta name="author" content="星航"><meta property="article:published_time" content="2026-11-02T14:44:39&#43;08:00"><meta property="article:modified_time" content="2026-11-02T14:44:43&#43;08:00"><meta property="article:tag" content="网络测速"><meta property="article:tag" content="Windows"><meta property="article:tag" content="客户端配置"><meta property="article:tag" content="故障排查">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@id":"https://www.wpfxy.cc/posts/proxy-throughput-cpu-core-device-bottleneck/#article","@type":"BlogPosting","author":{"@type":"Person","name":"星航"},"dateModified":"2026-11-02T14:44:43+08:00","datePublished":"2026-11-02T14:44:39+08:00","description":"机场下载速度上不去，不应只凭CPU占用就换电脑。固定任务、路径与版本，结合逻辑处理器、代理内核进程、磁盘和网络记录，识别设备处理瓶颈的证据与局限。","headline":"机场跑不满千兆，是电脑性能不够吗？CPU、内核与网络瓶颈的对照方法","inLanguage":"zh-CN","mainEntityOfPage":{"@id":"https://www.wpfxy.cc/posts/proxy-throughput-cpu-core-device-bottleneck/","@type":"WebPage"},"url":"https://www.wpfxy.cc/posts/proxy-throughput-cpu-core-device-bottleneck/"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://www.wpfxy.cc/","name":"星航指南-机场测评","position":1},{"@type":"ListItem","item":"https://www.wpfxy.cc/posts/proxy-throughput-cpu-core-device-bottleneck/","name":"机场跑不满千兆，是电脑性能不够吗？CPU、内核与网络瓶颈的对照方法","position":2}]}]}</script>
+
+<script>document.documentElement.dataset.colorMode="dark";document.documentElement.classList.add("dark");</script>
+<link rel="stylesheet" href="https://www.wpfxy.cc/assets/theme/style.css">
+<link rel="stylesheet" href="https://www.wpfxy.cc/assets/theme/advertisements.css">
+<link rel="stylesheet" href="https://www.wpfxy.cc/assets/theme/search.css"><script defer src="https://www.wpfxy.cc/assets/theme/search.js"></script>
+<link rel="stylesheet" href="https://www.wpfxy.cc/assets/theme/guide.css?v=2.0.8">
+<link rel="stylesheet" href="https://www.wpfxy.cc/assets/theme/viewer.css">
+<link rel="stylesheet" href="https://www.wpfxy.cc/assets/theme/reader.css">
+<link rel="icon" href="https://www.wpfxy.cc/assets/media/9952960d-a32f-46c0-b9ba-74f5c355bf27.png">
+<link rel="stylesheet" href="https://www.wpfxy.cc/assets/theme/artalk.css"><script defer src="https://www.wpfxy.cc/assets/theme/artalk.js"></script>
+<script defer src="https://www.wpfxy.cc/assets/theme/theme.js?v=2.0.8"></script>
+<script defer src="https://www.wpfxy.cc/assets/theme/reader.js"></script>
+<script defer src="https://www.wpfxy.cc/assets/theme/viewer.js"></script>
+<script defer src="https://www.wpfxy.cc/assets/theme/image-viewer.js"></script>
+
+<script defer src="https://www.wpfxy.cc/assets/theme/interactions.js"></script>
+<script defer src="https://www.wpfxy.cc/assets/theme/guide.js?v=2.0.8"></script>
+
+
+<script defer src="https://www.wpfxy.cc/assets/xblog/google-analytics.js" data-xblog-google-analytics="G-ZH5EMJLD09" data-site-hosts="www.wpfxy.cc"></script></head>
+
+<body class="reader-page star-guide article-page"><a class="skip" href="#main">跳到正文</a><header class="site-header"><div class="header wrap header-inner"><a class="brand" href="https://www.wpfxy.cc/" aria-label="星航指南首页"><img class="brand-logo" src="https://www.wpfxy.cc/assets/media/9952960d-a32f-46c0-b9ba-74f5c355bf27.png" alt="" width="38" height="38">星航指南-机场测评<span class="brand-caption">FLYBIT / 99BA<br>机场选择与使用指南</span></a><nav id="site-navigation" aria-label="主导航"><a href="https://www.wpfxy.cc/">首页</a><a href="https://www.wpfxy.cc/posts/flybit-99ba-airport-guide/">套餐对比</a><a href="https://www.wpfxy.cc/posts/getting-started-tutorials/">使用教程</a><a href="https://www.wpfxy.cc/posts/client-tools-download/">工具下载</a><a href="https://www.wpfxy.cc/posts/frequently-asked-questions/">常见问题</a><a href="https://www.wpfxy.cc/posts/airport-review-editorial-standard/">关于我们</a></nav><a class="nav-cta" href="https://www.wpfxy.cc/#services">选择服务</a><a class="search-toggle" href="https://www.wpfxy.cc/search/" data-open-dialog="search-dialog" aria-haspopup="dialog" aria-controls="search-dialog" aria-label="搜索" title="搜索"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4.5 4.5"/></svg></a><button class="mobile-nav-toggle" id="menu-toggle" aria-label="打开导航菜单" aria-expanded="false" aria-controls="site-navigation"><span aria-hidden="true">☰</span></button></div></header><div class="page-viewport article-viewport"><div class="page-scroll article-scroll">
+<main id="main" tabindex="-1" class="content-page wrap">
+<nav class="breadcrumbs" aria-label="面包屑导航"><ol><li><a href="https://www.wpfxy.cc/">星航指南-机场测评</a></li><li><span aria-current="page">机场跑不满千兆，是电脑性能不够吗？CPU、内核与网络瓶颈的对照方法</span></li></ol></nav>
+<div class="reading-layout">
+<article data-pagefind-body>
+<header class="article-header">
+<div class="eyebrow" data-pagefind-ignore>文章</div>
+<h1 data-pagefind-meta="title">机场跑不满千兆，是电脑性能不够吗？CPU、内核与网络瓶颈的对照方法</h1>
+<div class="metadata" data-pagefind-ignore><span>星航</span><time datetime="2026-11-02T14:44:39&#43;08:00">2026-11-02</time><span><span id="page-views">—</span> 次阅读</span></div>
+<div class="chips" data-pagefind-ignore><a href="https://www.wpfxy.cc/categories/network-basics/">网络技术</a><a href="https://www.wpfxy.cc/categories/troubleshooting/">故障排查</a></div>
+</header>
+<div class="prose managed-prose"><p><strong>机场跑不满千兆，电脑性能只是可能原因之一。CPU总占用低，不能排除某个处理环节受限；CPU占用高，也不能直接证明它是下载速度的根因。</strong> 更可信的方法，是固定任务和路径，观察代理内核、各逻辑处理器、磁盘与网络变化，再通过一次只改变一个条件的对照增加证据。</p>
+<p>本文面向桌面客户端用户，重点解释如何判断设备处理能力是否值得继续调查。文中方法是为个人排查整理的观察框架，不是硬件性能认证，也没有对具体电脑、加密算法或机场进行实测排名。</p>
+<p><img src="https://www.wpfxy.cc/assets/media/8ca0b3fd-a744-4a62-bf35-3808dba4ec2e.png" alt="星空黑青色电脑处理器、代理内核与网络管道的瓶颈对照示意图"></p>
+<h2 id="heading">一、先定义“千兆”是哪一个环节</h2>
+<p>网卡连接到路由器显示1Gbps，说明的是本地链路协商状态，不代表从你的设备经过所有中间路径到目标服务都能获得相同应用吞吐。套餐标注速率、宽带接入能力、Wi-Fi实际传输、服务器限速和下载工具设置，也分别作用在不同位置。</p>
+<p>先把速度单位统一。1000Mbps在理想的纯算术换算下对应125MB/s，但应用实际数据还会受到路径、协议与实现条件影响。这个换算不是保证值，更不能用文件管理器里显示的MB/s直接等同网卡标称能力。</p>
+<p>如果只是希望浏览流畅或开会稳定，未必需要把整条路径跑到峰值。把“可以完成任务”和“最大吞吐测试”分成两张记录表，能避免用一个不相关的大数字决定购买硬件。</p>
+<table>
+<thead>
+<tr>
+<th>环节</th>
+<th>可观察的线索</th>
+<th>容易产生的误判</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>本地接入</td>
+<td>网线或Wi-Fi、信号、协商速率</td>
+<td>连接显示千兆就当作端到端千兆</td>
+</tr>
+<tr>
+<td>代理处理</td>
+<td>内核进程、线程与CPU活动</td>
+<td>客户端窗口进程低就认为无负载</td>
+</tr>
+<tr>
+<td>存储与应用</td>
+<td>磁盘活动、下载工具限制、文件写入</td>
+<td>写盘慢却归因机场限速</td>
+</tr>
+<tr>
+<td>远端路径</td>
+<td>同任务跨时段与节点对照</td>
+<td>单个下载站慢就当作电脑慢</td>
+</tr>
+<tr>
+<td>套餐条件</td>
+<td>标注速率、倍率与公平使用规则</td>
+<td>只看最大宣传速率</td>
+</tr>
+</tbody>
+</table>
+<h2 id="cpu">二、为什么总CPU占用可能掩盖局部限制</h2>
+<p>多核心系统的总占用通常是汇总视图。一项任务如果主要受一个繁忙执行环节限制，即使整体还有空闲资源，也未必能自动分摊到其它核心。因此，总量不高与局部处理受限可以同时出现；但这种现象需要观察线程、执行方式和任务相关性才能解释。</p>
+<p>Microsoft的任务管理器排查文档介绍了逻辑处理器显示及进程资源观察。它的工具方法可以帮助查看活动分布，但文档面向相应Windows排查场景，不能把其中某个数值直接当成机场性能的合格线。<a href="https://learn.microsoft.com/en-us/troubleshoot/windows-server/support-tools/support-tools-task-manager">Microsoft：使用任务管理器排查进程</a></p>
+<p>还要注意，你看到的可能是客户端界面进程，而处理连接的是另一个内核进程。软件界面、服务进程和代理核心的职责因项目而异，不能按进程名称猜测全部工作量。先从项目说明或任务管理器中的实际进程关系核实，再保存相关记录。</p>
+<h2 id="heading-1">三、同时记录四类资源，避免单指标因果</h2>
+<p>在开始测试前，保存客户端版本、内核版本、接管方式、节点、目标任务和网络类型。打开系统自带资源观察工具，看总CPU与逻辑处理器活动、相关进程、磁盘活动及网络速率。不要为了测试结束其它人的工作任务或受管理的安全服务。</p>
+<p>Microsoft的CPU排查指导使用任务管理器、资源监视器等工具识别消耗资源的进程。这支持“先定位进程，再调查原因”的思路，而不是“看到高CPU就永久关闭安全软件”。<a href="https://learn.microsoft.com/en-us/troubleshoot/windows-server/performance/troubleshoot-high-cpu-usage-guidance">Microsoft：高CPU使用率排查指导</a></p>
+<table>
+<thead>
+<tr>
+<th>观察到的组合</th>
+<th>值得继续检查</th>
+<th>仍不能单凭它认定</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>吞吐停在相近位置，相关执行持续繁忙</td>
+<td>处理能力、线程结构和任务规模</td>
+<td>一定是加密算法太慢</td>
+</tr>
+<tr>
+<td>CPU不高，磁盘活动持续很重</td>
+<td>写盘、解压、扫描和应用行为</td>
+<td>所有网络条件都正常</td>
+</tr>
+<tr>
+<td>只有一个下载目标慢</td>
+<td>目标站、连接限制、路径</td>
+<td>本机硬件不够</td>
+</tr>
+<tr>
+<td>改成网线后明显改善</td>
+<td>无线接入与干扰</td>
+<td>机场线路本身升级了</td>
+</tr>
+<tr>
+<td>软件更新后出现差异</td>
+<td>内核、配置和接管实现</td>
+<td>新版本必然有缺陷</td>
+</tr>
+<tr>
+<td>只在运行其它应用时下降</td>
+<td>资源竞争与并行任务</td>
+<td>关闭所有后台是通用修复</td>
+</tr>
+</tbody>
+</table>
+<p>资源利用率与吞吐同时变化，只能先叫作相关现象。要形成更强的判断，需在其它条件足够接近时，改变那个候选因素并观察结果能否重复。</p>
+<h2 id="heading-2">四、先建立一个不含私人数据的基线任务</h2>
+<p>选择自己有权访问、允许下载且规模可控的内容，确认下载工具没有人为限速。固定目标、文件或任务大小、并发连接设置和保存位置，记录是否命中缓存以及是否发生重试。不要把一次测速页面与另一次云盘下载直接比较。</p>
+<p>保存起止时间、完成量、错误和资源观察。连续大流量测试会消耗套餐额度，也会改变设备温度与网络负载，因此先规定任务预算，不为追求漂亮峰值反复跑满。基础可复查方法可参考<a href="https://www.wpfxy.cc/posts/airport-trial-comparison-sheet/">机场试用的对照记录表</a>。</p>
+<p>记录电脑是否接电、是否运行节能设置、是否同时进行系统更新或文件解压。这些条件不是越激进越好，而是需要在两轮之间保持可比。不要为提高分数更改不熟悉的电压、散热或系统安全配置。</p>
+<h2 id="heading-3">五、优先做三种单变量对照</h2>
+<p>第一种是接入对照：同一设备、同一任务，使用经过确认的有线网络与原Wi-Fi比较。第二种是设备对照：在同一接入条件下，使用自己的另一台已配置设备重做任务，但需记录系统、客户端和网卡差异。第三种是软件对照：在备份可用配置并核对官方版本说明后，对同一客户端的可比版本或接管方式进行有限验证。</p>
+<p>设备对照通常不是严格单变量实验，因为换设备同时改变了硬件、驱动和软件。它能帮助缩小范围，却不能一口咬定CPU型号是唯一原因。手机与电脑的比较可沿用<a href="https://www.wpfxy.cc/posts/phone-works-computer-proxy-fails/">设备和网络交叉核对方法</a>。</p>
+<p>软件对照时，系统代理与TUN可能使接管路径不同。如果更换模式后速度变化，需要先确认访问目标、DNS、策略与实际节点仍可比。不要把一次路径变化带来的收益全部写成“内核更高效”。</p>
+<h2 id="heading-4">六、软件版本和并行模型也会改变测量</h2>
+<p>测试工具本身可能成为限制。ESnet说明，iperf3在3.16之前采用单线程，而从3.16开始按测试流使用多线程；这说明工具版本和并行方式会影响高吞吐测量，不能把任何版本的结果都视作相同能力。<a href="https://software.es.net/iperf/faq.html">ESnet：iperf3 FAQ</a></p>
+<p>这个例子不表示每个机场客户端都采用同样的线程结构，也不表示个人千兆网络一定遇到同类限制。该FAQ还说明iperf3并不官方支持Windows，因此本文不要求Windows小白下载陌生二进制或搭建测试服务器。</p>
+<p>一条“系统空闲时快、全量日志时慢”的记录，也需要确认是否可以重复、是否同时改变了配置和任务。若怀疑日志或界面刷新造成额外负担，只按项目支持的设置对照；诊断结束后恢复正常状态，并保留足够的错误记录。</p>
+<h2 id="heading-5">七、用虚构算例理解证据强弱</h2>
+<p>假设某用户在相同网络和目标下，旧配置每轮约达到一个相近速度平台，代理内核相关逻辑处理器持续繁忙；新配置速度提高，但同时换了节点、下载工具和并发数。这组观察不能证明新配置降低了CPU开销，因为关键条件一次变了多个。</p>
+<p>更好的下一步，是回到原节点与原工具，仅切换经过确认的一个软件条件，再交换顺序重复任务。若相关资源活动与速度差异仍一致出现，且已排除目标限速、温度和缓存等主要干扰，就可以写“结果支持设备处理路径相关的解释”，仍不宜宣布已经完成内核级根因分析。</p>
+<p>这里没有放入虚构Mbps数值，避免被当作真实跑分。证据强度来自对照关系与记录完整性，而不是给示例配一个看起来精确的速度。</p>
+<table>
+<thead>
+<tr>
+<th>日期与轮次</th>
+<th>保持不变的条件</th>
+<th>唯一计划改变项</th>
+<th>吞吐与完成结果</th>
+<th>相关资源与异常</th>
+<th>暂时结论</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>基线轮</td>
+<td>目标、网络、节点、工具、任务</td>
+<td>无</td>
+<td>填写实际值</td>
+<td>CPU分布、内核、磁盘</td>
+<td>不作归因</td>
+</tr>
+<tr>
+<td>对照轮</td>
+<td>同上，无法一致处注明</td>
+<td>一项明确设置</td>
+<td>填写实际值</td>
+<td>同口径记录</td>
+<td>支持或不支持候选解释</td>
+</tr>
+<tr>
+<td>复核轮</td>
+<td>尽量交换先后顺序</td>
+<td>回到原条件</td>
+<td>填写实际值</td>
+<td>记录温度与后台变化</td>
+<td>标注未排除因素</td>
+</tr>
+</tbody>
+</table>
+<h2 id="heading-6">八、什么时候才值得考虑升级设备</h2>
+<p>只有在真实任务受限、资源观察与可比对照持续支持设备因素，并且软件来源、配置、接入网络和远端条件已经得到基本核对之后，才有充分理由把硬件升级列入候选方案。升级还要考虑预算、使用年限和其它工作需求，不只为某一次下载峰值买单。</p>
+<p>如果问题仅在开机后出现，先看<a href="https://www.wpfxy.cc/posts/windows-proxy-not-working-after-startup/">自启动、内核与系统代理的分层检查</a>；如果只是视频播放不顺畅，任务关注点更接近缓冲和稳定性，可读<a href="https://www.wpfxy.cc/posts/streaming-buffering-test-window/">固定播放条件后的卡顿排查</a>。更大的CPU与更贵的套餐不能自动修复这两类设置或路径问题。</p>
+<h2 id="heading-7">常见问题</h2>
+<h3 id="cpu-1">CPU低于一半，就能排除本机限制吗？</h3>
+<p>不能。总占用、局部执行、磁盘和应用串行阶段都需要一起看；但也不能反过来把每次低占用慢速都解释成单核瓶颈。</p>
+<h3 id="heading-8">换加密协议能保证更快吗？</h3>
+<p>不能。协议改变可能同时改变节点、传输路径、兼容性和处理实现。应先确认服务支持与安全设置，再在相同任务中评估实际结果。</p>
+<h3 id="heading-9">多开下载线程快了，是不是机场没问题？</h3>
+<p>它只能说明不同并发模型得到不同结果。应用限速、单连接路径和本地处理都可能参与，不能由此证明所有环节正常。</p>
+<h3 id="heading-10">什么样的结论适合被别人引用？</h3>
+<p>保留设备、版本、任务、路径、时段和对照条件，写清观察与尚未排除的因素。可以引用方法和定义；若要引用性能结论，必须同时携带原始测试范围。</p>
+</div>
+<div class="article-likes" data-pagefind-ignore>
+<button id="page-like" class="like-button" type="button" aria-pressed="false" aria-describedby="page-like-message" disabled>
+<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"/></svg>
+<span id="page-like-label">点赞</span><span id="page-like-count">—</span>
+</button><p id="page-like-message" role="status"></p>
+</div>
+<div class="article-tags" data-pagefind-ignore><a href="https://www.wpfxy.cc/tags/network-test/"># 网络测速</a><a href="https://www.wpfxy.cc/tags/windows/"># Windows</a><a href="https://www.wpfxy.cc/tags/client-config/"># 客户端配置</a><a href="https://www.wpfxy.cc/tags/troubleshooting/"># 故障排查</a></div>
+<nav class="pagination" aria-label="相邻文章" data-pagefind-ignore><a href="https://www.wpfxy.cc/posts/flybit-plans-guide-2026/">← 上一篇</a><a href="https://www.wpfxy.cc/posts/windows-proxy-not-working-after-startup/">下一篇 →</a></nav>
+<section class="comments-section" data-pagefind-ignore><h2>评论</h2><div id="comments"></div></section>
+</article>
+<aside class="article-sidebar article-rail">
+<aside class="toc"><div>本篇目录</div><nav aria-label="文章目录"><a class="level-2" href="#heading">一、先定义“千兆”是哪一个环节</a><a class="level-2" href="#cpu">二、为什么总CPU占用可能掩盖局部限制</a><a class="level-2" href="#heading-1">三、同时记录四类资源，避免单指标因果</a><a class="level-2" href="#heading-2">四、先建立一个不含私人数据的基线任务</a><a class="level-2" href="#heading-3">五、优先做三种单变量对照</a><a class="level-2" href="#heading-4">六、软件版本和并行模型也会改变测量</a><a class="level-2" href="#heading-5">七、用虚构算例理解证据强弱</a><a class="level-2" href="#heading-6">八、什么时候才值得考虑升级设备</a><a class="level-2" href="#heading-7">常见问题</a><a class="level-3" href="#cpu-1">CPU低于一半，就能排除本机限制吗？</a><a class="level-3" href="#heading-8">换加密协议能保证更快吗？</a><a class="level-3" href="#heading-9">多开下载线程快了，是不是机场没问题？</a><a class="level-3" href="#heading-10">什么样的结论适合被别人引用？</a></nav></aside>
+</aside></div></main>
+</div>
+<button id="back-to-top" class="back-to-top" type="button" aria-label="返回顶部" title="返回顶部" hidden>
+<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h14M12 20V8m-5 5 5-5 5 5"/></svg>
+</button>
+</div><footer class="site-footer wrap footer"><div class="footer-top"><a class="brand" href="https://www.wpfxy.cc/"><img class="brand-logo" src="https://www.wpfxy.cc/assets/media/9952960d-a32f-46c0-b9ba-74f5c355bf27.png" alt="" width="32" height="32">星航指南-机场测评</a><span>FlyBit &amp; 99吧 · 合作推广信息与使用指南</span></div><nav class="footer-tools" aria-label="相关工具软件"><span class="footer-tools-label">常用工具</span><a href="https://v2rayn.2dust.link/" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" width="23" height="23" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 5h18v12H3zM8 21h8M12 17v4M8 9l4 5 4-5"/></svg><span>v2rayN</span></a><a href="https://www.clashverge.dev/install.html" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" width="23" height="23" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 8 7 3l5 3 5-3 2 5v7c0 4-3 6-7 6s-7-2-7-6zM8 12h.01M16 12h.01M10 16l2 2 2-2"/></svg><span>Clash Verge Rev</span></a><a href="https://v2rayng.2dust.link/" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" width="23" height="23" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 10h14v10H5zM7 10V8a5 5 0 0 1 10 0v2M8 3 6 1M16 3l2-2M2 12v6M22 12v6M9 20v3M15 20v3M9 7h.01M15 7h.01"/></svg><span>v2rayNG</span></a><a href="https://stash.ws/zh/download" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" width="23" height="23" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 9 5-9 5-9-5zM3 8v10l9 5 9-5V8M12 13v10"/></svg><span>Stash</span></a></nav><nav id="friend-links" class="friend-links" aria-label="友情链接"><span class="friend-links-label">友情链接</span><a href="https://goflybit.com/#/register?code=gPinVG8C" target="_blank" rel="noopener noreferrer">FlyBit</a><a href="https://99ba.net/#/register?code=sExBbdk9" target="_blank" rel="noopener noreferrer">99吧</a><a href="https://t.me/five_91" target="_blank" rel="noopener noreferrer">Telegram联系</a><a href="https://t.me/RouteRadarCN" target="_blank" rel="noopener noreferrer">Telegram频道</a></nav><div class="footer-bottom"><span>© 2026 星航指南</span><span>先核对信息，再做选择。</span></div><p class="footer-disclosure">合作说明：通过本站合作链接购买，本站可能获得佣金。账户、套餐、付款与售后由服务商提供。</p></footer>
+
+<dialog id="search-dialog" class="reader-dialog site-search" aria-labelledby="search-title" data-reader-dialog data-pagefind-ignore>
+<header class="reader-dialog-header"><h2 id="search-title">搜索文章</h2><button class="dialog-close" type="button" data-close-dialog aria-label="关闭搜索" title="关闭搜索">×</button></header>
+<div class="reader-dialog-body">
+
+<div id="site-search-ui" data-module="https://www.wpfxy.cc/pagefind/pagefind-component-ui.js" data-stylesheet="https://www.wpfxy.cc/pagefind/pagefind-component-ui.css" hidden>
+
+<pagefind-config bundle-path="https://www.wpfxy.cc/pagefind/" base-url="https://www.wpfxy.cc/" lang="zh-cn" no-worker></pagefind-config>
+<pagefind-input placeholder="搜索文章标题或正文"></pagefind-input>
+<pagefind-summary></pagefind-summary>
+<pagefind-results></pagefind-results>
+</div>
+<p id="search-status" class="search-status" role="status">正在加载搜索…</p>
+<button id="search-retry" class="button" type="button" hidden>重新加载</button>
+
+</div>
+</dialog>
+
+<script id="blog-comments-config" type="application/json">{"comments":true,"likes":true,"locale":"zh-CN","pageKey":"/p/1809f7b7-1fcf-42af-ab3d-75f8e392ecd7/","pageTitle":"机场跑不满千兆，是电脑性能不够吗？CPU、内核与网络瓶颈的对照方法","server":"https://upfqpobmiewm.sealosgzg.site","site":"xblog-8d67829c-3602-4d9b-9bb7-c2d68118fecb","views":true,"viewsBase":0}</script>
+</body></html>
