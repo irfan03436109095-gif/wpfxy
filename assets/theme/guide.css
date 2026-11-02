@@ -116,7 +116,7 @@
 .star-guide.article-page .back-to-top{position:fixed}
 .star-guide>.site-footer.footer .friend-links{justify-content:flex-start;text-align:left;padding-inline:0;margin-inline:0}
 
-/* 2.0.8: explicit home topic and crawlable task routes, without changing the reader. */
+/* 2.1.0: explicit home topic and crawlable task routes, without changing the reader. */
 :root.home-root,.star-guide.home-page{overflow-x:clip}
 .star-guide .hero h1.hero-topic-title{font-size:clamp(42px,4.7vw,68px);line-height:1.22;letter-spacing:-2px;font-style:normal;max-width:1000px}
 .star-guide .service-tasks{display:flex;flex-wrap:wrap;gap:10px 14px;margin:-14px 0 44px}

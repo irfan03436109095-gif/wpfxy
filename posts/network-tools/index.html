@@ -1,0 +1,180 @@
+<!doctype html><html lang="zh-CN" class="dark" data-color-mode="dark" data-theme="star-route-guide">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>在线 IP 查询与 Ping 测试 · 星航指南-机场测评</title>
+<meta name="description" content="在线查询公网 IP、IPv4/IPv6 归属地和网络组织，进行浏览器 HTTP 延迟与远程探针 ICMP Ping 测试。显示实际响应、探针位置与丢包率，支持停止等待，点击后才请求。">
+<meta name="keywords" content="">
+<meta name="robots" content="index,follow,max-image-preview:large"><link rel="canonical" href="https://www.wpfxy.cc/posts/network-tools/">
+<meta property="og:title" content="在线 IP 查询与 Ping 测试">
+<meta property="og:description" content="在线查询公网 IP、IPv4/IPv6 归属地和网络组织，进行浏览器 HTTP 延迟与远程探针 ICMP Ping 测试。显示实际响应、探针位置与丢包率，支持停止等待，点击后才请求。">
+<meta property="og:url" content="https://www.wpfxy.cc/posts/network-tools/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="星航指南-机场测评">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.wpfxy.cc/assets/media/9952960d-a32f-46c0-b9ba-74f5c355bf27.png"><meta property="og:image:alt" content="星航指南-机场测评">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="在线 IP 查询与 Ping 测试">
+<meta name="twitter:description" content="在线查询公网 IP、IPv4/IPv6 归属地和网络组织，进行浏览器 HTTP 延迟与远程探针 ICMP Ping 测试。显示实际响应、探针位置与丢包率，支持停止等待，点击后才请求。">
+<meta name="twitter:image" content="https://www.wpfxy.cc/assets/media/9952960d-a32f-46c0-b9ba-74f5c355bf27.png">
+<meta name="author" content="星航"><meta property="article:published_time" content="2026-11-02T18:48:19&#43;08:00"><meta property="article:modified_time" content="2026-11-02T19:09:15&#43;08:00">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@id":"https://www.wpfxy.cc/posts/network-tools/#article","@type":"BlogPosting","author":{"@type":"Person","name":"星航"},"dateModified":"2026-11-02T19:09:15+08:00","datePublished":"2026-11-02T18:48:19+08:00","description":"在线查询公网 IP、IPv4/IPv6 归属地和网络组织，进行浏览器 HTTP 延迟与远程探针 ICMP Ping 测试。显示实际响应、探针位置与丢包率，支持停止等待，点击后才请求。","headline":"在线 IP 查询与 Ping 测试","inLanguage":"zh-CN","mainEntityOfPage":{"@id":"https://www.wpfxy.cc/posts/network-tools/","@type":"WebPage"},"url":"https://www.wpfxy.cc/posts/network-tools/"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://www.wpfxy.cc/","name":"星航指南-机场测评","position":1},{"@type":"ListItem","item":"https://www.wpfxy.cc/posts/network-tools/","name":"在线 IP 查询与 Ping 测试","position":2}]}]}</script>
+
+<script>document.documentElement.dataset.colorMode="dark";document.documentElement.classList.add("dark");</script>
+<link rel="stylesheet" href="https://www.wpfxy.cc/assets/theme/style.css">
+<link rel="stylesheet" href="https://www.wpfxy.cc/assets/theme/advertisements.css">
+<link rel="stylesheet" href="https://www.wpfxy.cc/assets/theme/search.css"><script defer src="https://www.wpfxy.cc/assets/theme/search.js"></script>
+<link rel="stylesheet" href="https://www.wpfxy.cc/assets/theme/guide.css?v=2.1.0">
+<link rel="stylesheet" href="https://www.wpfxy.cc/assets/theme/viewer.css">
+<link rel="stylesheet" href="https://www.wpfxy.cc/assets/theme/reader.css">
+<link rel="icon" href="https://www.wpfxy.cc/assets/media/9952960d-a32f-46c0-b9ba-74f5c355bf27.png">
+<link rel="stylesheet" href="https://www.wpfxy.cc/assets/theme/artalk.css"><script defer src="https://www.wpfxy.cc/assets/theme/artalk.js"></script>
+<script defer src="https://www.wpfxy.cc/assets/theme/theme.js?v=2.1.0"></script>
+<script defer src="https://www.wpfxy.cc/assets/theme/reader.js"></script>
+<script defer src="https://www.wpfxy.cc/assets/theme/viewer.js"></script>
+<script defer src="https://www.wpfxy.cc/assets/theme/image-viewer.js"></script>
+
+<script defer src="https://www.wpfxy.cc/assets/theme/interactions.js"></script>
+<script defer src="https://www.wpfxy.cc/assets/theme/guide.js?v=2.1.0"></script>
+
+
+<link rel="stylesheet" href="https://www.wpfxy.cc/assets/theme/network-tools.css?v=2.1.0"><script defer src="https://www.wpfxy.cc/assets/theme/network-tools.js?v=2.1.0"></script><script defer src="https://www.wpfxy.cc/assets/xblog/google-analytics.js" data-xblog-google-analytics="G-ZH5EMJLD09" data-site-hosts="www.wpfxy.cc"></script></head>
+
+<body class="reader-page star-guide article-page network-tools-page"><a class="skip" href="#main">跳到正文</a><header class="site-header"><div class="header wrap header-inner"><a class="brand" href="https://www.wpfxy.cc/" aria-label="星航指南首页"><img class="brand-logo" src="https://www.wpfxy.cc/assets/media/9952960d-a32f-46c0-b9ba-74f5c355bf27.png" alt="" width="38" height="38">星航指南-机场测评<span class="brand-caption">FLYBIT / 99BA<br>机场选择与使用指南</span></a><nav id="site-navigation" aria-label="主导航"><a href="https://www.wpfxy.cc/">首页</a><a href="https://www.wpfxy.cc/posts/flybit-99ba-airport-guide/">套餐对比</a><a href="https://www.wpfxy.cc/posts/getting-started-tutorials/">使用教程</a><a href="https://www.wpfxy.cc/posts/client-tools-download/">工具下载</a><a href="https://www.wpfxy.cc/posts/frequently-asked-questions/">常见问题</a><a href="https://www.wpfxy.cc/posts/airport-review-editorial-standard/">关于我们</a><a href="https://www.wpfxy.cc/posts/network-tools/" aria-current="page">网络工具</a></nav><a class="nav-cta" href="https://www.wpfxy.cc/#services">选择服务</a><a class="search-toggle" href="https://www.wpfxy.cc/search/" data-open-dialog="search-dialog" aria-haspopup="dialog" aria-controls="search-dialog" aria-label="搜索" title="搜索"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4.5 4.5"/></svg></a><button class="mobile-nav-toggle" id="menu-toggle" aria-label="打开导航菜单" aria-expanded="false" aria-controls="site-navigation"><span aria-hidden="true">☰</span></button></div></header><div class="page-viewport article-viewport"><div class="page-scroll article-scroll">
+<main id="main" tabindex="-1" class="content-page wrap">
+<nav class="breadcrumbs" aria-label="面包屑导航"><ol><li><a href="https://www.wpfxy.cc/">星航指南-机场测评</a></li><li><span aria-current="page">在线 IP 查询与 Ping 测试</span></li></ol></nav>
+<div class="reading-layout">
+<article data-pagefind-body>
+<header class="article-header">
+<div class="eyebrow" data-pagefind-ignore>文章</div>
+<h1 data-pagefind-meta="title">在线 IP 查询与 Ping 测试</h1>
+<div class="metadata" data-pagefind-ignore><span>星航</span><time datetime="2026-11-02T18:48:19&#43;08:00">2026-11-02</time><span><span id="page-views">—</span> 次阅读</span></div>
+<div class="chips" data-pagefind-ignore><a href="https://www.wpfxy.cc/categories/network-basics/">网络技术</a></div>
+</header>
+
+<section class="net-tools" data-network-tools data-ping-url="https://www.wpfxy.cc/assets/theme/ping.txt" aria-label="在线网络工具">
+  <nav class="net-tool-nav" aria-label="选择网络工具"><a href="#ip-query">IP 查询</a><a href="#ping-test">HTTP Ping</a><a href="#icmp-test">远程 ICMP</a></nav>
+  <div class="net-tools-grid">
+    <section class="net-card" id="ip-query" aria-labelledby="net-ip-heading" data-ip-card>
+      <div class="net-card-heading"><span class="net-tool-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><ellipse cx="12" cy="12" rx="4" ry="9"/><path d="M3 12h18M5 6.5h14M5 17.5h14"/></svg></span><div><p class="net-eyebrow">NETWORK ADDRESS</p><h2 id="net-ip-heading">在线 IP 查询</h2></div><span class="net-badge">IPv4 / IPv6</span></div>
+      <p class="net-intro">查看当前网络出口，或查询一个公网 IP 的归属信息。</p>
+      <button type="button" class="net-button net-button-primary net-current" data-ip-current disabled>查询我的公网 IP</button>
+      <form data-ip-form novalidate>
+        <label for="net-ip-input">查询指定 IP</label>
+        <div class="net-input-row"><input id="net-ip-input" data-ip-input type="text" placeholder="例如 1.1.1.1 或 2606:4700:4700::1111" maxlength="64" autocomplete="off" autocapitalize="none" spellcheck="false" aria-describedby="net-ip-help"><button class="net-button net-button-secondary" type="submit" data-ip-query disabled>查询</button></div>
+        <p class="net-help" id="net-ip-help">填写公网 IPv4 或 IPv6；不支持域名、内网或保留地址。</p>
+      </form>
+      <div class="net-live-row"><p class="net-status" data-ip-status role="status" aria-live="polite">点击按钮开始，不会自动查询。</p><button type="button" class="net-text-button" data-ip-cancel disabled>取消</button></div>
+      <div class="net-ip-result" data-ip-result data-pagefind-ignore hidden>
+        <div class="net-ip-value-row"><div><span class="net-result-label" data-ip-kind>公网 IP</span><output class="net-ip-value" data-ip-value></output></div><button type="button" class="net-copy" data-ip-copy disabled aria-label="复制查询到的IP">复制 IP</button></div>
+        <dl class="net-ip-facts"><div><dt>国家 / 地区</dt><dd data-ip-country>—</dd></div><div><dt>省州 / 城市</dt><dd data-ip-city>—</dd></div><div><dt>网络组织</dt><dd data-ip-organization>—</dd></div><div><dt>ASN</dt><dd data-ip-asn>—</dd></div></dl>
+        <p class="net-result-meta" data-ip-meta></p>
+      </div>
+      <p class="net-provider">查询由 <a href="https://freeipapi.com/" target="_blank" rel="noopener noreferrer">FreeIPAPI</a> 提供，备用为 <a href="https://www.ipify.org/" target="_blank" rel="noopener noreferrer">ipify</a>。点击后才向查询服务发送请求；指定 IP 会发送给该服务。位置仅为估计，不代表精确位置或 VPN 检测结论。</p>
+    </section>
+    <section class="net-card net-card-purple" id="ping-test" aria-labelledby="net-ping-heading" data-ping-card>
+      <div class="net-card-heading"><span class="net-tool-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 12h4l3-7 5 14 3-7h5"/><circle cx="6" cy="12" r="1"/></svg></span><div><p class="net-eyebrow">CONNECTION RESPONSE</p><h2 id="net-ping-heading">Ping 测试</h2></div><span class="net-badge">HTTP</span></div>
+      <p class="net-intro">从当前浏览器发送 5 次请求，观察可读取的 HTTP 响应时间。</p>
+      <form data-ping-form novalidate>
+        <label for="net-ping-target">测试目标</label><select id="net-ping-target" data-ping-target aria-describedby="net-ping-help"><option value="site">本站 · 静态小资源</option><option value="cloudflare">Cloudflare · 测试端点</option><option value="ipify">ipify · 公网 IP 接口</option><option value="custom">自定义 HTTPS 网址</option></select>
+        <div class="net-custom-target" data-ping-custom hidden><label for="net-ping-url">HTTPS 网址</label><input id="net-ping-url" data-ping-url-input type="url" placeholder="https://example.com/" maxlength="2048" autocomplete="off" autocapitalize="none" spellcheck="false"><p class="net-help">目标需允许浏览器跨域读取。常规网站未开放此权限时，无法得到可确认的延迟结果。</p></div>
+        <p class="net-help" id="net-ping-help">每轮最多等待 5 秒，顺序请求，可随时取消。点击后会连接所选目标。</p>
+        <div class="net-actions"><button class="net-button net-button-primary" type="submit" data-ping-start disabled>开始测试 · 5 次</button><button class="net-button net-button-secondary" type="button" data-ping-cancel disabled>取消测试</button></div>
+      </form>
+      <p class="net-status" data-ping-status role="status" aria-live="polite">选择目标后开始测试。</p>
+      <div class="net-ping-results" data-ping-results data-pagefind-ignore hidden>
+        <dl class="net-ping-metrics"><div><dt>收到响应</dt><dd data-ping-count>—</dd></div><div><dt>平均响应</dt><dd data-ping-average>—</dd></div><div><dt>最小 / 最大</dt><dd data-ping-range>—</dd></div></dl>
+        <div class="net-table-scroll"><table class="net-ping-table"><caption class="net-sr-only">本次 HTTP Ping 请求记录</caption><thead><tr><th scope="col">次数</th><th scope="col">响应时间</th><th scope="col">结果</th></tr></thead><tbody data-ping-rows></tbody></table></div>
+      </div>
+      <p class="net-provider">这是 <strong>HTTP Ping，非 ICMP Ping</strong>，测量到收到响应头的时间，可能包含 DNS、TLS 和服务端处理。无法读取响应可能是跨域限制或网络异常，不能据此认定网站离线；结果也不等于机场整体速度。需要 ICMP 数据时，可使用下方<a href="#icmp-test">远程 ICMP Ping</a>。</p>
+    </section>
+    <section class="net-card net-card-wide" id="icmp-test" aria-labelledby="net-icmp-heading" data-icmp-card>
+      <div class="net-card-heading"><span class="net-tool-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M7 5h10v5H7zM3 15h6v5H3zM15 15h6v5h-6zM12 10v3M6 15v-2h12v2"/></svg></span><div><p class="net-eyebrow">REMOTE NETWORK PROBE</p><h2 id="net-icmp-heading">远程 ICMP Ping</h2></div><span class="net-badge">1 个探针 · 5 包</span></div>
+      <p class="net-intro">从所选地区的公共探针发起 ICMP Ping，查看该探针到目标的延迟与丢包记录。</p>
+      <p class="net-public-notice">由远程探针发起，<strong>测试目标和结果会公开</strong>，不代表当前设备的延迟。仅在点击后向 Globalping 提交任务。</p>
+      <form data-icmp-form novalidate>
+        <div class="net-icmp-inputs"><div><label for="net-icmp-target">公网 IP 或域名</label><input id="net-icmp-target" data-icmp-target type="text" value="1.1.1.1" placeholder="1.1.1.1 或 example.com" maxlength="253" autocomplete="off" autocapitalize="none" spellcheck="false" aria-describedby="net-icmp-help"></div><div><label for="net-icmp-region">探针范围</label><select id="net-icmp-region" data-icmp-region><option value="AS">亚洲</option><option value="EU">欧洲</option><option value="NA">北美</option><option value="world">不限地区</option></select></div></div>
+        <p class="net-help" id="net-icmp-help">仅支持公网目标，不填写协议、路径、端口或账号。每次使用 1 个探针、5 个数据包，最多等待 25 秒。</p>
+        <div class="net-actions net-icmp-actions"><button class="net-button net-button-primary" type="submit" data-icmp-start disabled>开始 ICMP 测试</button><button class="net-button net-button-secondary" type="button" data-icmp-stop disabled>停止等待</button></div>
+      </form>
+      <p class="net-status" data-icmp-status role="status" aria-live="polite">填写目标，选择探针范围后开始测试。</p>
+      <div class="net-icmp-results" data-icmp-results data-pagefind-ignore hidden>
+        <dl class="net-probe-facts"><div><dt>远程探针</dt><dd data-icmp-probe>—</dd></div><div><dt>探针网络</dt><dd data-icmp-network>—</dd></div><div><dt>解析目标 IP</dt><dd data-icmp-address>—</dd></div></dl>
+        <dl class="net-ping-metrics net-icmp-metrics"><div><dt>平均延迟</dt><dd data-icmp-average>—</dd></div><div><dt>最小 / 最大</dt><dd data-icmp-range>—</dd></div><div><dt>丢包率</dt><dd data-icmp-loss>—</dd></div><div><dt>发包 / 收包</dt><dd data-icmp-packets>—</dd></div></dl>
+        <details class="net-raw-details" data-icmp-raw-details hidden><summary>查看探针原始输出</summary><pre data-icmp-raw></pre></details>
+      </div>
+      <p class="net-measurement-link" data-icmp-link-wrap data-pagefind-ignore hidden><a data-icmp-link target="_blank" rel="noopener noreferrer">查看此任务的公开原始结果</a></p>
+      <p class="net-provider">测试由 <a href="https://globalping.io/" target="_blank" rel="noopener noreferrer">Globalping</a> 公共探针提供，可能受免费额度、探针可用性或目标的 ICMP 策略影响。停止等待仅中止本页查询，已经派发的远程任务可能继续运行。本站不保存输入或结果。</p>
+    </section>
+  </div>
+  <noscript><p class="net-noscript">请启用 JavaScript 后使用在线查询与测试；下方说明仍可阅读。</p></noscript>
+</section>
+<div class="prose managed-prose"><p>在这里查询当前请求的公网出口 IP，或输入一个 IPv4 / IPv6 地址查看近似归属地与网络组织。Ping 分为浏览器 HTTP 响应测试和远程探针 ICMP 测试，两者的出发位置不同，请分别理解结果。</p>
+<h2 id="ip-">IP 查询怎样使用</h2>
+<ul>
+<li>点击“查询我的 IP”，查看这次请求实际使用的公网出口；切换网络或代理后，可以再次查询进行比较。</li>
+<li>输入一个公网 IPv4 或 IPv6 地址，可查询该地址的数据库资料。这里不查询域名，也不显示局域网设备地址。</li>
+<li>国家、地区、城市和 ASN 来自第三方数据库，只能作为线索，不能定位个人住址，也不能单凭这些资料判断是否使用了 VPN。</li>
+<li>代理分流、IPv4 / IPv6 和访问目标不同，可能产生不同出口；一次查询不等于设备所有流量都走同一条路径。</li>
+</ul>
+<h2 id="ping-">Ping 结果怎样理解</h2>
+<h3 id="-http-">浏览器 HTTP 测试</h3>
+<p>从你当前浏览器顺序发出五次小请求，可随时取消；结果展示响应次数、HTTP 状态及可读响应的最短、平均、最长耗时。这种测试不能发送系统 ICMP 报文。</p>
+<p>测试包含可能发生的 DNS 查询、连接建立、TLS 和服务端处理，不是纯网络往返时间，也不是下载测速。首轮与后续轮次可能不同，应固定设备、网络和目标再比较。</p>
+<p>自定义目标仅支持 HTTPS，并需要允许浏览器跨域读取。超时、浏览器跨域限制和网络异常都可能导致测试失败，因此不能仅凭本页失败判定目标离线。收到 HTTP 403、404 或 500 说明有服务器返回状态，不应当作 ICMP 丢包。</p>
+<h3 id="-icmp-">远程 ICMP 测试</h3>
+<p>由 Globalping 在所选地区的一台远程探针向目标发送五个 ICMP 包，展示实际收到的包数、丢包率和往返时间，以及探针所在城市和网络。它反映远程探针到目标的路径，不代表当前电脑、手机或代理出口的延迟。</p>
+<p>可输入公网 IP 或域名，不要输入网址路径、账户、密钥或机密主机名。目标和测量结果属于公开数据。点击“停止等待”只停止当前浏览器的请求和轮询，已经派发的远程测量仍可能完成。</p>
+<h2 id="heading">数据来源与隐私</h2>
+<p>仅在你点击查询或开始测试后，浏览器才向对应服务发送请求；该服务可以看到请求的公网出口 IP。结果显示在当前页面，本站工具不会将查询的 IP 或自定义目标写入浏览器存储，也不会主动将它们发送到站点统计。</p>
+<ul>
+<li>IP 与归属地由 <a href="https://freeipapi.com/">FreeIPAPI</a> 提供；查询当前 IP 时，服务不可用可降级至 <a href="https://www.ipify.org/">ipify</a>，降级结果不含归属地。第三方服务的日志和数据处理见 <a href="https://freeipapi.com/privacy">FreeIPAPI 隐私说明</a>。</li>
+<li>HTTP 测试提供本站小资源、<a href="https://github.com/cloudflare/speedtest">Cloudflare</a> 和 ipify 目标，也可输入自己要检查的公开 HTTPS 地址。</li>
+<li>远程 ICMP 测试由 <a href="https://globalping.io/">Globalping</a> 提供，每次仅使用一台探针；匿名访问有免费额度限制。结果公开规则见 <a href="https://globalping.io/terms/terms-of-use.md">Globalping 条款</a>。</li>
+<li>查询服务可能限流或暂时不可用，遇到提示时稍后再试，不要连续刷新或反复提交。</li>
+</ul>
+<h2 id="heading-1">继续排查网络</h2>
+<ul>
+<li><a href="../ipv6-dual-stack-proxy-path/">IPv6 会走代理吗？双栈网络检查方法</a></li>
+<li><a href="../latency-jitter-loss-primer/">低延迟为什么还会卡？读懂抖动、丢包与吞吐量</a></li>
+<li><a href="../website-timeout-decision-tree/">代理已连接但网页超时？按阶段缩小范围</a></li>
+</ul>
+</div>
+<div class="article-likes" data-pagefind-ignore>
+<button id="page-like" class="like-button" type="button" aria-pressed="false" aria-describedby="page-like-message" disabled>
+<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"/></svg>
+<span id="page-like-label">点赞</span><span id="page-like-count">—</span>
+</button><p id="page-like-message" role="status"></p>
+</div>
+
+<nav class="pagination" aria-label="相邻文章" data-pagefind-ignore><a href="https://www.wpfxy.cc/posts/flybit-plans-guide-2026/">← 上一篇</a><a href="https://www.wpfxy.cc/posts/proxy-throughput-cpu-core-device-bottleneck/">下一篇 →</a></nav>
+<section class="comments-section" data-pagefind-ignore><h2>评论</h2><div id="comments"></div></section>
+</article>
+<aside class="article-sidebar article-rail">
+<aside class="toc"><div>本篇目录</div><nav aria-label="文章目录"><a class="level-2" href="#ip-">IP 查询怎样使用</a><a class="level-2" href="#ping-">Ping 结果怎样理解</a><a class="level-3" href="#-http-">浏览器 HTTP 测试</a><a class="level-3" href="#-icmp-">远程 ICMP 测试</a><a class="level-2" href="#heading">数据来源与隐私</a><a class="level-2" href="#heading-1">继续排查网络</a></nav></aside>
+</aside></div></main>
+</div>
+<button id="back-to-top" class="back-to-top" type="button" aria-label="返回顶部" title="返回顶部" hidden>
+<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h14M12 20V8m-5 5 5-5 5 5"/></svg>
+</button>
+</div><footer class="site-footer wrap footer"><div class="footer-top"><a class="brand" href="https://www.wpfxy.cc/"><img class="brand-logo" src="https://www.wpfxy.cc/assets/media/9952960d-a32f-46c0-b9ba-74f5c355bf27.png" alt="" width="32" height="32">星航指南-机场测评</a><span>FlyBit &amp; 99吧 · 合作推广信息与使用指南</span></div><nav class="footer-tools" aria-label="相关工具软件"><span class="footer-tools-label">常用工具</span><a href="https://v2rayn.2dust.link/" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" width="23" height="23" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 5h18v12H3zM8 21h8M12 17v4M8 9l4 5 4-5"/></svg><span>v2rayN</span></a><a href="https://www.clashverge.dev/install.html" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" width="23" height="23" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 8 7 3l5 3 5-3 2 5v7c0 4-3 6-7 6s-7-2-7-6zM8 12h.01M16 12h.01M10 16l2 2 2-2"/></svg><span>Clash Verge Rev</span></a><a href="https://v2rayng.2dust.link/" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" width="23" height="23" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 10h14v10H5zM7 10V8a5 5 0 0 1 10 0v2M8 3 6 1M16 3l2-2M2 12v6M22 12v6M9 20v3M15 20v3M9 7h.01M15 7h.01"/></svg><span>v2rayNG</span></a><a href="https://stash.ws/zh/download" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" width="23" height="23" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 9 5-9 5-9-5zM3 8v10l9 5 9-5V8M12 13v10"/></svg><span>Stash</span></a><a href="https://www.wpfxy.cc/posts/network-tools/"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2 12h4l3-7 5 14 3-7h5"/></svg><span>IP / Ping</span></a></nav><nav id="friend-links" class="friend-links" aria-label="友情链接"><span class="friend-links-label">友情链接</span><a href="https://goflybit.com/#/register?code=gPinVG8C" target="_blank" rel="noopener noreferrer">FlyBit</a><a href="https://99ba.net/#/register?code=sExBbdk9" target="_blank" rel="noopener noreferrer">99吧</a><a href="https://t.me/five_91" target="_blank" rel="noopener noreferrer">Telegram联系</a><a href="https://t.me/RouteRadarCN" target="_blank" rel="noopener noreferrer">Telegram频道</a></nav><div class="footer-bottom"><span>© 2026 星航指南</span><span>先核对信息，再做选择。</span></div><p class="footer-disclosure">合作说明：通过本站合作链接购买，本站可能获得佣金。账户、套餐、付款与售后由服务商提供。</p></footer>
+
+<dialog id="search-dialog" class="reader-dialog site-search" aria-labelledby="search-title" data-reader-dialog data-pagefind-ignore>
+<header class="reader-dialog-header"><h2 id="search-title">搜索文章</h2><button class="dialog-close" type="button" data-close-dialog aria-label="关闭搜索" title="关闭搜索">×</button></header>
+<div class="reader-dialog-body">
+
+<div id="site-search-ui" data-module="https://www.wpfxy.cc/pagefind/pagefind-component-ui.js" data-stylesheet="https://www.wpfxy.cc/pagefind/pagefind-component-ui.css" hidden>
+
+<pagefind-config bundle-path="https://www.wpfxy.cc/pagefind/" base-url="https://www.wpfxy.cc/" lang="zh-cn" no-worker></pagefind-config>
+<pagefind-input placeholder="搜索文章标题或正文"></pagefind-input>
+<pagefind-summary></pagefind-summary>
+<pagefind-results></pagefind-results>
+</div>
+<p id="search-status" class="search-status" role="status">正在加载搜索…</p>
+<button id="search-retry" class="button" type="button" hidden>重新加载</button>
+
+</div>
+</dialog>
+
+<script id="blog-comments-config" type="application/json">{"comments":true,"likes":true,"locale":"zh-CN","pageKey":"/p/7dbbac37-a8b5-4774-98be-763b99b81e49/","pageTitle":"在线 IP 查询与 Ping 测试","server":"https://upfqpobmiewm.sealosgzg.site","site":"xblog-8d67829c-3602-4d9b-9bb7-c2d68118fecb","views":true,"viewsBase":0}</script>
+</body></html>
