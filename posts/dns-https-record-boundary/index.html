@@ -1,0 +1,114 @@
+<!doctype html><html lang="zh-CN" class="dark" data-color-mode="dark" data-theme="star-route-guide">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DNS 查到 HTTPS 记录，就证明机场线路支持 HTTP/3 吗？看清三层证据 · 星航指南-机场测评</title>
+<meta name="description" content="DNS HTTPS 记录出现 alpn=h3 只是连接提示。用实际请求协议和客户端转发记录核对，不把记录误当成机场线路能力。">
+<meta name="keywords" content="机场网络测试,DNS HTTPS记录,HTTP3,代理路径核对">
+<meta name="robots" content="index,follow,max-image-preview:large"><link rel="canonical" href="https://www.wpfxy.cc/posts/dns-https-record-boundary/">
+<meta property="og:title" content="DNS 查到 HTTPS 记录，就证明机场线路支持 HTTP/3 吗？看清三层证据">
+<meta property="og:description" content="DNS HTTPS 记录出现 alpn=h3 只是连接提示。用实际请求协议和客户端转发记录核对，不把记录误当成机场线路能力。">
+<meta property="og:url" content="https://www.wpfxy.cc/posts/dns-https-record-boundary/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="星航指南-机场测评">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.wpfxy.cc/assets/media/a5f874ba-5e76-4f38-ac6a-c4001a384d5e.webp"><meta property="og:image:alt" content="DNS 查到 HTTPS 记录，就证明机场线路支持 HTTP/3 吗？看清三层证据">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="DNS 查到 HTTPS 记录，就证明机场线路支持 HTTP/3 吗？看清三层证据">
+<meta name="twitter:description" content="DNS HTTPS 记录出现 alpn=h3 只是连接提示。用实际请求协议和客户端转发记录核对，不把记录误当成机场线路能力。">
+<meta name="twitter:image" content="https://www.wpfxy.cc/assets/media/9952960d-a32f-46c0-b9ba-74f5c355bf27.png">
+<meta name="author" content="星航"><meta property="article:published_time" content="2026-11-08T09:30:43&#43;08:00"><meta property="article:modified_time" content="2026-11-08T09:30:45&#43;08:00"><meta property="article:tag" content="DNS">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@id":"https://www.wpfxy.cc/posts/dns-https-record-boundary/#article","@type":"BlogPosting","author":{"@type":"Person","name":"星航"},"dateModified":"2026-11-08T09:30:45+08:00","datePublished":"2026-11-08T09:30:43+08:00","description":"DNS HTTPS 记录出现 alpn=h3 只是连接提示。用实际请求协议和客户端转发记录核对，不把记录误当成机场线路能力。","headline":"DNS 查到 HTTPS 记录，就证明机场线路支持 HTTP/3 吗？看清三层证据","inLanguage":"zh-CN","mainEntityOfPage":{"@id":"https://www.wpfxy.cc/posts/dns-https-record-boundary/","@type":"WebPage"},"url":"https://www.wpfxy.cc/posts/dns-https-record-boundary/"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://www.wpfxy.cc/","name":"星航指南-机场测评","position":1},{"@type":"ListItem","item":"https://www.wpfxy.cc/posts/dns-https-record-boundary/","name":"DNS 查到 HTTPS 记录，就证明机场线路支持 HTTP/3 吗？看清三层证据","position":2}]}]}</script>
+
+<script>document.documentElement.dataset.colorMode="dark";document.documentElement.classList.add("dark");</script>
+<link rel="stylesheet" href="https://www.wpfxy.cc/assets/theme/style.css">
+<link rel="stylesheet" href="https://www.wpfxy.cc/assets/theme/advertisements.css">
+<link rel="stylesheet" href="https://www.wpfxy.cc/assets/theme/search.css"><script defer src="https://www.wpfxy.cc/assets/theme/search.js"></script>
+<link rel="stylesheet" href="https://www.wpfxy.cc/assets/theme/guide.css?v=2.1.1">
+<link rel="stylesheet" href="https://www.wpfxy.cc/assets/theme/viewer.css">
+<link rel="stylesheet" href="https://www.wpfxy.cc/assets/theme/reader.css">
+<link rel="icon" href="https://www.wpfxy.cc/assets/media/9952960d-a32f-46c0-b9ba-74f5c355bf27.png">
+<link rel="stylesheet" href="https://www.wpfxy.cc/assets/theme/artalk.css"><script defer src="https://www.wpfxy.cc/assets/theme/artalk.js"></script>
+<script defer src="https://www.wpfxy.cc/assets/theme/theme.js?v=2.1.1"></script>
+<script defer src="https://www.wpfxy.cc/assets/theme/reader.js"></script>
+<script defer src="https://www.wpfxy.cc/assets/theme/viewer.js"></script>
+<script defer src="https://www.wpfxy.cc/assets/theme/image-viewer.js"></script>
+
+<script defer src="https://www.wpfxy.cc/assets/theme/interactions.js"></script>
+<script defer src="https://www.wpfxy.cc/assets/theme/guide.js?v=2.1.1"></script>
+
+
+<script defer src="https://www.wpfxy.cc/assets/xblog/google-analytics.js" data-xblog-google-analytics="G-ZH5EMJLD09" data-site-hosts="www.wpfxy.cc"></script></head>
+
+<body class="reader-page star-guide article-page"><a class="skip" href="#main">跳到正文</a><header class="site-header"><div class="header wrap header-inner"><a class="brand" href="https://www.wpfxy.cc/" aria-label="星航指南首页"><img class="brand-logo" src="https://www.wpfxy.cc/assets/media/9952960d-a32f-46c0-b9ba-74f5c355bf27.png" alt="" width="38" height="38">星航指南-机场测评<span class="brand-caption">FLYBIT / 99BA<br>机场选择与使用指南</span></a><nav id="site-navigation" aria-label="主导航"><a href="https://www.wpfxy.cc/">首页</a><a href="https://www.wpfxy.cc/posts/flybit-99ba-airport-guide/">套餐对比</a><a href="https://www.wpfxy.cc/posts/getting-started-tutorials/">使用教程</a><a href="https://www.wpfxy.cc/posts/client-tools-download/">工具下载</a><a href="https://www.wpfxy.cc/posts/frequently-asked-questions/">常见问题</a><a href="https://www.wpfxy.cc/posts/airport-review-editorial-standard/">关于我们</a><a href="https://www.wpfxy.cc/posts/network-tools/">网络工具</a></nav><a class="nav-cta" href="https://www.wpfxy.cc/#services">选择服务</a><a class="search-toggle" href="https://www.wpfxy.cc/search/" data-open-dialog="search-dialog" aria-haspopup="dialog" aria-controls="search-dialog" aria-label="搜索" title="搜索"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4.5 4.5"/></svg></a><button class="mobile-nav-toggle" id="menu-toggle" aria-label="打开导航菜单" aria-expanded="false" aria-controls="site-navigation"><span aria-hidden="true">☰</span></button></div></header><div class="page-viewport article-viewport"><div class="page-scroll article-scroll">
+<main id="main" tabindex="-1" class="content-page wrap">
+<nav class="breadcrumbs" aria-label="面包屑导航"><ol><li><a href="https://www.wpfxy.cc/">星航指南-机场测评</a></li><li><span aria-current="page">DNS 查到 HTTPS 记录，就证明机场线路支持 HTTP/3 吗？看清三层证据</span></li></ol></nav>
+<div class="reading-layout">
+<article data-pagefind-body>
+<header class="article-header">
+<div class="eyebrow" data-pagefind-ignore>文章</div>
+<h1 data-pagefind-meta="title">DNS 查到 HTTPS 记录，就证明机场线路支持 HTTP/3 吗？看清三层证据</h1>
+<div class="metadata" data-pagefind-ignore><span>星航</span><time datetime="2026-11-08T09:30:43&#43;08:00">2026-11-08</time><span><span id="page-views">—</span> 次阅读</span></div>
+<div class="chips" data-pagefind-ignore><a href="https://www.wpfxy.cc/categories/network-basics/">网络技术</a></div>
+</header>
+<div class="prose managed-prose"><h2 id="dns--https--http3-">DNS 查到 HTTPS 记录，就证明机场线路支持 HTTP/3 吗？看清三层证据</h2>
+<p>排查网站连接时，有人会看到 DNS 的 <code>HTTPS</code> 记录里出现 <code>alpn=h3</code>，便认为机场节点已支持 HTTP/3。RFC 9460 说明，这类记录向客户端提供连接服务的提示；它既不是浏览器实际协商结果，也不能证明流量经过哪条代理路径。Cloudflare 也说明 HTTPS 记录可能由网站的 DNS 服务自动生成。</p>
+<h3 id="heading">用一次公开查询认识记录</h3>
+<p>下面的命令向 Cloudflare 公共解析器查询示例域名的 HTTPS 记录；它只是该解析器当时的答案，并不代表你的浏览器或机场客户端正在使用它。</p>
+<pre><code class="language-powershell">curl.exe -q --silent --show-error --header &quot;accept: application/dns-json&quot; &quot;https://cloudflare-dns.com/dns-query?name=example.com&amp;type=HTTPS&quot;
+</code></pre>
+<p>返回中的 <code>Question.type=65</code> 表示查询 HTTPS 记录；若有 <code>Answer</code>，可查看优先级、目标和 <code>alpn</code> 等字段。答案可能随时间、解析器和域名配置变化。不要把 <code>ipv4hint</code> 或 <code>ipv6hint</code> 当作机场出口 IP。</p>
+<p><img src="https://www.wpfxy.cc/assets/media/a5f874ba-5e76-4f38-ac6a-c4001a384d5e.webp" alt="DNS HTTPS 连接提示、地址记录、浏览器实际连接及代理路径分层的示意"></p>
+<p><em>示意图：DNS 提示、实际 HTTPS 连接和代理转发路径需要分别核对。</em></p>
+<h3 id="heading-1">真正验收时再看两件事</h3>
+<ol>
+<li><strong>网站连接</strong>：用浏览器开发工具或受支持的客户端查看目标请求最终采用的协议与 HTTP 状态，并确认页面或任务能完成。DNS 答案中的 <code>h3</code> 只是候选提示，不能代替连接结果。</li>
+<li><strong>机场路径</strong>：固定节点和规则，查看客户端连接记录，再做同一目标的直连与代理对照。浏览器自身的安全 DNS、客户端远端解析及系统 DNS 可能走不同路径；一份公共 DoH 查询不能证明其中任一实际路径。</li>
+</ol>
+<p>如果 DNS 查不到 HTTPS 记录，也不能据此直接判定网站不支持 HTTPS 或 HTTP/3；仍应以实际连接协商与任务结果为准。机场推荐中的“支持某协议”须说明测试设备、客户端和目标，不宜由一条 DNS 记录推断。</p>
+<h3 id="heading-2">资料来源</h3>
+<ul>
+<li><a href="https://www.rfc-editor.org/rfc/rfc9460.html">RFC 9460：SVCB 与 HTTPS DNS 记录</a></li>
+<li><a href="https://developers.cloudflare.com/dns/manage-dns-records/reference/dns-record-types/">Cloudflare：DNS 记录类型与 HTTPS 记录</a></li>
+<li><a href="https://developers.cloudflare.com/1.1.1.1/encryption/dns-over-https/make-api-requests/dns-json/">Cloudflare：DoH JSON 查询方法</a></li>
+</ul>
+<p>资料核验日期：2026-11-08。</p>
+</div>
+<div class="article-likes" data-pagefind-ignore>
+<button id="page-like" class="like-button" type="button" aria-pressed="false" aria-describedby="page-like-message" disabled>
+<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"/></svg>
+<span id="page-like-label">点赞</span><span id="page-like-count">—</span>
+</button><p id="page-like-message" role="status"></p>
+</div>
+<div class="article-tags" data-pagefind-ignore><a href="https://www.wpfxy.cc/tags/dns/"># DNS</a></div>
+<nav class="pagination" aria-label="相邻文章" data-pagefind-ignore><a href="https://www.wpfxy.cc/posts/flybit-plans-guide-2026/">← 上一篇</a><a href="https://www.wpfxy.cc/posts/authoritative-recursive-dns-answer-compare/">下一篇 →</a></nav>
+<section class="comments-section" data-pagefind-ignore><h2>评论</h2><div id="comments"></div></section>
+</article>
+<aside class="article-sidebar article-rail">
+<aside class="toc"><div>本篇目录</div><nav aria-label="文章目录"><a class="level-2" href="#dns--https--http3-">DNS 查到 HTTPS 记录，就证明机场线路支持 HTTP/3 吗？看清三层证据</a><a class="level-3" href="#heading">用一次公开查询认识记录</a><a class="level-3" href="#heading-1">真正验收时再看两件事</a><a class="level-3" href="#heading-2">资料来源</a></nav></aside>
+</aside></div></main>
+</div>
+<button id="back-to-top" class="back-to-top" type="button" aria-label="返回顶部" title="返回顶部" hidden>
+<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h14M12 20V8m-5 5 5-5 5 5"/></svg>
+</button>
+</div><footer class="site-footer wrap footer"><div class="footer-top"><a class="brand" href="https://www.wpfxy.cc/"><img class="brand-logo" src="https://www.wpfxy.cc/assets/media/9952960d-a32f-46c0-b9ba-74f5c355bf27.png" alt="" width="32" height="32">星航指南-机场测评</a><span>FlyBit &amp; 99吧 · 合作推广信息与使用指南</span></div><nav class="footer-tools" aria-label="相关工具软件"><span class="footer-tools-label">常用工具</span><a href="https://v2rayn.2dust.link/" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" width="23" height="23" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 5h18v12H3zM8 21h8M12 17v4M8 9l4 5 4-5"/></svg><span>v2rayN</span></a><a href="https://www.clashverge.dev/install.html" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" width="23" height="23" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 8 7 3l5 3 5-3 2 5v7c0 4-3 6-7 6s-7-2-7-6zM8 12h.01M16 12h.01M10 16l2 2 2-2"/></svg><span>Clash Verge Rev</span></a><a href="https://v2rayng.2dust.link/" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" width="23" height="23" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 10h14v10H5zM7 10V8a5 5 0 0 1 10 0v2M8 3 6 1M16 3l2-2M2 12v6M22 12v6M9 20v3M15 20v3M9 7h.01M15 7h.01"/></svg><span>v2rayNG</span></a><a href="https://stash.ws/zh/download" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" width="23" height="23" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 9 5-9 5-9-5zM3 8v10l9 5 9-5V8M12 13v10"/></svg><span>Stash</span></a><a href="https://www.wpfxy.cc/posts/network-tools/"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2 12h4l3-7 5 14 3-7h5"/></svg><span>IP / Ping</span></a></nav><nav id="friend-links" class="friend-links" aria-label="友情链接"><span class="friend-links-label">友情链接</span><a href="https://goflybit.com/#/register?code=gPinVG8C" target="_blank" rel="noopener noreferrer">FlyBit</a><a href="https://99ba.net/#/register?code=sExBbdk9" target="_blank" rel="noopener noreferrer">99吧</a><a href="https://t.me/five_91" target="_blank" rel="noopener noreferrer">Telegram联系</a><a href="https://t.me/RouteRadarCN" target="_blank" rel="noopener noreferrer">Telegram频道</a></nav><div class="footer-bottom"><span>© 2026 星航指南</span><span>先核对信息，再做选择。</span></div><p class="footer-disclosure">合作说明：通过本站合作链接购买，本站可能获得佣金。账户、套餐、付款与售后由服务商提供。</p></footer>
+
+<dialog id="search-dialog" class="reader-dialog site-search" aria-labelledby="search-title" data-reader-dialog data-pagefind-ignore>
+<header class="reader-dialog-header"><h2 id="search-title">搜索文章</h2><button class="dialog-close" type="button" data-close-dialog aria-label="关闭搜索" title="关闭搜索">×</button></header>
+<div class="reader-dialog-body">
+
+<div id="site-search-ui" data-module="https://www.wpfxy.cc/pagefind/pagefind-component-ui.js" data-stylesheet="https://www.wpfxy.cc/pagefind/pagefind-component-ui.css" hidden>
+
+<pagefind-config bundle-path="https://www.wpfxy.cc/pagefind/" base-url="https://www.wpfxy.cc/" lang="zh-cn" no-worker></pagefind-config>
+<pagefind-input placeholder="搜索文章标题或正文"></pagefind-input>
+<pagefind-summary></pagefind-summary>
+<pagefind-results></pagefind-results>
+</div>
+<p id="search-status" class="search-status" role="status">正在加载搜索…</p>
+<button id="search-retry" class="button" type="button" hidden>重新加载</button>
+
+</div>
+</dialog>
+
+<script id="blog-comments-config" type="application/json">{"comments":true,"likes":true,"locale":"zh-CN","pageKey":"/p/a273fa8b-1e4d-4d0b-8003-2bdbb9d9e7c6/","pageTitle":"DNS 查到 HTTPS 记录，就证明机场线路支持 HTTP/3 吗？看清三层证据","server":"https://upfqpobmiewm.sealosgzg.site","site":"xblog-8d67829c-3602-4d9b-9bb7-c2d68118fecb","views":true,"viewsBase":0}</script>
+</body></html>
