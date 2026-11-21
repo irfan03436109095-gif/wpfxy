@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://www.wpfxy.cc/</loc>
-    <lastmod>2026-11-20T01:35:21Z</lastmod>
+    <lastmod>2026-11-21T01:47:04Z</lastmod>
   </url>
   <url>
     <loc>https://www.wpfxy.cc/categories/airport-selection/</loc>
@@ -18,15 +18,15 @@
   </url>
   <url>
     <loc>https://www.wpfxy.cc/categories/network-basics/</loc>
-    <lastmod>2026-11-20T01:35:21Z</lastmod>
+    <lastmod>2026-11-21T01:47:04Z</lastmod>
   </url>
   <url>
     <loc>https://www.wpfxy.cc/categories/network-basics/page/2/</loc>
-    <lastmod>2026-11-20T01:35:21Z</lastmod>
+    <lastmod>2026-11-21T01:47:04Z</lastmod>
   </url>
   <url>
     <loc>https://www.wpfxy.cc/categories/network-basics/page/3/</loc>
-    <lastmod>2026-11-20T01:35:21Z</lastmod>
+    <lastmod>2026-11-21T01:47:04Z</lastmod>
   </url>
   <url>
     <loc>https://www.wpfxy.cc/categories/privacy-review/</loc>
@@ -38,23 +38,23 @@
   </url>
   <url>
     <loc>https://www.wpfxy.cc/page/2/</loc>
-    <lastmod>2026-11-20T01:35:21Z</lastmod>
+    <lastmod>2026-11-21T01:47:04Z</lastmod>
   </url>
   <url>
     <loc>https://www.wpfxy.cc/page/3/</loc>
-    <lastmod>2026-11-20T01:35:21Z</lastmod>
+    <lastmod>2026-11-21T01:47:04Z</lastmod>
   </url>
   <url>
     <loc>https://www.wpfxy.cc/page/4/</loc>
-    <lastmod>2026-11-20T01:35:21Z</lastmod>
+    <lastmod>2026-11-21T01:47:04Z</lastmod>
   </url>
   <url>
     <loc>https://www.wpfxy.cc/page/5/</loc>
-    <lastmod>2026-11-20T01:35:21Z</lastmod>
+    <lastmod>2026-11-21T01:47:04Z</lastmod>
   </url>
   <url>
     <loc>https://www.wpfxy.cc/page/6/</loc>
-    <lastmod>2026-11-20T01:35:21Z</lastmod>
+    <lastmod>2026-11-21T01:47:04Z</lastmod>
   </url>
   <url>
     <loc>https://www.wpfxy.cc/posts/99ba-plans-guide-2026/</loc>
@@ -150,7 +150,7 @@
   </url>
   <url>
     <loc>https://www.wpfxy.cc/posts/dns-refused-policy-response-check/</loc>
-    <lastmod>2026-11-20T01:35:16Z</lastmod>
+    <lastmod>2026-11-21T01:47:04Z</lastmod>
   </url>
   <url>
     <loc>https://www.wpfxy.cc/posts/dns-resolution-route-map/</loc>
@@ -186,7 +186,7 @@
   </url>
   <url>
     <loc>https://www.wpfxy.cc/posts/flybit-plans-guide-2026/</loc>
-    <lastmod>2026-11-20T01:35:21Z</lastmod>
+    <lastmod>2026-11-21T01:47:04Z</lastmod>
   </url>
   <url>
     <loc>https://www.wpfxy.cc/posts/flybit-service-profile/</loc>
@@ -215,6 +215,10 @@
   <url>
     <loc>https://www.wpfxy.cc/posts/macos-system-proxy-audit/</loc>
     <lastmod>2026-11-02T11:38:58Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.wpfxy.cc/posts/mdns-local-hostname-lan-check/</loc>
+    <lastmod>2026-11-21T01:46:58Z</lastmod>
   </url>
   <url>
     <loc>https://www.wpfxy.cc/posts/multi-device-airport-candidates-flybit-99ba-202611/</loc>
@@ -314,11 +318,15 @@
   </url>
   <url>
     <loc>https://www.wpfxy.cc/tags/dns/</loc>
-    <lastmod>2026-11-20T01:35:21Z</lastmod>
+    <lastmod>2026-11-21T01:47:04Z</lastmod>
   </url>
   <url>
     <loc>https://www.wpfxy.cc/tags/dns/page/2/</loc>
-    <lastmod>2026-11-20T01:35:21Z</lastmod>
+    <lastmod>2026-11-21T01:47:04Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.wpfxy.cc/tags/dns/page/3/</loc>
+    <lastmod>2026-11-21T01:46:58Z</lastmod>
   </url>
   <url>
     <loc>https://www.wpfxy.cc/tags/flybit/</loc>
@@ -354,15 +362,15 @@
   </url>
   <url>
     <loc>https://www.wpfxy.cc/tags/troubleshooting/</loc>
-    <lastmod>2026-11-20T01:35:21Z</lastmod>
+    <lastmod>2026-11-21T01:47:04Z</lastmod>
   </url>
   <url>
     <loc>https://www.wpfxy.cc/tags/troubleshooting/page/2/</loc>
-    <lastmod>2026-11-20T01:35:21Z</lastmod>
+    <lastmod>2026-11-21T01:47:04Z</lastmod>
   </url>
   <url>
     <loc>https://www.wpfxy.cc/tags/troubleshooting/page/3/</loc>
-    <lastmod>2026-11-20T01:35:21Z</lastmod>
+    <lastmod>2026-11-21T01:47:04Z</lastmod>
   </url>
   <url>
     <loc>https://www.wpfxy.cc/tags/windows/</loc>
