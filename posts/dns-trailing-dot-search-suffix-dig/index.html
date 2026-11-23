@@ -1,0 +1,112 @@
+<!doctype html><html lang="zh-CN" class="dark" data-color-mode="dark" data-theme="star-route-guide">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DNS 域名末尾的点有什么用？用 dig 核对搜索后缀 · 星航指南-机场测评</title>
+<meta name="description" content="DNS 查询短名和完整域名为何会得到不同地址？用 dig 的 search 选项与末尾点对照，核对实际问题名和 DNS 搜索后缀。">
+<meta name="keywords" content="DNS搜索后缀,域名末尾点,dig search,绝对域名,DNS排查">
+<meta name="robots" content="index,follow,max-image-preview:large"><link rel="canonical" href="https://www.wpfxy.cc/posts/dns-trailing-dot-search-suffix-dig/">
+<meta property="og:title" content="DNS 域名末尾的点有什么用？用 dig 核对搜索后缀">
+<meta property="og:description" content="DNS 查询短名和完整域名为何会得到不同地址？用 dig 的 search 选项与末尾点对照，核对实际问题名和 DNS 搜索后缀。">
+<meta property="og:url" content="https://www.wpfxy.cc/posts/dns-trailing-dot-search-suffix-dig/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="星航指南-机场测评">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.wpfxy.cc/assets/media/d47ee377-337b-4078-9371-b54fab4249db.webp"><meta property="og:image:alt" content="DNS 域名末尾的点有什么用？用 dig 核对搜索后缀">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="DNS 域名末尾的点有什么用？用 dig 核对搜索后缀">
+<meta name="twitter:description" content="DNS 查询短名和完整域名为何会得到不同地址？用 dig 的 search 选项与末尾点对照，核对实际问题名和 DNS 搜索后缀。">
+<meta name="twitter:image" content="https://www.wpfxy.cc/assets/media/9952960d-a32f-46c0-b9ba-74f5c355bf27.png">
+<meta name="author" content="星航"><meta property="article:published_time" content="2026-11-23T09:26:53&#43;08:00"><meta property="article:modified_time" content="2026-11-23T09:26:57&#43;08:00"><meta property="article:tag" content="DNS"><meta property="article:tag" content="故障排查">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@id":"https://www.wpfxy.cc/posts/dns-trailing-dot-search-suffix-dig/#article","@type":"BlogPosting","author":{"@type":"Person","name":"星航"},"dateModified":"2026-11-23T09:26:57+08:00","datePublished":"2026-11-23T09:26:53+08:00","description":"DNS 查询短名和完整域名为何会得到不同地址？用 dig 的 search 选项与末尾点对照，核对实际问题名和 DNS 搜索后缀。","headline":"DNS 域名末尾的点有什么用？用 dig 核对搜索后缀","inLanguage":"zh-CN","mainEntityOfPage":{"@id":"https://www.wpfxy.cc/posts/dns-trailing-dot-search-suffix-dig/","@type":"WebPage"},"url":"https://www.wpfxy.cc/posts/dns-trailing-dot-search-suffix-dig/"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://www.wpfxy.cc/","name":"星航指南-机场测评","position":1},{"@type":"ListItem","item":"https://www.wpfxy.cc/posts/dns-trailing-dot-search-suffix-dig/","name":"DNS 域名末尾的点有什么用？用 dig 核对搜索后缀","position":2}]}]}</script>
+
+<script>document.documentElement.dataset.colorMode="dark";document.documentElement.classList.add("dark");</script>
+<link rel="stylesheet" href="https://www.wpfxy.cc/assets/theme/style.css">
+<link rel="stylesheet" href="https://www.wpfxy.cc/assets/theme/advertisements.css">
+<link rel="stylesheet" href="https://www.wpfxy.cc/assets/theme/search.css"><script defer src="https://www.wpfxy.cc/assets/theme/search.js"></script>
+<link rel="stylesheet" href="https://www.wpfxy.cc/assets/theme/guide.css?v=2.1.1">
+<link rel="stylesheet" href="https://www.wpfxy.cc/assets/theme/viewer.css">
+<link rel="stylesheet" href="https://www.wpfxy.cc/assets/theme/reader.css">
+<link rel="icon" href="https://www.wpfxy.cc/assets/media/9952960d-a32f-46c0-b9ba-74f5c355bf27.png">
+<link rel="stylesheet" href="https://www.wpfxy.cc/assets/theme/artalk.css"><script defer src="https://www.wpfxy.cc/assets/theme/artalk.js"></script>
+<script defer src="https://www.wpfxy.cc/assets/theme/theme.js?v=2.1.1"></script>
+<script defer src="https://www.wpfxy.cc/assets/theme/reader.js"></script>
+<script defer src="https://www.wpfxy.cc/assets/theme/viewer.js"></script>
+<script defer src="https://www.wpfxy.cc/assets/theme/image-viewer.js"></script>
+
+<script defer src="https://www.wpfxy.cc/assets/theme/interactions.js"></script>
+<script defer src="https://www.wpfxy.cc/assets/theme/guide.js?v=2.1.1"></script>
+
+
+<script defer src="https://www.wpfxy.cc/assets/xblog/google-analytics.js" data-xblog-google-analytics="G-ZH5EMJLD09" data-site-hosts="www.wpfxy.cc"></script></head>
+
+<body class="reader-page star-guide article-page"><a class="skip" href="#main">跳到正文</a><header class="site-header"><div class="header wrap header-inner"><a class="brand" href="https://www.wpfxy.cc/" aria-label="星航指南首页"><img class="brand-logo" src="https://www.wpfxy.cc/assets/media/9952960d-a32f-46c0-b9ba-74f5c355bf27.png" alt="" width="38" height="38">星航指南-机场测评<span class="brand-caption">FLYBIT / 99BA<br>机场选择与使用指南</span></a><nav id="site-navigation" aria-label="主导航"><a href="https://www.wpfxy.cc/">首页</a><a href="https://www.wpfxy.cc/posts/flybit-99ba-airport-guide/">套餐对比</a><a href="https://www.wpfxy.cc/posts/getting-started-tutorials/">使用教程</a><a href="https://www.wpfxy.cc/posts/client-tools-download/">工具下载</a><a href="https://www.wpfxy.cc/posts/frequently-asked-questions/">常见问题</a><a href="https://www.wpfxy.cc/posts/airport-review-editorial-standard/">关于我们</a><a href="https://www.wpfxy.cc/posts/network-tools/">网络工具</a></nav><a class="nav-cta" href="https://www.wpfxy.cc/#services">选择服务</a><a class="search-toggle" href="https://www.wpfxy.cc/search/" data-open-dialog="search-dialog" aria-haspopup="dialog" aria-controls="search-dialog" aria-label="搜索" title="搜索"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4.5 4.5"/></svg></a><button class="mobile-nav-toggle" id="menu-toggle" aria-label="打开导航菜单" aria-expanded="false" aria-controls="site-navigation"><span aria-hidden="true">☰</span></button></div></header><div class="page-viewport article-viewport"><div class="page-scroll article-scroll">
+<main id="main" tabindex="-1" class="content-page wrap">
+<nav class="breadcrumbs" aria-label="面包屑导航"><ol><li><a href="https://www.wpfxy.cc/">星航指南-机场测评</a></li><li><span aria-current="page">DNS 域名末尾的点有什么用？用 dig 核对搜索后缀</span></li></ol></nav>
+<div class="reading-layout">
+<article data-pagefind-body>
+<header class="article-header">
+<div class="eyebrow" data-pagefind-ignore>文章</div>
+<h1 data-pagefind-meta="title">DNS 域名末尾的点有什么用？用 dig 核对搜索后缀</h1>
+<div class="metadata" data-pagefind-ignore><span>星航</span><time datetime="2026-11-23T09:26:53&#43;08:00">2026-11-23</time><span><span id="page-views">—</span> 次阅读</span></div>
+<div class="chips" data-pagefind-ignore><a href="https://www.wpfxy.cc/categories/network-basics/">网络技术</a></div>
+</header>
+<div class="prose managed-prose"><p>在家庭实验网或企业网络里，设备上只输一个 <code>files</code> 就能找到服务，换台电脑却找不到，可能与 DNS 搜索后缀有关。记录解析结果之前，先问清两个工具提交的查询名称是否相同。</p>
+<h2 id="heading">末尾点把名称写完整</h2>
+<p>DNS 名称最末端是根。在文本中，<code>files.example.com.</code> 的末尾点表示名称已经完整。短名 <code>files</code> 可能按照系统或查询工具的搜索列表补全为 <code>files.example.com.</code>。不同工具对省略末尾点的多段名称也可能采取不同顺序。测试时，给明确要查的全名保留末尾点，便于固定查询目标。 <a href="https://www.rfc-editor.org/rfc/rfc1034.html#section-3.1">RFC 1034 的名称表示</a></p>
+<p><img src="https://www.wpfxy.cc/assets/media/d47ee377-337b-4078-9371-b54fab4249db.webp" alt="一行短名称拼上搜索后缀，另一行完整名称末尾有一个红点"></p>
+<p>示意图。上方是短名加搜索后缀，下方的末尾点表示完整的绝对域名。</p>
+<h2 id="heading-1">用同一解析器看实际问题名称</h2>
+<p>下面的名字是占位例子。用你获准访问的 DNS 和已知内部名称替换示例，保持两次查询用同一个解析器。在装有 BIND <code>dig</code> 的设备上运行。</p>
+<pre><code class="language-bash">dig files A +search +showsearch
+dig files.example.com. A +nosearch
+</code></pre>
+<p>第一条使用本机可见的搜索列表，并显示搜索的中间结果。列表是否存在以及候选的查找顺序受环境和 <code>ndots</code> 设置影响。第二条直接问完整名称。读每次输出的 <code>QUESTION SECTION</code>、响应状态、<code>ANSWER SECTION</code> 和 <code>SERVER</code>。只抄地址会丢掉这次究竟查询了什么的信息。 <a href="https://bind9.readthedocs.io/en/stable/manpages.html">ISC BIND 的 dig 手册</a></p>
+<h2 id="heading-2">用哪组结果继续查</h2>
+<ul>
+<li>短名实际补全到另一个域名时，对照本机配置里的搜索列表和后缀顺序。记录完整的目标名称。</li>
+<li>两轮实际查询的名字相同，返回地址却不同，就核对解析器、记录类型、时间与网络状态。必要时找内部 DNS 管理者查记录。</li>
+<li>完整名称在内网正常，而切换到另一张网络后查询失败时，保留内网解析器和应用的原有设置，向管理者核对该名称的可见范围。内部名称与日志只发给负责维护的人员。</li>
+</ul>
+<p>在机场推荐的 DNS 实测里保留查询名和回答服务器，能分辨「搜了不同的名称」和「同名得到了不同答复」。浏览器的安全 DNS 和应用自身的解析路径仍要用该应用的实际任务单独核对。</p>
+<p>延伸阅读可继续核对相关步骤。 <a href="https://www.wpfxy.cc/posts/mdns-local-hostname-lan-check/">开机场后找不到 printer.local？先把 mDNS 和公网 DNS 分开查</a></p>
+<p>资料核验于 2026-11-23。</p>
+</div>
+<div class="article-likes" data-pagefind-ignore>
+<button id="page-like" class="like-button" type="button" aria-pressed="false" aria-describedby="page-like-message" disabled>
+<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"/></svg>
+<span id="page-like-label">点赞</span><span id="page-like-count">—</span>
+</button><p id="page-like-message" role="status"></p>
+</div>
+<div class="article-tags" data-pagefind-ignore><a href="https://www.wpfxy.cc/tags/dns/"># DNS</a><a href="https://www.wpfxy.cc/tags/troubleshooting/"># 故障排查</a></div>
+<nav class="pagination" aria-label="相邻文章" data-pagefind-ignore><a href="https://www.wpfxy.cc/posts/flybit-plans-guide-2026/">← 上一篇</a><a href="https://www.wpfxy.cc/posts/domestic-business-trip-airport-flybit-plans-99ba-candidate-20261122/">下一篇 →</a></nav>
+<section class="comments-section" data-pagefind-ignore><h2>评论</h2><div id="comments"></div></section>
+</article>
+<aside class="article-sidebar article-rail">
+<aside class="toc"><div>本篇目录</div><nav aria-label="文章目录"><a class="level-2" href="#heading">末尾点把名称写完整</a><a class="level-2" href="#heading-1">用同一解析器看实际问题名称</a><a class="level-2" href="#heading-2">用哪组结果继续查</a></nav></aside>
+</aside></div></main>
+</div>
+<button id="back-to-top" class="back-to-top" type="button" aria-label="返回顶部" title="返回顶部" hidden>
+<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h14M12 20V8m-5 5 5-5 5 5"/></svg>
+</button>
+</div><footer class="site-footer wrap footer"><div class="footer-top"><a class="brand" href="https://www.wpfxy.cc/"><img class="brand-logo" src="https://www.wpfxy.cc/assets/media/9952960d-a32f-46c0-b9ba-74f5c355bf27.png" alt="" width="32" height="32">星航指南-机场测评</a><span>FlyBit &amp; 99吧 · 合作推广信息与使用指南</span></div><nav class="footer-tools" aria-label="相关工具软件"><span class="footer-tools-label">常用工具</span><a href="https://v2rayn.2dust.link/" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" width="23" height="23" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 5h18v12H3zM8 21h8M12 17v4M8 9l4 5 4-5"/></svg><span>v2rayN</span></a><a href="https://www.clashverge.dev/install.html" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" width="23" height="23" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 8 7 3l5 3 5-3 2 5v7c0 4-3 6-7 6s-7-2-7-6zM8 12h.01M16 12h.01M10 16l2 2 2-2"/></svg><span>Clash Verge Rev</span></a><a href="https://v2rayng.2dust.link/" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" width="23" height="23" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 10h14v10H5zM7 10V8a5 5 0 0 1 10 0v2M8 3 6 1M16 3l2-2M2 12v6M22 12v6M9 20v3M15 20v3M9 7h.01M15 7h.01"/></svg><span>v2rayNG</span></a><a href="https://stash.ws/zh/download" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" width="23" height="23" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 9 5-9 5-9-5zM3 8v10l9 5 9-5V8M12 13v10"/></svg><span>Stash</span></a><a href="https://www.wpfxy.cc/posts/network-tools/"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2 12h4l3-7 5 14 3-7h5"/></svg><span>IP / Ping</span></a></nav><nav id="friend-links" class="friend-links" aria-label="友情链接"><span class="friend-links-label">友情链接</span><a href="https://goflybit.com/#/register?code=gPinVG8C" target="_blank" rel="noopener noreferrer">FlyBit</a><a href="https://99ba.net/#/register?code=sExBbdk9" target="_blank" rel="noopener noreferrer">99吧</a><a href="https://t.me/five_91" target="_blank" rel="noopener noreferrer">Telegram联系</a><a href="https://t.me/RouteRadarCN" target="_blank" rel="noopener noreferrer">Telegram频道</a></nav><div class="footer-bottom"><span>© 2026 星航指南</span><span>先核对信息，再做选择。</span></div><p class="footer-disclosure">合作说明：通过本站合作链接购买，本站可能获得佣金。账户、套餐、付款与售后由服务商提供。</p></footer>
+
+<dialog id="search-dialog" class="reader-dialog site-search" aria-labelledby="search-title" data-reader-dialog data-pagefind-ignore>
+<header class="reader-dialog-header"><h2 id="search-title">搜索文章</h2><button class="dialog-close" type="button" data-close-dialog aria-label="关闭搜索" title="关闭搜索">×</button></header>
+<div class="reader-dialog-body">
+
+<div id="site-search-ui" data-module="https://www.wpfxy.cc/pagefind/pagefind-component-ui.js" data-stylesheet="https://www.wpfxy.cc/pagefind/pagefind-component-ui.css" hidden>
+
+<pagefind-config bundle-path="https://www.wpfxy.cc/pagefind/" base-url="https://www.wpfxy.cc/" lang="zh-cn" no-worker></pagefind-config>
+<pagefind-input placeholder="搜索文章标题或正文"></pagefind-input>
+<pagefind-summary></pagefind-summary>
+<pagefind-results></pagefind-results>
+</div>
+<p id="search-status" class="search-status" role="status">正在加载搜索…</p>
+<button id="search-retry" class="button" type="button" hidden>重新加载</button>
+
+</div>
+</dialog>
+
+<script id="blog-comments-config" type="application/json">{"comments":true,"likes":true,"locale":"zh-CN","pageKey":"/p/49f2c057-7949-446f-a170-ffda778cc625/","pageTitle":"DNS 域名末尾的点有什么用？用 dig 核对搜索后缀","server":"https://upfqpobmiewm.sealosgzg.site","site":"xblog-8d67829c-3602-4d9b-9bb7-c2d68118fecb","views":true,"viewsBase":0}</script>
+</body></html>
