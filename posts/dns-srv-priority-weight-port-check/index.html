@@ -1,0 +1,116 @@
+<!doctype html><html lang="zh-CN" class="dark" data-color-mode="dark" data-theme="star-route-guide">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DNS SRV 查到端口，客户端就会用吗？看清优先级、权重和目标 · 星航指南-机场测评</title>
+<meta name="description" content="用 dig 查询 DNS SRV，读懂 Priority、Weight、Port、Target 和目标地址。区分 DNS 服务发现与机场客户端是否采用记录。">
+<meta name="keywords" content="DNS SRV 记录,dig SRV,SRV 优先级和权重,客户端服务发现">
+<meta name="robots" content="index,follow,max-image-preview:large"><link rel="canonical" href="https://www.wpfxy.cc/posts/dns-srv-priority-weight-port-check/">
+<meta property="og:title" content="DNS SRV 查到端口，客户端就会用吗？看清优先级、权重和目标">
+<meta property="og:description" content="用 dig 查询 DNS SRV，读懂 Priority、Weight、Port、Target 和目标地址。区分 DNS 服务发现与机场客户端是否采用记录。">
+<meta property="og:url" content="https://www.wpfxy.cc/posts/dns-srv-priority-weight-port-check/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="星航指南-机场测评">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.wpfxy.cc/assets/media/3aa49b6d-9d8b-4efb-a07b-6af73472700c.webp"><meta property="og:image:alt" content="DNS SRV 查到端口，客户端就会用吗？看清优先级、权重和目标">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="DNS SRV 查到端口，客户端就会用吗？看清优先级、权重和目标">
+<meta name="twitter:description" content="用 dig 查询 DNS SRV，读懂 Priority、Weight、Port、Target 和目标地址。区分 DNS 服务发现与机场客户端是否采用记录。">
+<meta name="twitter:image" content="https://www.wpfxy.cc/assets/media/9952960d-a32f-46c0-b9ba-74f5c355bf27.png">
+<meta name="author" content="星航"><meta property="article:published_time" content="2026-11-24T19:52:52&#43;08:00"><meta property="article:modified_time" content="2026-11-24T19:52:59&#43;08:00"><meta property="article:tag" content="DNS">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@id":"https://www.wpfxy.cc/posts/dns-srv-priority-weight-port-check/#article","@type":"BlogPosting","author":{"@type":"Person","name":"星航"},"dateModified":"2026-11-24T19:52:59+08:00","datePublished":"2026-11-24T19:52:52+08:00","description":"用 dig 查询 DNS SRV，读懂 Priority、Weight、Port、Target 和目标地址。区分 DNS 服务发现与机场客户端是否采用记录。","headline":"DNS SRV 查到端口，客户端就会用吗？看清优先级、权重和目标","inLanguage":"zh-CN","mainEntityOfPage":{"@id":"https://www.wpfxy.cc/posts/dns-srv-priority-weight-port-check/","@type":"WebPage"},"url":"https://www.wpfxy.cc/posts/dns-srv-priority-weight-port-check/"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://www.wpfxy.cc/","name":"星航指南-机场测评","position":1},{"@type":"ListItem","item":"https://www.wpfxy.cc/posts/dns-srv-priority-weight-port-check/","name":"DNS SRV 查到端口，客户端就会用吗？看清优先级、权重和目标","position":2}]}]}</script>
+
+<script>document.documentElement.dataset.colorMode="dark";document.documentElement.classList.add("dark");</script>
+<link rel="stylesheet" href="https://www.wpfxy.cc/assets/theme/style.css">
+<link rel="stylesheet" href="https://www.wpfxy.cc/assets/theme/advertisements.css">
+<link rel="stylesheet" href="https://www.wpfxy.cc/assets/theme/search.css"><script defer src="https://www.wpfxy.cc/assets/theme/search.js"></script>
+<link rel="stylesheet" href="https://www.wpfxy.cc/assets/theme/guide.css?v=2.1.1">
+<link rel="stylesheet" href="https://www.wpfxy.cc/assets/theme/viewer.css">
+<link rel="stylesheet" href="https://www.wpfxy.cc/assets/theme/reader.css">
+<link rel="icon" href="https://www.wpfxy.cc/assets/media/9952960d-a32f-46c0-b9ba-74f5c355bf27.png">
+<link rel="stylesheet" href="https://www.wpfxy.cc/assets/theme/artalk.css"><script defer src="https://www.wpfxy.cc/assets/theme/artalk.js"></script>
+<script defer src="https://www.wpfxy.cc/assets/theme/theme.js?v=2.1.1"></script>
+<script defer src="https://www.wpfxy.cc/assets/theme/reader.js"></script>
+<script defer src="https://www.wpfxy.cc/assets/theme/viewer.js"></script>
+<script defer src="https://www.wpfxy.cc/assets/theme/image-viewer.js"></script>
+
+<script defer src="https://www.wpfxy.cc/assets/theme/interactions.js"></script>
+<script defer src="https://www.wpfxy.cc/assets/theme/guide.js?v=2.1.1"></script>
+
+
+<script defer src="https://www.wpfxy.cc/assets/xblog/google-analytics.js" data-xblog-google-analytics="G-ZH5EMJLD09" data-site-hosts="www.wpfxy.cc"></script></head>
+
+<body class="reader-page star-guide article-page"><a class="skip" href="#main">跳到正文</a><header class="site-header"><div class="header wrap header-inner"><a class="brand" href="https://www.wpfxy.cc/" aria-label="星航指南首页"><img class="brand-logo" src="https://www.wpfxy.cc/assets/media/9952960d-a32f-46c0-b9ba-74f5c355bf27.png" alt="" width="38" height="38">星航指南-机场测评<span class="brand-caption">FLYBIT / 99BA<br>机场选择与使用指南</span></a><nav id="site-navigation" aria-label="主导航"><a href="https://www.wpfxy.cc/">首页</a><a href="https://www.wpfxy.cc/posts/flybit-99ba-airport-guide/">套餐对比</a><a href="https://www.wpfxy.cc/posts/getting-started-tutorials/">使用教程</a><a href="https://www.wpfxy.cc/posts/client-tools-download/">工具下载</a><a href="https://www.wpfxy.cc/posts/frequently-asked-questions/">常见问题</a><a href="https://www.wpfxy.cc/posts/airport-review-editorial-standard/">关于我们</a><a href="https://www.wpfxy.cc/posts/network-tools/">网络工具</a></nav><a class="nav-cta" href="https://www.wpfxy.cc/#services">选择服务</a><a class="search-toggle" href="https://www.wpfxy.cc/search/" data-open-dialog="search-dialog" aria-haspopup="dialog" aria-controls="search-dialog" aria-label="搜索" title="搜索"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4.5 4.5"/></svg></a><button class="mobile-nav-toggle" id="menu-toggle" aria-label="打开导航菜单" aria-expanded="false" aria-controls="site-navigation"><span aria-hidden="true">☰</span></button></div></header><div class="page-viewport article-viewport"><div class="page-scroll article-scroll">
+<main id="main" tabindex="-1" class="content-page wrap">
+<nav class="breadcrumbs" aria-label="面包屑导航"><ol><li><a href="https://www.wpfxy.cc/">星航指南-机场测评</a></li><li><span aria-current="page">DNS SRV 查到端口，客户端就会用吗？看清优先级、权重和目标</span></li></ol></nav>
+<div class="reading-layout">
+<article data-pagefind-body>
+<header class="article-header">
+<div class="eyebrow" data-pagefind-ignore>文章</div>
+<h1 data-pagefind-meta="title">DNS SRV 查到端口，客户端就会用吗？看清优先级、权重和目标</h1>
+<div class="metadata" data-pagefind-ignore><span>星航</span><time datetime="2026-11-24T19:52:52&#43;08:00">2026-11-24</time><span><span id="page-views">—</span> 次阅读</span></div>
+<div class="chips" data-pagefind-ignore><a href="https://www.wpfxy.cc/categories/network-basics/">网络技术</a></div>
+</header>
+<div class="prose managed-prose"><p>DNS 查询里看到一条带端口的 SRV 记录，首先要确认客户端的协议是否会查它。SRV 是服务发现记录。查询名称包含服务和传输协议，答案提供候选目标及端口。机场推荐里的手动连接参数仍要按服务商和客户端文档填写。仅在协议明确支持 SRV 时，才按定义的名称和规则用它查入口。 <a href="https://www.rfc-editor.org/rfc/rfc2782">RFC 2782 DNS SRV</a></p>
+<p><img src="https://www.wpfxy.cc/assets/media/3aa49b6d-9d8b-4efb-a07b-6af73472700c.webp" alt="一张写有 SRV 的 DNS 记录卡分别指向两台服务器的端口"></p>
+<p>示意图。SRV 提供候选目标和端口，客户端按协议与记录字段决定连接顺序。</p>
+<h2 id="heading">四列从左到右怎样读</h2>
+<p>下面用保留域名演示答案格式。实际核对时替换为客户端文档指定的服务名、协议和域名。</p>
+<pre><code class="language-text">_ldap._tcp.example.com. 300 IN SRV 10 30 389  srv-a.example.com.
+_ldap._tcp.example.com. 300 IN SRV 10 10 1389 srv-b.example.com.
+_ldap._tcp.example.com. 300 IN SRV 20 0  389  srv-c.example.com.
+</code></pre>
+<ul>
+<li><strong>Priority（优先级）</strong>。优先尝试能到达且优先级数字最小的目标。示例中先看两条优先级为 10 的记录，20 的放在后面。</li>
+<li><strong>Weight（权重）</strong>。只在同一优先级组内参与目标选择。相同优先级下，权重越大通常越容易先被尝试。</li>
+<li><strong>Port（端口）</strong>。当前候选目标提供该服务的端口。两条同优先级的记录也可以使用不同端口。</li>
+<li><strong>Target（目标）</strong>。需要继续解析地址的主机名。若目标字段本身只有一个点 <code>.</code>，RFC 用它表达该域上的指定服务不可用。</li>
+</ul>
+<h2 id="-dig-">用 dig 查记录，再核实客户端实际采用哪一条</h2>
+<p>在安装了 <code>dig</code> 的终端，先查完整的服务名称。拿到目标后，再分别检查它的地址记录。下面的三条仍是语法示例。</p>
+<pre><code class="language-sh">dig _ldap._tcp.example.com. SRV
+dig srv-a.example.com. A
+dig srv-a.example.com. AAAA
+</code></pre>
+<p>保留完整响应便于看到状态和答案节。即使返回 <code>NOERROR</code>，空答案也需要确认查询名、服务标签和协议写法。地址记录查得到以后，到客户端的连接详情或本机日志核对目标主机和端口。若客户端只从配置中读取手填的主机、端口，要验证的是这组配置能否连接。验收证据最好留两条，一条是完整的 SRV 查答，另一条是应用实际尝试的目标和端口。 <a href="https://bind9.readthedocs.io/en/stable/manpages.html#dig-dns-lookup-utility">ISC BIND dig 手册</a></p>
+<p>末尾的点让查询使用完整名称。需要复查时可结合搜索后缀的说明。 <a href="https://www.wpfxy.cc/posts/dns-trailing-dot-search-suffix-dig/">DNS 域名末尾的点有什么用？用 dig 核对搜索后缀</a></p>
+<p>资料核验于 2026-11-24。</p>
+</div>
+<div class="article-likes" data-pagefind-ignore>
+<button id="page-like" class="like-button" type="button" aria-pressed="false" aria-describedby="page-like-message" disabled>
+<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"/></svg>
+<span id="page-like-label">点赞</span><span id="page-like-count">—</span>
+</button><p id="page-like-message" role="status"></p>
+</div>
+<div class="article-tags" data-pagefind-ignore><a href="https://www.wpfxy.cc/tags/dns/"># DNS</a></div>
+<nav class="pagination" aria-label="相邻文章" data-pagefind-ignore><a href="https://www.wpfxy.cc/posts/flybit-plans-guide-2026/">← 上一篇</a><a href="https://www.wpfxy.cc/posts/dns-trailing-dot-search-suffix-dig/">下一篇 →</a></nav>
+<section class="comments-section" data-pagefind-ignore><h2>评论</h2><div id="comments"></div></section>
+</article>
+<aside class="article-sidebar article-rail">
+<aside class="toc"><div>本篇目录</div><nav aria-label="文章目录"><a class="level-2" href="#heading">四列从左到右怎样读</a><a class="level-2" href="#-dig-">用 dig 查记录，再核实客户端实际采用哪一条</a></nav></aside>
+</aside></div></main>
+</div>
+<button id="back-to-top" class="back-to-top" type="button" aria-label="返回顶部" title="返回顶部" hidden>
+<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h14M12 20V8m-5 5 5-5 5 5"/></svg>
+</button>
+</div><footer class="site-footer wrap footer"><div class="footer-top"><a class="brand" href="https://www.wpfxy.cc/"><img class="brand-logo" src="https://www.wpfxy.cc/assets/media/9952960d-a32f-46c0-b9ba-74f5c355bf27.png" alt="" width="32" height="32">星航指南-机场测评</a><span>FlyBit &amp; 99吧 · 合作推广信息与使用指南</span></div><nav class="footer-tools" aria-label="相关工具软件"><span class="footer-tools-label">常用工具</span><a href="https://v2rayn.2dust.link/" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" width="23" height="23" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 5h18v12H3zM8 21h8M12 17v4M8 9l4 5 4-5"/></svg><span>v2rayN</span></a><a href="https://www.clashverge.dev/install.html" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" width="23" height="23" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 8 7 3l5 3 5-3 2 5v7c0 4-3 6-7 6s-7-2-7-6zM8 12h.01M16 12h.01M10 16l2 2 2-2"/></svg><span>Clash Verge Rev</span></a><a href="https://v2rayng.2dust.link/" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" width="23" height="23" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 10h14v10H5zM7 10V8a5 5 0 0 1 10 0v2M8 3 6 1M16 3l2-2M2 12v6M22 12v6M9 20v3M15 20v3M9 7h.01M15 7h.01"/></svg><span>v2rayNG</span></a><a href="https://stash.ws/zh/download" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" width="23" height="23" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 9 5-9 5-9-5zM3 8v10l9 5 9-5V8M12 13v10"/></svg><span>Stash</span></a><a href="https://www.wpfxy.cc/posts/network-tools/"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2 12h4l3-7 5 14 3-7h5"/></svg><span>IP / Ping</span></a></nav><nav id="friend-links" class="friend-links" aria-label="友情链接"><span class="friend-links-label">友情链接</span><a href="https://goflybit.com/#/register?code=gPinVG8C" target="_blank" rel="noopener noreferrer">FlyBit</a><a href="https://99ba.net/#/register?code=sExBbdk9" target="_blank" rel="noopener noreferrer">99吧</a><a href="https://t.me/five_91" target="_blank" rel="noopener noreferrer">Telegram联系</a><a href="https://t.me/RouteRadarCN" target="_blank" rel="noopener noreferrer">Telegram频道</a></nav><div class="footer-bottom"><span>© 2026 星航指南</span><span>先核对信息，再做选择。</span></div><p class="footer-disclosure">合作说明：通过本站合作链接购买，本站可能获得佣金。账户、套餐、付款与售后由服务商提供。</p></footer>
+
+<dialog id="search-dialog" class="reader-dialog site-search" aria-labelledby="search-title" data-reader-dialog data-pagefind-ignore>
+<header class="reader-dialog-header"><h2 id="search-title">搜索文章</h2><button class="dialog-close" type="button" data-close-dialog aria-label="关闭搜索" title="关闭搜索">×</button></header>
+<div class="reader-dialog-body">
+
+<div id="site-search-ui" data-module="https://www.wpfxy.cc/pagefind/pagefind-component-ui.js" data-stylesheet="https://www.wpfxy.cc/pagefind/pagefind-component-ui.css" hidden>
+
+<pagefind-config bundle-path="https://www.wpfxy.cc/pagefind/" base-url="https://www.wpfxy.cc/" lang="zh-cn" no-worker></pagefind-config>
+<pagefind-input placeholder="搜索文章标题或正文"></pagefind-input>
+<pagefind-summary></pagefind-summary>
+<pagefind-results></pagefind-results>
+</div>
+<p id="search-status" class="search-status" role="status">正在加载搜索…</p>
+<button id="search-retry" class="button" type="button" hidden>重新加载</button>
+
+</div>
+</dialog>
+
+<script id="blog-comments-config" type="application/json">{"comments":true,"likes":true,"locale":"zh-CN","pageKey":"/p/06a1bed3-ba94-4ddf-b12d-83f5deff6d0b/","pageTitle":"DNS SRV 查到端口，客户端就会用吗？看清优先级、权重和目标","server":"https://upfqpobmiewm.sealosgzg.site","site":"xblog-8d67829c-3602-4d9b-9bb7-c2d68118fecb","views":true,"viewsBase":0}</script>
+</body></html>
